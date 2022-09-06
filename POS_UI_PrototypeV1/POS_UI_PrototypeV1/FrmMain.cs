@@ -12,13 +12,16 @@ namespace POS_UI_PrototypeV1
 {
     public partial class frmMain : Form
     {
+        #region Variables
         private Panel pnlShow;
+        #endregion
+
         #region Constructor
         public frmMain()
         {
             InitializeComponent();
 
-            //UI Setup
+            //GUI Setup
             LoadGUI();
             //Change border
             this.Text = String.Empty;
@@ -56,6 +59,41 @@ namespace POS_UI_PrototypeV1
             btnSuppliers.IconColor = Methods.DetermineFrontColor(btnSuppliers.BackColor);
         }
         #endregion
+        #region Drag Function
+        private void lblHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            Methods.DragCode(this);
+        }
+
+        private void lblName_MouseDown(object sender, MouseEventArgs e)
+        {
+            Methods.DragCode(this);
+        }
+        #endregion
+        #region Control Box
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+
         #region Open Screen
         public void MenuSelect(FontAwesome.Sharp.IconButton btnPressed, String screenName)
         {
@@ -87,9 +125,6 @@ namespace POS_UI_PrototypeV1
         private void btnInventory_Click(object sender, EventArgs e)
         {
             MenuSelect(btnInventory,"Inventory");
-            frmTest myForm = new frmTest();
-            this.pnlForm.Controls.Add(myForm);
-            myForm.Show();
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -112,38 +147,5 @@ namespace POS_UI_PrototypeV1
             MenuSelect(btnSettings,"Settings");
         }
         #endregion
-        #region Drag Function
-        private void lblHeader_MouseDown(object sender, MouseEventArgs e)
-        {
-            Methods.DragCode(this);
-        }
-
-        private void lblName_MouseDown(object sender, MouseEventArgs e)
-        {
-            Methods.DragCode(this);
-        }
-        #endregion
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnMax_Click(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Normal)
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-        }
-
-        private void btnMin_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
     }
 }

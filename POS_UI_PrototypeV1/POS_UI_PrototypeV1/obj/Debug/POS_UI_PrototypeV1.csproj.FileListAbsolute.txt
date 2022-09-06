@@ -23,3 +23,15 @@ C:\Users\armin\Desktop\Files\School\Current Work\CMPG223\POS_UI_PrototypeV1\POS_
 C:\Users\armin\Desktop\Files\School\Current Work\CMPG223\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.exe
 C:\Users\armin\Desktop\Files\School\Current Work\CMPG223\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.pdb
 C:\Users\armin\Desktop\Files\School\Current Work\CMPG223\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.frmTest.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\bin\Debug\POS_UI_PrototypeV1.exe.config
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\bin\Debug\POS_UI_PrototypeV1.exe
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\bin\Debug\POS_UI_PrototypeV1.pdb
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.csproj.AssemblyReference.cache
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.frmMain.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.Properties.Resources.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.csproj.GenerateResource.cache
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.csproj.CoreCompileInputs.cache
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.csproj.CopyComplete
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.exe
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_UI_PrototypeV1\POS_UI_PrototypeV1\obj\Debug\POS_UI_PrototypeV1.pdb

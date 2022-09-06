@@ -14,14 +14,14 @@ namespace POS_UI_PrototypeV1
 {
     class Methods
     {
-        #region Properties (Fully Optimized)
-        public static bool customIcon = false;
+        #region Properties
         public static Color clrIcons = Color.FromArgb(94, 1, 20);
         public static Color clrSelected = Color.FromArgb(94, 1, 20);
         public static Color clrMenu = Color.FromArgb(45, 45, 47);
         public static Color clrForms = Color.FromArgb(62, 62, 66);
         #endregion
-        #region Color Brightness (Fully Optimized)
+
+        #region Color Brightness
         public static Color ChangeColorBrightness(Color color, double correctionFactor)
         {
             /*  
@@ -54,7 +54,7 @@ namespace POS_UI_PrototypeV1
             return Color.FromArgb(color.A, (byte)red, (byte)green, (byte)blue);
         }
         #endregion
-        #region Determine Front Color (Fully Optimized)
+        #region Determine Front Color
         public static Color DetermineFrontColor(Color backColor)
         {
             double red = backColor.R;
