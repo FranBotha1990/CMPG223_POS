@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("POS_UI_PrototypeV1")]
+[assembly: AssemblyTitle("POS_Group5_CMPG223")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("POS_UI_PrototypeV1")]
+[assembly: AssemblyProduct("POS_Group5_CMPG223")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6c654881-c576-4237-afba-26588df5e02b")]
+[assembly: Guid("d87d22b6-9866-4cc5-af04-03994ac140f4")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,5 +1,5 @@
 ﻿
-namespace POS_UI_PrototypeV1
+namespace POS_Group5_CMPG223
 {
     partial class frmMain
     {

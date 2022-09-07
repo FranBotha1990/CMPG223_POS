@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 
-namespace POS_UI_PrototypeV1
+namespace POS_Group5_CMPG223
 {
     class Methods
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POS_UI_PrototypeV1
+namespace POS_Group5_CMPG223
 {
     static class Program
     {

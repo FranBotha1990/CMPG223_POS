@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POS_UI_PrototypeV1
+namespace POS_Group5_CMPG223
 {
     public partial class frmMain : Form
     {
@@ -36,7 +36,7 @@ namespace POS_UI_PrototypeV1
             pnlForm.BackColor = Methods.clrForms;
             pnlMenu.BackColor = Methods.clrMenu;
             pnlHeader.BackColor = Methods.clrMenu;
-            pnlName.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu,-0.3);
+            pnlName.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, -0.3);
             pnlControl.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, -0.3);
             //Fore Colors
             lblHeader.ForeColor = Methods.DetermineFrontColor(lblHeader.BackColor);
@@ -119,32 +119,32 @@ namespace POS_UI_PrototypeV1
         #region Menu Buttons
         private void btnPOS_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnPOS,"Point of Sale");
+            MenuSelect(btnPOS, "Point of Sale");
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnInventory,"Inventory");
+            MenuSelect(btnInventory, "Inventory");
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnOrder,"Order");
+            MenuSelect(btnOrder, "Order");
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnSuppliers,"Suppliers");
+            MenuSelect(btnSuppliers, "Suppliers");
         }
 
         private void btnReporting_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnReporting,"Reporting");
+            MenuSelect(btnReporting, "Reporting");
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnSettings,"Settings");
+            MenuSelect(btnSettings, "Settings");
         }
         #endregion
     }
