@@ -153,21 +153,37 @@ namespace POS_Group5_CMPG223
         private void btnInventory_Click(object sender, EventArgs e)
         {
             MenuSelect(btnInventory, "Inventory");
+            FrmInventory frmInventory;
+            OpenChildForm(frmInventory = new FrmInventory());
+            frmInventory.LoadGUI();
+            activeForm = frmInventory;
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
             MenuSelect(btnOrder, "Order");
+            FrmOrder frmOrder;
+            OpenChildForm(frmOrder = new FrmOrder());
+            frmOrder.LoadGUI();
+            activeForm = frmOrder;
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             MenuSelect(btnSuppliers, "Suppliers");
+            FrmSuppliers frmSuppliers;
+            OpenChildForm(frmSuppliers = new FrmSuppliers());
+            frmSuppliers.LoadGUI();
+            activeForm = frmSuppliers;
         }
 
         private void btnReporting_Click(object sender, EventArgs e)
         {
             MenuSelect(btnReporting, "Reporting");
+            FrmReporting frmReporting;
+            OpenChildForm(frmReporting = new FrmReporting());
+            frmReporting.LoadGUI();
+            activeForm = frmReporting;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -191,6 +207,10 @@ namespace POS_Group5_CMPG223
         private void btnPurchaseOrders_Click(object sender, EventArgs e)
         {
             MenuSelect(btnPurchaseOrders, "Purchase Orders");
+            FrmPurchaseOrders frmPurchaseOrders;
+            OpenChildForm(frmPurchaseOrders = new FrmPurchaseOrders());
+            frmPurchaseOrders.LoadGUI();
+            activeForm = frmPurchaseOrders;
         }
         #endregion
 
