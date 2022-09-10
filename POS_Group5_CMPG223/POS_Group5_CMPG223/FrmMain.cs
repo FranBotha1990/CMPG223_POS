@@ -178,12 +178,16 @@ namespace POS_Group5_CMPG223
             frmSettings.LoadGUI();
             activeForm = frmSettings;
         }
-        #endregion
 
         private void btnSalesOrders_Click(object sender, EventArgs e)
         {
             MenuSelect(btnSalesOrders, "Sales Orders");
+            FrmSalesOrders frmSalesOrders;
+            OpenChildForm(frmSalesOrders = new FrmSalesOrders());
+            frmSalesOrders.LoadGUI();
+            activeForm = frmSalesOrders;
         }
+        #endregion
 
         private void btnPurchaseOrders_Click(object sender, EventArgs e)
         {
