@@ -144,6 +144,10 @@ namespace POS_Group5_CMPG223
         private void btnSales_Click(object sender, EventArgs e)
         {
             MenuSelect(btnSales, "Sales");
+            FrmSales frmSales;
+            OpenChildForm(frmSales = new FrmSales());
+            frmSales.LoadGUI();
+            activeForm = frmSales;
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
