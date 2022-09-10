@@ -14,6 +14,7 @@ namespace POS_Group5_CMPG223
     {
         #region Variables
         private Panel pnlShow;
+        private Form activeForm;
         #endregion
 
         #region Constructor
@@ -22,6 +23,7 @@ namespace POS_Group5_CMPG223
             InitializeComponent();
 
             //GUI Setup
+            Methods.LoadProperties();
             LoadGUI();
             //Change border
             this.Text = String.Empty;
@@ -57,6 +59,8 @@ namespace POS_Group5_CMPG223
             btnReporting.IconColor = Methods.DetermineFrontColor(btnReporting.BackColor);
             btnSettings.IconColor = Methods.DetermineFrontColor(btnSettings.BackColor);
             btnSuppliers.IconColor = Methods.DetermineFrontColor(btnSuppliers.BackColor);
+            //Misc
+            lblName.Text = Methods.businessName;
         }
         #endregion
         #region Drag Function
@@ -116,6 +120,22 @@ namespace POS_Group5_CMPG223
             lblHeader.Text = screenName;
         }
         #endregion
+        #region Open Child Form
+        private void OpenChildForm(Form childForm)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.pnlForm.Controls.Add(childForm);
+            this.pnlForm.Tag = childForm;
+            childForm.Show();
+        }
+        #endregion
         #region Menu Buttons
         private void btnPOS_Click(object sender, EventArgs e)
         {
@@ -145,6 +165,10 @@ namespace POS_Group5_CMPG223
         private void btnSettings_Click(object sender, EventArgs e)
         {
             MenuSelect(btnSettings, "Settings");
+            FrmSettings frmSettings;
+            OpenChildForm(frmSettings = new FrmSettings());
+            frmSettings.LoadGUI();
+            activeForm = frmSettings;
         }
         #endregion
     }

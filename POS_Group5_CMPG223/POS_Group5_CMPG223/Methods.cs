@@ -9,16 +9,46 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace POS_Group5_CMPG223
 {
     class Methods
     {
         #region Properties
+        public static String businessName = "Business Name";
+        public static int colorScheme = 0;
         public static Color clrIcons = Color.FromArgb(94, 1, 20);
         public static Color clrSelected = Color.FromArgb(94, 1, 20);
         public static Color clrMenu = Color.FromArgb(45, 45, 47);
         public static Color clrForms = Color.FromArgb(62, 62, 66);
+        public static void SaveProperties()
+        {
+            File.WriteAllText(Application.StartupPath + @"\properties.txt", businessName+"#"+colorScheme);
+        }
+        public static void LoadProperties()
+        {
+            String propertiesText = File.ReadAllText(Application.StartupPath + @"\properties.txt");
+            String[] arrProperties = propertiesText.Split('#');
+            businessName = arrProperties[0];
+            colorScheme = int.Parse(arrProperties[1]);
+            if (arrProperties[1] == "0")
+            {
+                //Set Colors (Datk Theme)
+                clrIcons = Color.FromArgb(94, 1, 20);
+                clrSelected = Color.FromArgb(94, 1, 20);
+                clrMenu = Color.FromArgb(45, 45, 47);
+                clrForms = Color.FromArgb(62, 62, 66);
+            }
+            else
+            {
+                //Set Colors (Light Theme)
+                clrIcons = Color.FromArgb(103, 122, 146);
+                clrSelected = Color.FromArgb(103, 122, 146);
+                clrMenu = Color.FromArgb(205, 213, 219);
+                clrForms = Color.FromArgb(225, 225, 223);
+            }
+        }
         #endregion
 
         #region Color Brightness

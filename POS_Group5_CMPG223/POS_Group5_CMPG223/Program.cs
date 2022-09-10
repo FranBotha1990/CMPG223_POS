@@ -8,16 +8,16 @@ namespace POS_Group5_CMPG223
 {
     static class Program
     {
+        public static frmMain mainForm;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static Form FrmMain;
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(FrmMain = new frmMain());
+            Application.Run(mainForm = new frmMain());
         }
     }
 }

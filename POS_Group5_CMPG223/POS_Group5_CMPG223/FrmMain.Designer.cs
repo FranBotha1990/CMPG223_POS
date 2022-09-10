@@ -320,8 +320,6 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlName;
         private System.Windows.Forms.Panel pnlHeader;
-        private System.Windows.Forms.Panel pnlForm;
-        private FontAwesome.Sharp.IconButton btnSettings;
         private FontAwesome.Sharp.IconButton btnReporting;
         private FontAwesome.Sharp.IconButton btnSuppliers;
         private FontAwesome.Sharp.IconButton btnOrder;
@@ -333,6 +331,8 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.Button btnMax;
+        public FontAwesome.Sharp.IconButton btnSettings;
+        private System.Windows.Forms.Panel pnlForm;
     }
 }
 
