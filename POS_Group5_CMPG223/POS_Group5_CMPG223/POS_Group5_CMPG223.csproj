@@ -76,6 +76,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPurchaseOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPurchaseOrders.Designer.cs">
+      <DependentUpon>FrmPurchaseOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="FrmSettings.Designer.cs">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSuppliers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSuppliers.Designer.cs">
+      <DependentUpon>FrmSuppliers.cs</DependentUpon>
     </Compile>
     <Compile Include="Methods.cs" />
     <Compile Include="Program.cs" />
