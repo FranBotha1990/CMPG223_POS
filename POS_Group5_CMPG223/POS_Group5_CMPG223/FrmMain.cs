@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//testing comment
 namespace POS_Group5_CMPG223
 {
     public partial class frmMain : Form
