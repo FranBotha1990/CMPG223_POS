@@ -44,13 +44,12 @@ namespace POS_Group5_CMPG223
             Program.mainForm.MenuSelect(Program.mainForm.btnSettings, "Settings");
             LoadGUI();
         }
-        #endregion
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
             Program.mainForm.LoadGUI();
             Program.mainForm.pnlShow.Dispose();
         }
+        #endregion
     }
 }
