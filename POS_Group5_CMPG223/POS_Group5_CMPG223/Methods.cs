@@ -34,7 +34,7 @@ namespace POS_Group5_CMPG223
             colorScheme = int.Parse(arrProperties[1]);
             if (arrProperties[1] == "0")
             {
-                //Set Colors (Datk Theme)
+                //Set Colors (Dark Theme)
                 clrIcons = Color.FromArgb(94, 1, 20);
                 clrSelected = Color.FromArgb(94, 1, 20);
                 clrMenu = Color.FromArgb(45, 45, 47);

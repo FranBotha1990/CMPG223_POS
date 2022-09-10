@@ -13,7 +13,7 @@ namespace POS_Group5_CMPG223
     public partial class frmMain : Form
     {
         #region Variables
-        private Panel pnlShow;
+        public Panel pnlShow;
         private Form activeForm;
         #endregion
 

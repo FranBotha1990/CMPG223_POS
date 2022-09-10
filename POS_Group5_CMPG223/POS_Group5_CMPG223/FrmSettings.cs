@@ -27,6 +27,7 @@ namespace POS_Group5_CMPG223
             gbxBusinessSettings.ForeColor = Methods.DetermineFrontColor(gbxBusinessSettings.BackColor);
             gbxGUISettings.ForeColor = Methods.DetermineFrontColor(gbxGUISettings.BackColor);
             btnSaveSettings.ForeColor = Methods.DetermineFrontColor(btnSaveSettings.BackColor);
+            btnClose.ForeColor = Methods.DetermineFrontColor(btnSaveSettings.BackColor);
             //Misc
             txtBusinessName.Text = Methods.businessName;
             cbxColorScheme.SelectedIndex = Methods.colorScheme;
@@ -44,5 +45,12 @@ namespace POS_Group5_CMPG223
             LoadGUI();
         }
         #endregion
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Program.mainForm.LoadGUI();
+            Program.mainForm.pnlShow.Dispose();
+        }
     }
 }

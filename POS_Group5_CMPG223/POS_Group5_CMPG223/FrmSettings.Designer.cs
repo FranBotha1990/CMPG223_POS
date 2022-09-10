@@ -30,17 +30,18 @@ namespace POS_Group5_CMPG223
         private void InitializeComponent()
         {
             this.gbxGUISettings = new System.Windows.Forms.GroupBox();
-            this.gbxBusinessSettings = new System.Windows.Forms.GroupBox();
             this.pnlColorScheme = new System.Windows.Forms.Panel();
-            this.pnlBusinessName = new System.Windows.Forms.Panel();
-            this.lblColorScheme = new System.Windows.Forms.Label();
-            this.lblBusinessName = new System.Windows.Forms.Label();
             this.cbxColorScheme = new System.Windows.Forms.ComboBox();
+            this.lblColorScheme = new System.Windows.Forms.Label();
+            this.gbxBusinessSettings = new System.Windows.Forms.GroupBox();
+            this.pnlBusinessName = new System.Windows.Forms.Panel();
             this.txtBusinessName = new System.Windows.Forms.TextBox();
+            this.lblBusinessName = new System.Windows.Forms.Label();
             this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.gbxGUISettings.SuspendLayout();
-            this.gbxBusinessSettings.SuspendLayout();
             this.pnlColorScheme.SuspendLayout();
+            this.gbxBusinessSettings.SuspendLayout();
             this.pnlBusinessName.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,17 +56,6 @@ namespace POS_Group5_CMPG223
             this.gbxGUISettings.TabStop = false;
             this.gbxGUISettings.Text = "GUI Settings";
             // 
-            // gbxBusinessSettings
-            // 
-            this.gbxBusinessSettings.Controls.Add(this.pnlBusinessName);
-            this.gbxBusinessSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbxBusinessSettings.Location = new System.Drawing.Point(0, 50);
-            this.gbxBusinessSettings.Name = "gbxBusinessSettings";
-            this.gbxBusinessSettings.Size = new System.Drawing.Size(800, 50);
-            this.gbxBusinessSettings.TabIndex = 1;
-            this.gbxBusinessSettings.TabStop = false;
-            this.gbxBusinessSettings.Text = "Business Settings";
-            // 
             // pnlColorScheme
             // 
             this.pnlColorScheme.Controls.Add(this.cbxColorScheme);
@@ -75,38 +65,6 @@ namespace POS_Group5_CMPG223
             this.pnlColorScheme.Name = "pnlColorScheme";
             this.pnlColorScheme.Size = new System.Drawing.Size(794, 25);
             this.pnlColorScheme.TabIndex = 0;
-            // 
-            // pnlBusinessName
-            // 
-            this.pnlBusinessName.Controls.Add(this.txtBusinessName);
-            this.pnlBusinessName.Controls.Add(this.lblBusinessName);
-            this.pnlBusinessName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBusinessName.Location = new System.Drawing.Point(3, 16);
-            this.pnlBusinessName.Name = "pnlBusinessName";
-            this.pnlBusinessName.Size = new System.Drawing.Size(794, 25);
-            this.pnlBusinessName.TabIndex = 1;
-            // 
-            // lblColorScheme
-            // 
-            this.lblColorScheme.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblColorScheme.Location = new System.Drawing.Point(0, 0);
-            this.lblColorScheme.Name = "lblColorScheme";
-            this.lblColorScheme.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.lblColorScheme.Size = new System.Drawing.Size(250, 25);
-            this.lblColorScheme.TabIndex = 0;
-            this.lblColorScheme.Text = "Color Scheme:";
-            this.lblColorScheme.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblBusinessName
-            // 
-            this.lblBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblBusinessName.Location = new System.Drawing.Point(0, 0);
-            this.lblBusinessName.Name = "lblBusinessName";
-            this.lblBusinessName.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.lblBusinessName.Size = new System.Drawing.Size(250, 25);
-            this.lblBusinessName.TabIndex = 1;
-            this.lblBusinessName.Text = "Business Name:";
-            this.lblBusinessName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbxColorScheme
             // 
@@ -121,6 +79,38 @@ namespace POS_Group5_CMPG223
             this.cbxColorScheme.TabIndex = 1;
             this.cbxColorScheme.Text = "Select a Color Scheme";
             // 
+            // lblColorScheme
+            // 
+            this.lblColorScheme.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblColorScheme.Location = new System.Drawing.Point(0, 0);
+            this.lblColorScheme.Name = "lblColorScheme";
+            this.lblColorScheme.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.lblColorScheme.Size = new System.Drawing.Size(250, 25);
+            this.lblColorScheme.TabIndex = 0;
+            this.lblColorScheme.Text = "Color Scheme:";
+            this.lblColorScheme.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // gbxBusinessSettings
+            // 
+            this.gbxBusinessSettings.Controls.Add(this.pnlBusinessName);
+            this.gbxBusinessSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbxBusinessSettings.Location = new System.Drawing.Point(0, 50);
+            this.gbxBusinessSettings.Name = "gbxBusinessSettings";
+            this.gbxBusinessSettings.Size = new System.Drawing.Size(800, 50);
+            this.gbxBusinessSettings.TabIndex = 1;
+            this.gbxBusinessSettings.TabStop = false;
+            this.gbxBusinessSettings.Text = "Business Settings";
+            // 
+            // pnlBusinessName
+            // 
+            this.pnlBusinessName.Controls.Add(this.txtBusinessName);
+            this.pnlBusinessName.Controls.Add(this.lblBusinessName);
+            this.pnlBusinessName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBusinessName.Location = new System.Drawing.Point(3, 16);
+            this.pnlBusinessName.Name = "pnlBusinessName";
+            this.pnlBusinessName.Size = new System.Drawing.Size(794, 25);
+            this.pnlBusinessName.TabIndex = 1;
+            // 
             // txtBusinessName
             // 
             this.txtBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
@@ -128,6 +118,17 @@ namespace POS_Group5_CMPG223
             this.txtBusinessName.Name = "txtBusinessName";
             this.txtBusinessName.Size = new System.Drawing.Size(130, 20);
             this.txtBusinessName.TabIndex = 2;
+            // 
+            // lblBusinessName
+            // 
+            this.lblBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblBusinessName.Location = new System.Drawing.Point(0, 0);
+            this.lblBusinessName.Name = "lblBusinessName";
+            this.lblBusinessName.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.lblBusinessName.Size = new System.Drawing.Size(250, 25);
+            this.lblBusinessName.TabIndex = 1;
+            this.lblBusinessName.Text = "Business Name:";
+            this.lblBusinessName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnSaveSettings
             // 
@@ -141,19 +142,32 @@ namespace POS_Group5_CMPG223
             this.btnSaveSettings.UseVisualStyleBackColor = true;
             this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(0, 123);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(800, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.gbxBusinessSettings);
             this.Controls.Add(this.gbxGUISettings);
             this.Name = "FrmSettings";
             this.Text = "FrmSettings";
             this.gbxGUISettings.ResumeLayout(false);
-            this.gbxBusinessSettings.ResumeLayout(false);
             this.pnlColorScheme.ResumeLayout(false);
+            this.gbxBusinessSettings.ResumeLayout(false);
             this.pnlBusinessName.ResumeLayout(false);
             this.pnlBusinessName.PerformLayout();
             this.ResumeLayout(false);
@@ -171,5 +185,6 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.TextBox txtBusinessName;
         private System.Windows.Forms.Label lblBusinessName;
         private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.Button btnClose;
     }
 }
