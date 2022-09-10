@@ -45,7 +45,9 @@ namespace POS_Group5_CMPG223
             lblName.ForeColor = Methods.DetermineFrontColor(lblName.BackColor);
             btnInventory.ForeColor = Methods.DetermineFrontColor(btnInventory.BackColor);
             btnOrder.ForeColor = Methods.DetermineFrontColor(btnOrder.BackColor);
-            btnPOS.ForeColor = Methods.DetermineFrontColor(btnPOS.BackColor);
+            btnSales.ForeColor = Methods.DetermineFrontColor(btnSales.BackColor);
+            btnSalesOrders.ForeColor = Methods.DetermineFrontColor(btnSalesOrders.BackColor);
+            btnPurchaseOrders.ForeColor = Methods.DetermineFrontColor(btnPurchaseOrders.BackColor);
             btnReporting.ForeColor = Methods.DetermineFrontColor(btnReporting.BackColor);
             btnSettings.ForeColor = Methods.DetermineFrontColor(btnSettings.BackColor);
             btnSuppliers.ForeColor = Methods.DetermineFrontColor(btnSuppliers.BackColor);
@@ -55,10 +57,12 @@ namespace POS_Group5_CMPG223
             //Icon Colors
             btnInventory.IconColor = Methods.DetermineFrontColor(btnInventory.BackColor);
             btnOrder.IconColor = Methods.DetermineFrontColor(btnOrder.BackColor);
-            btnPOS.IconColor = Methods.DetermineFrontColor(btnPOS.BackColor);
+            btnSales.IconColor = Methods.DetermineFrontColor(btnSales.BackColor);
             btnReporting.IconColor = Methods.DetermineFrontColor(btnReporting.BackColor);
             btnSettings.IconColor = Methods.DetermineFrontColor(btnSettings.BackColor);
             btnSuppliers.IconColor = Methods.DetermineFrontColor(btnSuppliers.BackColor);
+            btnPurchaseOrders.IconColor = Methods.DetermineFrontColor(btnPurchaseOrders.BackColor);
+            btnSalesOrders.IconColor = Methods.DetermineFrontColor(btnSalesOrders.BackColor);
             //Misc
             lblName.Text = Methods.businessName;
         }
@@ -137,9 +141,9 @@ namespace POS_Group5_CMPG223
         }
         #endregion
         #region Menu Buttons
-        private void btnPOS_Click(object sender, EventArgs e)
+        private void btnSales_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnPOS, "Point of Sale");
+            MenuSelect(btnSales, "Sales");
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
@@ -171,5 +175,15 @@ namespace POS_Group5_CMPG223
             activeForm = frmSettings;
         }
         #endregion
+
+        private void btnSalesOrders_Click(object sender, EventArgs e)
+        {
+            MenuSelect(btnSalesOrders, "Sales Orders");
+        }
+
+        private void btnPurchaseOrders_Click(object sender, EventArgs e)
+        {
+            MenuSelect(btnPurchaseOrders, "Purchase Orders");
+        }
     }
 }

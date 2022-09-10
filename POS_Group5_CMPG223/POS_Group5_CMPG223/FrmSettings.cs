@@ -49,6 +49,7 @@ namespace POS_Group5_CMPG223
             this.Close();
             Program.mainForm.LoadGUI();
             Program.mainForm.pnlShow.Dispose();
+            Program.mainForm.lblHeader.Text = "Home";
         }
         #endregion
     }
