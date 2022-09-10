@@ -70,17 +70,35 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInventory.Designer.cs">
+      <DependentUpon>FrmInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOrder.Designer.cs">
+      <DependentUpon>FrmOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPurchaseOrders.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmPurchaseOrders.Designer.cs">
       <DependentUpon>FrmPurchaseOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReporting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReporting.Designer.cs">
+      <DependentUpon>FrmReporting.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSales.cs">
       <SubType>Form</SubType>
