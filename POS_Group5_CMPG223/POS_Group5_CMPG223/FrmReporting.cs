@@ -20,5 +20,15 @@ namespace POS_Group5_CMPG223
         {
             this.BackColor = Methods.clrForms;
         }
+
+        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
