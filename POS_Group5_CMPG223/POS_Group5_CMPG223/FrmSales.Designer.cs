@@ -30,17 +30,13 @@ namespace POS_Group5_CMPG223
         private void InitializeComponent()
         {
             this.pnlBill = new System.Windows.Forms.Panel();
-            this.pnlBillButtons = new System.Windows.Forms.Panel();
             this.lbxBill = new System.Windows.Forms.ListBox();
+            this.pnlBillButtons = new System.Windows.Forms.Panel();
+            this.btnPayBill = new System.Windows.Forms.Button();
+            this.btnDeleteItem = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
-            this.pnlDiscount = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnPay = new System.Windows.Forms.Button();
-            this.btnDiscItem = new System.Windows.Forms.Button();
-            this.btnDiscBill = new System.Windows.Forms.Button();
             this.pnlBill.SuspendLayout();
             this.pnlBillButtons.SuspendLayout();
-            this.pnlDiscount.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBill
@@ -53,17 +49,6 @@ namespace POS_Group5_CMPG223
             this.pnlBill.Size = new System.Drawing.Size(250, 450);
             this.pnlBill.TabIndex = 0;
             // 
-            // pnlBillButtons
-            // 
-            this.pnlBillButtons.Controls.Add(this.btnPay);
-            this.pnlBillButtons.Controls.Add(this.btnDelete);
-            this.pnlBillButtons.Controls.Add(this.pnlDiscount);
-            this.pnlBillButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBillButtons.Location = new System.Drawing.Point(0, 350);
-            this.pnlBillButtons.Name = "pnlBillButtons";
-            this.pnlBillButtons.Size = new System.Drawing.Size(250, 100);
-            this.pnlBillButtons.TabIndex = 0;
-            // 
             // lbxBill
             // 
             this.lbxBill.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,6 +57,38 @@ namespace POS_Group5_CMPG223
             this.lbxBill.Name = "lbxBill";
             this.lbxBill.Size = new System.Drawing.Size(250, 350);
             this.lbxBill.TabIndex = 1;
+            // 
+            // pnlBillButtons
+            // 
+            this.pnlBillButtons.Controls.Add(this.btnPayBill);
+            this.pnlBillButtons.Controls.Add(this.btnDeleteItem);
+            this.pnlBillButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBillButtons.Location = new System.Drawing.Point(0, 350);
+            this.pnlBillButtons.Name = "pnlBillButtons";
+            this.pnlBillButtons.Size = new System.Drawing.Size(250, 100);
+            this.pnlBillButtons.TabIndex = 0;
+            // 
+            // btnPayBill
+            // 
+            this.btnPayBill.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPayBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPayBill.Location = new System.Drawing.Point(0, 50);
+            this.btnPayBill.Name = "btnPayBill";
+            this.btnPayBill.Size = new System.Drawing.Size(250, 50);
+            this.btnPayBill.TabIndex = 2;
+            this.btnPayBill.Text = "Pay Bill";
+            this.btnPayBill.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteItem
+            // 
+            this.btnDeleteItem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDeleteItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteItem.Location = new System.Drawing.Point(0, 0);
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.Size = new System.Drawing.Size(250, 50);
+            this.btnDeleteItem.TabIndex = 1;
+            this.btnDeleteItem.Text = "Delete Item";
+            this.btnDeleteItem.UseVisualStyleBackColor = true;
             // 
             // pnlButtons
             // 
@@ -82,60 +99,6 @@ namespace POS_Group5_CMPG223
             this.pnlButtons.Size = new System.Drawing.Size(550, 450);
             this.pnlButtons.TabIndex = 1;
             this.pnlButtons.SizeChanged += new System.EventHandler(this.pnlButtons_SizeChanged);
-            // 
-            // pnlDiscount
-            // 
-            this.pnlDiscount.Controls.Add(this.btnDiscBill);
-            this.pnlDiscount.Controls.Add(this.btnDiscItem);
-            this.pnlDiscount.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlDiscount.Location = new System.Drawing.Point(125, 0);
-            this.pnlDiscount.Name = "pnlDiscount";
-            this.pnlDiscount.Size = new System.Drawing.Size(125, 100);
-            this.pnlDiscount.TabIndex = 0;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(0, 0);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(125, 50);
-            this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnPay
-            // 
-            this.btnPay.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPay.Location = new System.Drawing.Point(0, 50);
-            this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(125, 50);
-            this.btnPay.TabIndex = 2;
-            this.btnPay.Text = "Pay";
-            this.btnPay.UseVisualStyleBackColor = true;
-            // 
-            // btnDiscItem
-            // 
-            this.btnDiscItem.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDiscItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscItem.Location = new System.Drawing.Point(0, 0);
-            this.btnDiscItem.Name = "btnDiscItem";
-            this.btnDiscItem.Size = new System.Drawing.Size(125, 50);
-            this.btnDiscItem.TabIndex = 2;
-            this.btnDiscItem.Text = "Discount Item";
-            this.btnDiscItem.UseVisualStyleBackColor = true;
-            // 
-            // btnDiscBill
-            // 
-            this.btnDiscBill.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDiscBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscBill.Location = new System.Drawing.Point(0, 50);
-            this.btnDiscBill.Name = "btnDiscBill";
-            this.btnDiscBill.Size = new System.Drawing.Size(125, 50);
-            this.btnDiscBill.TabIndex = 3;
-            this.btnDiscBill.Text = "Discount Bill";
-            this.btnDiscBill.UseVisualStyleBackColor = true;
             // 
             // FrmSales
             // 
@@ -148,7 +111,6 @@ namespace POS_Group5_CMPG223
             this.Text = "FrmSales";
             this.pnlBill.ResumeLayout(false);
             this.pnlBillButtons.ResumeLayout(false);
-            this.pnlDiscount.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -159,10 +121,7 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Panel pnlBillButtons;
         private System.Windows.Forms.ListBox lbxBill;
         private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.Button btnPay;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Panel pnlDiscount;
-        private System.Windows.Forms.Button btnDiscBill;
-        private System.Windows.Forms.Button btnDiscItem;
+        private System.Windows.Forms.Button btnPayBill;
+        private System.Windows.Forms.Button btnDeleteItem;
     }
 }

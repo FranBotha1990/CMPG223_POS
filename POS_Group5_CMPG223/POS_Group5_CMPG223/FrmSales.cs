@@ -28,10 +28,8 @@ namespace POS_Group5_CMPG223
         public void LoadGUI()
         {
             //Fore Colors
-            btnDelete.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-            btnPay.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-            btnDiscBill.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-            btnDiscItem.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnDeleteItem.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnPayBill.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Back Colors
             this.BackColor = Methods.clrForms;
             pnlBill.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
