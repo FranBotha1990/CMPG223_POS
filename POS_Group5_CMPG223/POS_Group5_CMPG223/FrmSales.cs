@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace POS_Group5_CMPG223
 {
+    //Test
     public partial class FrmSales : Form
     {
         #region Variables
