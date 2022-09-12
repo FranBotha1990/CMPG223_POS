@@ -30,22 +30,22 @@ namespace POS_Group5_CMPG223
         private void InitializeComponent()
         {
             this.pnlSalesOrder = new System.Windows.Forms.Panel();
-            this.pnlItems = new System.Windows.Forms.Panel();
-            this.pnlItemsEdit = new System.Windows.Forms.Panel();
-            this.pnlItemUpdate = new System.Windows.Forms.Panel();
-            this.btnUpdateItem = new System.Windows.Forms.Button();
-            this.btnDeleteItem = new System.Windows.Forms.Button();
-            this.txtUpdateItem = new System.Windows.Forms.TextBox();
-            this.pnlDate = new System.Windows.Forms.Panel();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.dtpSaleDate = new System.Windows.Forms.DateTimePicker();
             this.btnUpdateBill = new System.Windows.Forms.Button();
+            this.pnlDate = new System.Windows.Forms.Panel();
+            this.dtpSaleDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.pnlItems = new System.Windows.Forms.Panel();
             this.lbxItems = new System.Windows.Forms.ListBox();
+            this.pnlItemsEdit = new System.Windows.Forms.Panel();
+            this.btnDeleteItem = new System.Windows.Forms.Button();
+            this.pnlItemUpdate = new System.Windows.Forms.Panel();
+            this.txtUpdateItem = new System.Windows.Forms.TextBox();
+            this.btnUpdateItem = new System.Windows.Forms.Button();
             this.pnlSalesOrder.SuspendLayout();
+            this.pnlDate.SuspendLayout();
             this.pnlItems.SuspendLayout();
             this.pnlItemsEdit.SuspendLayout();
             this.pnlItemUpdate.SuspendLayout();
-            this.pnlDate.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSalesOrder
@@ -53,72 +53,23 @@ namespace POS_Group5_CMPG223
             this.pnlSalesOrder.Controls.Add(this.btnUpdateBill);
             this.pnlSalesOrder.Controls.Add(this.pnlDate);
             this.pnlSalesOrder.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlSalesOrder.Location = new System.Drawing.Point(0, 422);
+            this.pnlSalesOrder.Location = new System.Drawing.Point(0, 811);
+            this.pnlSalesOrder.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pnlSalesOrder.Name = "pnlSalesOrder";
-            this.pnlSalesOrder.Size = new System.Drawing.Size(284, 70);
+            this.pnlSalesOrder.Size = new System.Drawing.Size(568, 135);
             this.pnlSalesOrder.TabIndex = 0;
             // 
-            // pnlItems
+            // btnUpdateBill
             // 
-            this.pnlItems.Controls.Add(this.lbxItems);
-            this.pnlItems.Controls.Add(this.pnlItemsEdit);
-            this.pnlItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlItems.Location = new System.Drawing.Point(0, 0);
-            this.pnlItems.Name = "pnlItems";
-            this.pnlItems.Size = new System.Drawing.Size(284, 422);
-            this.pnlItems.TabIndex = 1;
-            // 
-            // pnlItemsEdit
-            // 
-            this.pnlItemsEdit.Controls.Add(this.btnDeleteItem);
-            this.pnlItemsEdit.Controls.Add(this.pnlItemUpdate);
-            this.pnlItemsEdit.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlItemsEdit.Location = new System.Drawing.Point(0, 322);
-            this.pnlItemsEdit.Name = "pnlItemsEdit";
-            this.pnlItemsEdit.Size = new System.Drawing.Size(284, 100);
-            this.pnlItemsEdit.TabIndex = 0;
-            // 
-            // pnlItemUpdate
-            // 
-            this.pnlItemUpdate.Controls.Add(this.txtUpdateItem);
-            this.pnlItemUpdate.Controls.Add(this.btnUpdateItem);
-            this.pnlItemUpdate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlItemUpdate.Location = new System.Drawing.Point(0, 0);
-            this.pnlItemUpdate.Name = "pnlItemUpdate";
-            this.pnlItemUpdate.Size = new System.Drawing.Size(284, 50);
-            this.pnlItemUpdate.TabIndex = 0;
-            // 
-            // btnUpdateItem
-            // 
-            this.btnUpdateItem.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnUpdateItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateItem.Location = new System.Drawing.Point(142, 0);
-            this.btnUpdateItem.Name = "btnUpdateItem";
-            this.btnUpdateItem.Size = new System.Drawing.Size(142, 50);
-            this.btnUpdateItem.TabIndex = 5;
-            this.btnUpdateItem.Text = "Update Item";
-            this.btnUpdateItem.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteItem
-            // 
-            this.btnDeleteItem.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDeleteItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteItem.Location = new System.Drawing.Point(0, 50);
-            this.btnDeleteItem.Name = "btnDeleteItem";
-            this.btnDeleteItem.Size = new System.Drawing.Size(284, 50);
-            this.btnDeleteItem.TabIndex = 5;
-            this.btnDeleteItem.Text = "Delete Item";
-            this.btnDeleteItem.UseVisualStyleBackColor = true;
-            // 
-            // txtUpdateItem
-            // 
-            this.txtUpdateItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUpdateItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateItem.Location = new System.Drawing.Point(0, 0);
-            this.txtUpdateItem.Name = "txtUpdateItem";
-            this.txtUpdateItem.Size = new System.Drawing.Size(142, 50);
-            this.txtUpdateItem.TabIndex = 6;
-            this.txtUpdateItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnUpdateBill.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUpdateBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateBill.Location = new System.Drawing.Point(0, 38);
+            this.btnUpdateBill.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnUpdateBill.Name = "btnUpdateBill";
+            this.btnUpdateBill.Size = new System.Drawing.Size(568, 96);
+            this.btnUpdateBill.TabIndex = 6;
+            this.btnUpdateBill.Text = "Update Bill";
+            this.btnUpdateBill.UseVisualStyleBackColor = true;
             // 
             // pnlDate
             // 
@@ -126,63 +77,126 @@ namespace POS_Group5_CMPG223
             this.pnlDate.Controls.Add(this.lblDate);
             this.pnlDate.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDate.Location = new System.Drawing.Point(0, 0);
+            this.pnlDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pnlDate.Name = "pnlDate";
-            this.pnlDate.Size = new System.Drawing.Size(284, 20);
+            this.pnlDate.Size = new System.Drawing.Size(568, 38);
             this.pnlDate.TabIndex = 0;
+            // 
+            // dtpSaleDate
+            // 
+            this.dtpSaleDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtpSaleDate.Location = new System.Drawing.Point(100, 0);
+            this.dtpSaleDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dtpSaleDate.Name = "dtpSaleDate";
+            this.dtpSaleDate.Size = new System.Drawing.Size(468, 31);
+            this.dtpSaleDate.TabIndex = 1;
             // 
             // lblDate
             // 
             this.lblDate.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblDate.Location = new System.Drawing.Point(0, 0);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(50, 20);
+            this.lblDate.Size = new System.Drawing.Size(100, 38);
             this.lblDate.TabIndex = 0;
             this.lblDate.Text = "Date:";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dtpSaleDate
+            // pnlItems
             // 
-            this.dtpSaleDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtpSaleDate.Location = new System.Drawing.Point(50, 0);
-            this.dtpSaleDate.Name = "dtpSaleDate";
-            this.dtpSaleDate.Size = new System.Drawing.Size(234, 20);
-            this.dtpSaleDate.TabIndex = 1;
-            // 
-            // btnUpdateBill
-            // 
-            this.btnUpdateBill.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUpdateBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateBill.Location = new System.Drawing.Point(0, 20);
-            this.btnUpdateBill.Name = "btnUpdateBill";
-            this.btnUpdateBill.Size = new System.Drawing.Size(284, 50);
-            this.btnUpdateBill.TabIndex = 6;
-            this.btnUpdateBill.Text = "Update Bill";
-            this.btnUpdateBill.UseVisualStyleBackColor = true;
+            this.pnlItems.Controls.Add(this.lbxItems);
+            this.pnlItems.Controls.Add(this.pnlItemsEdit);
+            this.pnlItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlItems.Location = new System.Drawing.Point(0, 0);
+            this.pnlItems.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlItems.Name = "pnlItems";
+            this.pnlItems.Size = new System.Drawing.Size(568, 811);
+            this.pnlItems.TabIndex = 1;
             // 
             // lbxItems
             // 
             this.lbxItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbxItems.FormattingEnabled = true;
+            this.lbxItems.ItemHeight = 25;
             this.lbxItems.Location = new System.Drawing.Point(0, 0);
+            this.lbxItems.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.lbxItems.Name = "lbxItems";
-            this.lbxItems.Size = new System.Drawing.Size(284, 322);
+            this.lbxItems.Size = new System.Drawing.Size(568, 619);
             this.lbxItems.TabIndex = 1;
+            // 
+            // pnlItemsEdit
+            // 
+            this.pnlItemsEdit.Controls.Add(this.btnDeleteItem);
+            this.pnlItemsEdit.Controls.Add(this.pnlItemUpdate);
+            this.pnlItemsEdit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlItemsEdit.Location = new System.Drawing.Point(0, 619);
+            this.pnlItemsEdit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlItemsEdit.Name = "pnlItemsEdit";
+            this.pnlItemsEdit.Size = new System.Drawing.Size(568, 192);
+            this.pnlItemsEdit.TabIndex = 0;
+            // 
+            // btnDeleteItem
+            // 
+            this.btnDeleteItem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDeleteItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteItem.Location = new System.Drawing.Point(0, 96);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.Size = new System.Drawing.Size(568, 96);
+            this.btnDeleteItem.TabIndex = 5;
+            this.btnDeleteItem.Text = "Delete Item";
+            this.btnDeleteItem.UseVisualStyleBackColor = true;
+            // 
+            // pnlItemUpdate
+            // 
+            this.pnlItemUpdate.Controls.Add(this.txtUpdateItem);
+            this.pnlItemUpdate.Controls.Add(this.btnUpdateItem);
+            this.pnlItemUpdate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlItemUpdate.Location = new System.Drawing.Point(0, 0);
+            this.pnlItemUpdate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlItemUpdate.Name = "pnlItemUpdate";
+            this.pnlItemUpdate.Size = new System.Drawing.Size(568, 96);
+            this.pnlItemUpdate.TabIndex = 0;
+            // 
+            // txtUpdateItem
+            // 
+            this.txtUpdateItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUpdateItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateItem.Location = new System.Drawing.Point(0, 0);
+            this.txtUpdateItem.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtUpdateItem.Name = "txtUpdateItem";
+            this.txtUpdateItem.Size = new System.Drawing.Size(284, 92);
+            this.txtUpdateItem.TabIndex = 6;
+            this.txtUpdateItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnUpdateItem
+            // 
+            this.btnUpdateItem.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnUpdateItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateItem.Location = new System.Drawing.Point(284, 0);
+            this.btnUpdateItem.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnUpdateItem.Name = "btnUpdateItem";
+            this.btnUpdateItem.Size = new System.Drawing.Size(284, 96);
+            this.btnUpdateItem.TabIndex = 5;
+            this.btnUpdateItem.Text = "Update Item";
+            this.btnUpdateItem.UseVisualStyleBackColor = true;
             // 
             // FrmSalesOrdersUpdate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 492);
+            this.ClientSize = new System.Drawing.Size(568, 946);
             this.Controls.Add(this.pnlItems);
             this.Controls.Add(this.pnlSalesOrder);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "FrmSalesOrdersUpdate";
             this.Text = "FrmSalesOrdersMaintain";
             this.pnlSalesOrder.ResumeLayout(false);
+            this.pnlDate.ResumeLayout(false);
             this.pnlItems.ResumeLayout(false);
             this.pnlItemsEdit.ResumeLayout(false);
             this.pnlItemUpdate.ResumeLayout(false);
             this.pnlItemUpdate.PerformLayout();
-            this.pnlDate.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

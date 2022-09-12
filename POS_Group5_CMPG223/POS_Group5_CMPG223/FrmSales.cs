@@ -94,5 +94,10 @@ namespace POS_Group5_CMPG223
             bFirstLoad = false;
         }
         #endregion
+
+        private void btnConfirmBill_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

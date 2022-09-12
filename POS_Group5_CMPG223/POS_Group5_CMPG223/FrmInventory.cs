@@ -21,5 +21,10 @@ namespace POS_Group5_CMPG223
         {
             this.BackColor = Methods.clrForms;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

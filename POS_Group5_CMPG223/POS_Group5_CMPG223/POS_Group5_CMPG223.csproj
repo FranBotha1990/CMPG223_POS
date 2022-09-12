@@ -131,7 +131,7 @@
     <Compile Include="FrmSuppliers.Designer.cs">
       <DependentUpon>FrmSuppliers.cs</DependentUpon>
     </Compile>
-	<Compile Include="FrmSuppliersUpdate.cs">
+    <Compile Include="FrmSuppliersUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmSuppliersUpdate.Designer.cs">
@@ -140,6 +140,9 @@
     <Compile Include="Methods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmInventory.resx">
+      <DependentUpon>FrmInventory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
