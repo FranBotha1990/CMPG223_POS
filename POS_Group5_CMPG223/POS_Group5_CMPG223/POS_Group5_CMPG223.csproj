@@ -139,6 +139,9 @@
     <EmbeddedResource Include="FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmPurchaseOrders.resx">
+      <DependentUpon>FrmPurchaseOrders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSales.resx">
       <DependentUpon>FrmSales.cs</DependentUpon>
     </EmbeddedResource>

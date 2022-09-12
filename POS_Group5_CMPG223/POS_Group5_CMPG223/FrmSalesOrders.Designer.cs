@@ -30,20 +30,20 @@ namespace POS_Group5_CMPG223
         private void InitializeComponent()
         {
             this.pnlItems = new System.Windows.Forms.Panel();
+            this.pnlTotal = new System.Windows.Forms.Panel();
+            this.lblTotalAmnt = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.lbxItems = new System.Windows.Forms.ListBox();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.dgvSalesOrders = new System.Windows.Forms.DataGridView();
-            this.pnlTotal = new System.Windows.Forms.Panel();
-            this.lblTotalAmnt = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.pnlItems.SuspendLayout();
+            this.pnlTotal.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.pnlForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalesOrders)).BeginInit();
-            this.pnlTotal.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlItems
@@ -56,6 +56,36 @@ namespace POS_Group5_CMPG223
             this.pnlItems.Name = "pnlItems";
             this.pnlItems.Size = new System.Drawing.Size(250, 450);
             this.pnlItems.TabIndex = 0;
+            // 
+            // pnlTotal
+            // 
+            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
+            this.pnlTotal.Controls.Add(this.lblTotal);
+            this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlTotal.Location = new System.Drawing.Point(0, 330);
+            this.pnlTotal.Name = "pnlTotal";
+            this.pnlTotal.Size = new System.Drawing.Size(250, 20);
+            this.pnlTotal.TabIndex = 2;
+            // 
+            // lblTotalAmnt
+            // 
+            this.lblTotalAmnt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalAmnt.Location = new System.Drawing.Point(35, 0);
+            this.lblTotalAmnt.Name = "lblTotalAmnt";
+            this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
+            this.lblTotalAmnt.TabIndex = 3;
+            this.lblTotalAmnt.Text = "R00.00";
+            this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(35, 20);
+            this.lblTotal.TabIndex = 2;
+            this.lblTotal.Text = "Total:";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbxItems
             // 
@@ -119,35 +149,6 @@ namespace POS_Group5_CMPG223
             this.dgvSalesOrders.Size = new System.Drawing.Size(530, 430);
             this.dgvSalesOrders.TabIndex = 0;
             // 
-            // pnlTotal
-            // 
-            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
-            this.pnlTotal.Controls.Add(this.lblTotal);
-            this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTotal.Location = new System.Drawing.Point(0, 330);
-            this.pnlTotal.Name = "pnlTotal";
-            this.pnlTotal.Size = new System.Drawing.Size(250, 20);
-            this.pnlTotal.TabIndex = 2;
-            // 
-            // lblTotalAmnt
-            // 
-            this.lblTotalAmnt.Location = new System.Drawing.Point(35, 0);
-            this.lblTotalAmnt.Name = "lblTotalAmnt";
-            this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
-            this.lblTotalAmnt.TabIndex = 3;
-            this.lblTotalAmnt.Text = "R00.00";
-            this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(35, 20);
-            this.lblTotal.TabIndex = 2;
-            this.lblTotal.Text = "Total:";
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // FrmSalesOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,10 +159,10 @@ namespace POS_Group5_CMPG223
             this.Name = "FrmSalesOrders";
             this.Text = "FrmSalesOrders";
             this.pnlItems.ResumeLayout(false);
+            this.pnlTotal.ResumeLayout(false);
             this.pnlButtons.ResumeLayout(false);
             this.pnlForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalesOrders)).EndInit();
-            this.pnlTotal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
