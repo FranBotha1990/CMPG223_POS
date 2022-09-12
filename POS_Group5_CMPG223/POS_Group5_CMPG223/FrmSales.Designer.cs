@@ -32,15 +32,20 @@ namespace POS_Group5_CMPG223
             this.pnlBill = new System.Windows.Forms.Panel();
             this.lbxBill = new System.Windows.Forms.ListBox();
             this.pnlBillButtons = new System.Windows.Forms.Panel();
-            this.btnPayBill = new System.Windows.Forms.Button();
+            this.btnConfirmBill = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.pnlTotal = new System.Windows.Forms.Panel();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalAmnt = new System.Windows.Forms.Label();
             this.pnlBill.SuspendLayout();
             this.pnlBillButtons.SuspendLayout();
+            this.pnlTotal.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBill
             // 
+            this.pnlBill.Controls.Add(this.pnlTotal);
             this.pnlBill.Controls.Add(this.lbxBill);
             this.pnlBill.Controls.Add(this.pnlBillButtons);
             this.pnlBill.Dock = System.Windows.Forms.DockStyle.Right;
@@ -60,7 +65,7 @@ namespace POS_Group5_CMPG223
             // 
             // pnlBillButtons
             // 
-            this.pnlBillButtons.Controls.Add(this.btnPayBill);
+            this.pnlBillButtons.Controls.Add(this.btnConfirmBill);
             this.pnlBillButtons.Controls.Add(this.btnDeleteItem);
             this.pnlBillButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBillButtons.Location = new System.Drawing.Point(0, 350);
@@ -68,16 +73,16 @@ namespace POS_Group5_CMPG223
             this.pnlBillButtons.Size = new System.Drawing.Size(250, 100);
             this.pnlBillButtons.TabIndex = 0;
             // 
-            // btnPayBill
+            // btnConfirmBill
             // 
-            this.btnPayBill.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPayBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayBill.Location = new System.Drawing.Point(0, 50);
-            this.btnPayBill.Name = "btnPayBill";
-            this.btnPayBill.Size = new System.Drawing.Size(250, 50);
-            this.btnPayBill.TabIndex = 2;
-            this.btnPayBill.Text = "Pay Bill";
-            this.btnPayBill.UseVisualStyleBackColor = true;
+            this.btnConfirmBill.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConfirmBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmBill.Location = new System.Drawing.Point(0, 50);
+            this.btnConfirmBill.Name = "btnConfirmBill";
+            this.btnConfirmBill.Size = new System.Drawing.Size(250, 50);
+            this.btnConfirmBill.TabIndex = 2;
+            this.btnConfirmBill.Text = "Confirm Bill";
+            this.btnConfirmBill.UseVisualStyleBackColor = true;
             // 
             // btnDeleteItem
             // 
@@ -100,6 +105,35 @@ namespace POS_Group5_CMPG223
             this.pnlButtons.TabIndex = 1;
             this.pnlButtons.SizeChanged += new System.EventHandler(this.pnlButtons_SizeChanged);
             // 
+            // pnlTotal
+            // 
+            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
+            this.pnlTotal.Controls.Add(this.lblTotal);
+            this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlTotal.Location = new System.Drawing.Point(0, 330);
+            this.pnlTotal.Name = "pnlTotal";
+            this.pnlTotal.Size = new System.Drawing.Size(250, 20);
+            this.pnlTotal.TabIndex = 2;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(35, 20);
+            this.lblTotal.TabIndex = 0;
+            this.lblTotal.Text = "Total:";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTotalAmnt
+            // 
+            this.lblTotalAmnt.Location = new System.Drawing.Point(35, 0);
+            this.lblTotalAmnt.Name = "lblTotalAmnt";
+            this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
+            this.lblTotalAmnt.TabIndex = 1;
+            this.lblTotalAmnt.Text = "R00.00";
+            this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FrmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,6 +145,7 @@ namespace POS_Group5_CMPG223
             this.Text = "FrmSales";
             this.pnlBill.ResumeLayout(false);
             this.pnlBillButtons.ResumeLayout(false);
+            this.pnlTotal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -121,7 +156,10 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Panel pnlBillButtons;
         private System.Windows.Forms.ListBox lbxBill;
         private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.Button btnPayBill;
+        private System.Windows.Forms.Button btnConfirmBill;
         private System.Windows.Forms.Button btnDeleteItem;
+        private System.Windows.Forms.Panel pnlTotal;
+        private System.Windows.Forms.Label lblTotalAmnt;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
