@@ -20,6 +20,7 @@ namespace POS_Group5_CMPG223
         public void LoadGUI()
         {
             this.BackColor = Methods.clrForms;
+            lblDisplay.Text = "";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
