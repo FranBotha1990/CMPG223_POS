@@ -101,6 +101,7 @@
             this.hScrollBar.Name = "hScrollBar";
             this.hScrollBar.Size = new System.Drawing.Size(219, 34);
             this.hScrollBar.TabIndex = 6;
+            this.hScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar_Scroll);
             // 
             // lblScroll
             // 
@@ -128,6 +129,7 @@
             this.btnAddProduct.TabIndex = 9;
             this.btnAddProduct.Text = "Add New Product";
             this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // FrmInventory
             // 
