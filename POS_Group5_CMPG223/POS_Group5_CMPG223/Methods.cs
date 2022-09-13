@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace POS_Group5_CMPG223
 {
     class Methods
     {
         #region Properties
-        public static String DBPath = Application.StartupPath + @"\POS_Data.mdf";
+        public static SqlConnection SQLCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + "POS_Data" + ".mdf;Integrated Security=True;Connect Timeout=30");
         public static String businessName = "Business Name";
         public static int colorScheme = 0;
         public static Color clrIcons = Color.FromArgb(94, 1, 20);
