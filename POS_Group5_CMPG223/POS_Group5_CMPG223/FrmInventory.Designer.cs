@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnBuyProduct = new System.Windows.Forms.Button();
+            this.btnStockTake = new System.Windows.Forms.Button();
+            this.btnDiscard = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.hScrollBar = new System.Windows.Forms.HScrollBar();
+            this.lblScroll = new System.Windows.Forms.Label();
+            this.lblDisplay = new System.Windows.Forms.Label();
+            this.btnAddProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,78 +51,98 @@
             this.dataGridView1.Size = new System.Drawing.Size(1158, 726);
             this.dataGridView1.TabIndex = 0;
             // 
-            // button1
+            // btnBuyProduct
             // 
-            this.button1.Location = new System.Drawing.Point(1234, 400);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 79);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Buy Stock";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBuyProduct.Location = new System.Drawing.Point(1234, 456);
+            this.btnBuyProduct.Name = "btnBuyProduct";
+            this.btnBuyProduct.Size = new System.Drawing.Size(219, 79);
+            this.btnBuyProduct.TabIndex = 1;
+            this.btnBuyProduct.Text = "Buy Product";
+            this.btnBuyProduct.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnStockTake
             // 
-            this.button2.Location = new System.Drawing.Point(1234, 531);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(219, 79);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Stock Take";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnStockTake.Location = new System.Drawing.Point(1234, 557);
+            this.btnStockTake.Name = "btnStockTake";
+            this.btnStockTake.Size = new System.Drawing.Size(219, 79);
+            this.btnStockTake.TabIndex = 2;
+            this.btnStockTake.Text = "Stock Take";
+            this.btnStockTake.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnDiscard
             // 
-            this.button3.Location = new System.Drawing.Point(1234, 659);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(219, 79);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Discard Stock";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDiscard.Location = new System.Drawing.Point(1234, 659);
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(219, 79);
+            this.btnDiscard.TabIndex = 3;
+            this.btnDiscard.Text = "Discard Stock";
+            this.btnDiscard.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(1234, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 31);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtSearch.Location = new System.Drawing.Point(1234, 70);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(219, 31);
+            this.txtSearch.TabIndex = 4;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // label1
+            // lblSearch
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1229, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 25);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Search:";
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(1229, 28);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(216, 25);
+            this.lblSearch.TabIndex = 5;
+            this.lblSearch.Text = "Search As You Type:";
             // 
-            // hScrollBar1
+            // hScrollBar
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(1234, 194);
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(219, 34);
-            this.hScrollBar1.TabIndex = 6;
+            this.hScrollBar.Location = new System.Drawing.Point(1234, 216);
+            this.hScrollBar.Name = "hScrollBar";
+            this.hScrollBar.Size = new System.Drawing.Size(219, 34);
+            this.hScrollBar.TabIndex = 6;
             // 
-            // label2
+            // lblScroll
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1234, 136);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 25);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Search by value:";
+            this.lblScroll.AutoSize = true;
+            this.lblScroll.Location = new System.Drawing.Point(1234, 136);
+            this.lblScroll.Name = "lblScroll";
+            this.lblScroll.Size = new System.Drawing.Size(173, 25);
+            this.lblScroll.TabIndex = 7;
+            this.lblScroll.Text = "Search by value:";
+            // 
+            // lblDisplay
+            // 
+            this.lblDisplay.AutoSize = true;
+            this.lblDisplay.Location = new System.Drawing.Point(1239, 188);
+            this.lblDisplay.Name = "lblDisplay";
+            this.lblDisplay.Size = new System.Drawing.Size(95, 25);
+            this.lblDisplay.TabIndex = 8;
+            this.lblDisplay.Text = "[Display]";
+            // 
+            // btnAddProduct
+            // 
+            this.btnAddProduct.Location = new System.Drawing.Point(1234, 355);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(219, 79);
+            this.btnAddProduct.TabIndex = 9;
+            this.btnAddProduct.Text = "Add New Product";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
             // 
             // FrmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 768);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.hScrollBar1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddProduct);
+            this.Controls.Add(this.lblDisplay);
+            this.Controls.Add(this.lblScroll);
+            this.Controls.Add(this.hScrollBar);
+            this.Controls.Add(this.lblSearch);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.btnDiscard);
+            this.Controls.Add(this.btnStockTake);
+            this.Controls.Add(this.btnBuyProduct);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmInventory";
             this.Text = "FrmInventory";
@@ -133,12 +155,14 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.HScrollBar hScrollBar1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBuyProduct;
+        private System.Windows.Forms.Button btnStockTake;
+        private System.Windows.Forms.Button btnDiscard;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.HScrollBar hScrollBar;
+        private System.Windows.Forms.Label lblScroll;
+        private System.Windows.Forms.Label lblDisplay;
+        private System.Windows.Forms.Button btnAddProduct;
     }
 }
