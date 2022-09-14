@@ -18,7 +18,13 @@ namespace POS_Group5_CMPG223
         }
         public void LoadGUI()
         {
+            //Fore Colors
+            btnDelete.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnUpdate.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnAdd.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            //Back Colors
             this.BackColor = Methods.clrForms;
+            pnlSidebar.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
         }
     }
 }

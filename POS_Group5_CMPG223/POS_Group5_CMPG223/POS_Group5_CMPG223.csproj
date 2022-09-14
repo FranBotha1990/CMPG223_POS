@@ -155,6 +155,9 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmOrder.resx">
+      <DependentUpon>FrmOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmReporting.resx">
       <DependentUpon>FrmReporting.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSuppliers.resx">
+      <DependentUpon>FrmSuppliers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

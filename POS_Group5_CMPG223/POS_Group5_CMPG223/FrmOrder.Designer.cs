@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.dgvInventory = new System.Windows.Forms.DataGridView();
             this.pnlOrder = new System.Windows.Forms.Panel();
             this.pnlTotal = new System.Windows.Forms.Panel();
             this.lblTotalAmnt = new System.Windows.Forms.Label();
@@ -37,12 +38,11 @@
             this.pnlOrderButtons = new System.Windows.Forms.Panel();
             this.btnPlaceOrder = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
-            this.dgvInventory = new System.Windows.Forms.DataGridView();
             this.pnlForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.pnlOrder.SuspendLayout();
             this.pnlTotal.SuspendLayout();
             this.pnlOrderButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlForm
@@ -55,6 +55,15 @@
             this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
             this.pnlForm.Size = new System.Drawing.Size(550, 450);
             this.pnlForm.TabIndex = 3;
+            // 
+            // dgvInventory
+            // 
+            this.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInventory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvInventory.Location = new System.Drawing.Point(10, 10);
+            this.dgvInventory.Name = "dgvInventory";
+            this.dgvInventory.Size = new System.Drawing.Size(530, 430);
+            this.dgvInventory.TabIndex = 0;
             // 
             // pnlOrder
             // 
@@ -138,15 +147,6 @@
             this.btnDeleteItem.Text = "Delete Item";
             this.btnDeleteItem.UseVisualStyleBackColor = true;
             // 
-            // dgvInventory
-            // 
-            this.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvInventory.Location = new System.Drawing.Point(10, 10);
-            this.dgvInventory.Name = "dgvInventory";
-            this.dgvInventory.Size = new System.Drawing.Size(530, 430);
-            this.dgvInventory.TabIndex = 0;
-            // 
             // FrmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -157,10 +157,10 @@
             this.Name = "FrmOrder";
             this.Text = "FrmOrder";
             this.pnlForm.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).EndInit();
             this.pnlOrder.ResumeLayout(false);
             this.pnlTotal.ResumeLayout(false);
             this.pnlOrderButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).EndInit();
             this.ResumeLayout(false);
 
         }

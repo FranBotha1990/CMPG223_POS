@@ -83,3 +83,5 @@ C:\Users\38887657\Source\Repos\FranBotha1990\CMPG223_POS\POS_Group5_CMPG223\POS_
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmAddProduct.resources
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmInventory.resources
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmReporting.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmOrder.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliers.resources
