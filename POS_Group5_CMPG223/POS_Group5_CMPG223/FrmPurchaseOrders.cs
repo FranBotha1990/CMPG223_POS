@@ -47,12 +47,19 @@ namespace POS_Group5_CMPG223
                 dgvPurchaseOrders.DataSource = dataSet;
                 dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
 
+                lbxItems.Items.Add("Test");
+
                 Methods.SQLCon.Close();
             }
             catch (SqlException error)
             {
                 MessageBox.Show(error.Message);
             }
+        }
+
+        private void dgvPurchaseOrders_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            lbxItems.Items.Add("Test");
         }
     }
 }
