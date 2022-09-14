@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace POS_Group5_CMPG223
 {
     public partial class FrmPurchaseOrders : Form
     {
+        SqlCommand command;
+        SqlDataAdapter adapter = new SqlDataAdapter();
+
         public FrmPurchaseOrders()
         {
             InitializeComponent();
@@ -26,6 +30,27 @@ namespace POS_Group5_CMPG223
             //Back Colors
             this.BackColor = Methods.clrForms;
             pnlItems.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
+
+            try
+            {
+                Methods.SQLCon.Open();
+
+                //command = new SqlCommand(@"SELECT * FROM PURCHASE_ORDER", Methods.SQLCon);
+                command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', Supplier_name AS 'Supplier Name'
+                                           FROM PURCHASE_ORDER AS T
+                                           LEFT JOIN Supplier AS S ON S.Supplier_ID = T.Supplier_ID", Methods.SQLCon);
+                DataSet dataSet = new DataSet();
+                adapter.SelectCommand = command;
+                adapter.Fill(dataSet, "PURCHASE_ORDER");
+                dgvPurchaseOrders.DataSource = dataSet;
+                dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
     }
 }
