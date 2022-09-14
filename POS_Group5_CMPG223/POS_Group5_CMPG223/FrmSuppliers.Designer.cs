@@ -33,9 +33,9 @@ namespace POS_Group5_CMPG223
             this.dgvSuppliers = new System.Windows.Forms.DataGridView();
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.pnlForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).BeginInit();
             this.pnlSidebar.SuspendLayout();
@@ -82,6 +82,18 @@ namespace POS_Group5_CMPG223
             this.pnlButtons.Size = new System.Drawing.Size(250, 150);
             this.pnlButtons.TabIndex = 0;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Location = new System.Drawing.Point(0, 100);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(250, 50);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete Supplier";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Top;
@@ -92,6 +104,7 @@ namespace POS_Group5_CMPG223
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Update Supplier";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -103,17 +116,7 @@ namespace POS_Group5_CMPG223
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add Supplier";
             this.btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(0, 100);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(250, 50);
-            this.btnDelete.TabIndex = 3;
-            this.btnDelete.Text = "Delete Supplier";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // FrmSuppliers
             // 

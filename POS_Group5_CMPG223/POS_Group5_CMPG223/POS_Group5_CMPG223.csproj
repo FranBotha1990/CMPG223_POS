@@ -176,6 +176,9 @@
     <EmbeddedResource Include="FrmSuppliers.resx">
       <DependentUpon>FrmSuppliers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSuppliersUpdate.resx">
+      <DependentUpon>FrmSuppliersUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
