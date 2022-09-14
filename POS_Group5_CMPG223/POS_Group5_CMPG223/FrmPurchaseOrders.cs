@@ -57,7 +57,7 @@ namespace POS_Group5_CMPG223
             }
         }
 
-        private void dgvPurchaseOrders_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        private void dgvPurchaseOrders_SelectionChanged(object sender, EventArgs e)
         {
             lbxItems.Items.Add("Test");
         }
