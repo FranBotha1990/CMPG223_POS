@@ -58,8 +58,12 @@ namespace POS_Group5_CMPG223
             // 
             // dgvPurchaseOrders
             // 
+            this.dgvPurchaseOrders.AllowUserToAddRows = false;
+            this.dgvPurchaseOrders.AllowUserToDeleteRows = false;
+            this.dgvPurchaseOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPurchaseOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPurchaseOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPurchaseOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPurchaseOrders.Location = new System.Drawing.Point(10, 10);
             this.dgvPurchaseOrders.Name = "dgvPurchaseOrders";
             this.dgvPurchaseOrders.Size = new System.Drawing.Size(530, 430);

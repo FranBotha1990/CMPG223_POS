@@ -35,10 +35,12 @@ namespace POS_Group5_CMPG223
             {
                 Methods.SQLCon.Open();
 
-                //command = new SqlCommand(@"SELECT * FROM PURCHASE_ORDER", Methods.SQLCon);
-                command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', Supplier_name AS 'Supplier Name'
+                command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
+                                           Supplier_name AS 'Supplier Name', 
+                                           Purchase_date AS 'Purchase Date'
                                            FROM PURCHASE_ORDER AS T
-                                           LEFT JOIN Supplier AS S ON S.Supplier_ID = T.Supplier_ID", Methods.SQLCon);
+                                           LEFT JOIN Supplier AS S ON S.Supplier_ID = T.Supplier_ID", 
+                                           Methods.SQLCon);
                 DataSet dataSet = new DataSet();
                 adapter.SelectCommand = command;
                 adapter.Fill(dataSet, "PURCHASE_ORDER");
