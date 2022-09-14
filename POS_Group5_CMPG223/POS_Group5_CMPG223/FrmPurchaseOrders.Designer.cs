@@ -70,6 +70,7 @@ namespace POS_Group5_CMPG223
             this.dgvPurchaseOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPurchaseOrders.Size = new System.Drawing.Size(530, 430);
             this.dgvPurchaseOrders.TabIndex = 0;
+            this.dgvPurchaseOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchaseOrders_CellClick);
             // 
             // pnlItems
             // 
