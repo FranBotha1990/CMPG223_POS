@@ -66,9 +66,8 @@ namespace POS_Group5_CMPG223
             this.pnlMenu.Controls.Add(this.pnlName);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(267, 853);
+            this.pnlMenu.Size = new System.Drawing.Size(200, 661);
             this.pnlMenu.TabIndex = 0;
             // 
             // btnSettings
@@ -81,11 +80,10 @@ namespace POS_Group5_CMPG223
             this.btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSettings.IconSize = 30;
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.Location = new System.Drawing.Point(0, 508);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSettings.Location = new System.Drawing.Point(0, 410);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnSettings.Size = new System.Drawing.Size(267, 62);
+            this.btnSettings.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnSettings.Size = new System.Drawing.Size(200, 50);
             this.btnSettings.TabIndex = 13;
             this.btnSettings.Text = "Settings";
             this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -103,11 +101,10 @@ namespace POS_Group5_CMPG223
             this.btnReporting.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReporting.IconSize = 30;
             this.btnReporting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReporting.Location = new System.Drawing.Point(0, 446);
-            this.btnReporting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReporting.Location = new System.Drawing.Point(0, 360);
             this.btnReporting.Name = "btnReporting";
-            this.btnReporting.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnReporting.Size = new System.Drawing.Size(267, 62);
+            this.btnReporting.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnReporting.Size = new System.Drawing.Size(200, 50);
             this.btnReporting.TabIndex = 12;
             this.btnReporting.Text = "Reporting";
             this.btnReporting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,11 +122,10 @@ namespace POS_Group5_CMPG223
             this.btnSuppliers.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSuppliers.IconSize = 30;
             this.btnSuppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSuppliers.Location = new System.Drawing.Point(0, 384);
-            this.btnSuppliers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSuppliers.Location = new System.Drawing.Point(0, 310);
             this.btnSuppliers.Name = "btnSuppliers";
-            this.btnSuppliers.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnSuppliers.Size = new System.Drawing.Size(267, 62);
+            this.btnSuppliers.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnSuppliers.Size = new System.Drawing.Size(200, 50);
             this.btnSuppliers.TabIndex = 11;
             this.btnSuppliers.Text = "Suppliers";
             this.btnSuppliers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,11 +143,10 @@ namespace POS_Group5_CMPG223
             this.btnPurchaseOrders.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPurchaseOrders.IconSize = 30;
             this.btnPurchaseOrders.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurchaseOrders.Location = new System.Drawing.Point(0, 322);
-            this.btnPurchaseOrders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPurchaseOrders.Location = new System.Drawing.Point(0, 260);
             this.btnPurchaseOrders.Name = "btnPurchaseOrders";
-            this.btnPurchaseOrders.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnPurchaseOrders.Size = new System.Drawing.Size(267, 62);
+            this.btnPurchaseOrders.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPurchaseOrders.Size = new System.Drawing.Size(200, 50);
             this.btnPurchaseOrders.TabIndex = 10;
             this.btnPurchaseOrders.Text = "Purchase Orders";
             this.btnPurchaseOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -169,11 +164,10 @@ namespace POS_Group5_CMPG223
             this.btnOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnOrder.IconSize = 30;
             this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrder.Location = new System.Drawing.Point(0, 260);
-            this.btnOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOrder.Location = new System.Drawing.Point(0, 210);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnOrder.Size = new System.Drawing.Size(267, 62);
+            this.btnOrder.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnOrder.Size = new System.Drawing.Size(200, 50);
             this.btnOrder.TabIndex = 9;
             this.btnOrder.Text = "Order";
             this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,11 +185,10 @@ namespace POS_Group5_CMPG223
             this.btnInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnInventory.IconSize = 30;
             this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInventory.Location = new System.Drawing.Point(0, 198);
-            this.btnInventory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInventory.Location = new System.Drawing.Point(0, 160);
             this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnInventory.Size = new System.Drawing.Size(267, 62);
+            this.btnInventory.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnInventory.Size = new System.Drawing.Size(200, 50);
             this.btnInventory.TabIndex = 8;
             this.btnInventory.Text = "Inventory";
             this.btnInventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,11 +206,10 @@ namespace POS_Group5_CMPG223
             this.btnSalesOrders.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalesOrders.IconSize = 30;
             this.btnSalesOrders.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalesOrders.Location = new System.Drawing.Point(0, 136);
-            this.btnSalesOrders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalesOrders.Location = new System.Drawing.Point(0, 110);
             this.btnSalesOrders.Name = "btnSalesOrders";
-            this.btnSalesOrders.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnSalesOrders.Size = new System.Drawing.Size(267, 62);
+            this.btnSalesOrders.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnSalesOrders.Size = new System.Drawing.Size(200, 50);
             this.btnSalesOrders.TabIndex = 7;
             this.btnSalesOrders.Text = "Sales Orders";
             this.btnSalesOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -235,11 +227,10 @@ namespace POS_Group5_CMPG223
             this.btnSales.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSales.IconSize = 30;
             this.btnSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSales.Location = new System.Drawing.Point(0, 74);
-            this.btnSales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSales.Location = new System.Drawing.Point(0, 60);
             this.btnSales.Name = "btnSales";
-            this.btnSales.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.btnSales.Size = new System.Drawing.Size(267, 62);
+            this.btnSales.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnSales.Size = new System.Drawing.Size(200, 50);
             this.btnSales.TabIndex = 1;
             this.btnSales.Text = "Sales";
             this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -252,9 +243,8 @@ namespace POS_Group5_CMPG223
             this.pnlName.Controls.Add(this.lblName);
             this.pnlName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlName.Location = new System.Drawing.Point(0, 0);
-            this.pnlName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlName.Name = "pnlName";
-            this.pnlName.Size = new System.Drawing.Size(267, 74);
+            this.pnlName.Size = new System.Drawing.Size(200, 60);
             this.pnlName.TabIndex = 0;
             // 
             // lblName
@@ -262,9 +252,8 @@ namespace POS_Group5_CMPG223
             this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Location = new System.Drawing.Point(0, 0);
-            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(267, 74);
+            this.lblName.Size = new System.Drawing.Size(200, 60);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "[Business Name]";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -275,10 +264,9 @@ namespace POS_Group5_CMPG223
             this.pnlHeader.Controls.Add(this.pnlControl);
             this.pnlHeader.Controls.Add(this.lblHeader);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(267, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Location = new System.Drawing.Point(200, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1115, 74);
+            this.pnlHeader.Size = new System.Drawing.Size(899, 60);
             this.pnlHeader.TabIndex = 1;
             // 
             // pnlControl
@@ -287,10 +275,9 @@ namespace POS_Group5_CMPG223
             this.pnlControl.Controls.Add(this.btnMin);
             this.pnlControl.Controls.Add(this.btnMax);
             this.pnlControl.Controls.Add(this.btnClose);
-            this.pnlControl.Location = new System.Drawing.Point(935, 0);
-            this.pnlControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlControl.Location = new System.Drawing.Point(764, 0);
             this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(180, 39);
+            this.pnlControl.Size = new System.Drawing.Size(135, 32);
             this.pnlControl.TabIndex = 1;
             // 
             // btnMin
@@ -300,10 +287,9 @@ namespace POS_Group5_CMPG223
             this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMin.Location = new System.Drawing.Point(0, 0);
-            this.btnMin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMin.Name = "btnMin";
-            this.btnMin.Padding = new System.Windows.Forms.Padding(11, 6, 0, 0);
-            this.btnMin.Size = new System.Drawing.Size(60, 39);
+            this.btnMin.Padding = new System.Windows.Forms.Padding(8, 5, 0, 0);
+            this.btnMin.Size = new System.Drawing.Size(45, 32);
             this.btnMin.TabIndex = 3;
             this.btnMin.Text = "▔ ";
             this.btnMin.UseVisualStyleBackColor = true;
@@ -315,10 +301,9 @@ namespace POS_Group5_CMPG223
             this.btnMax.FlatAppearance.BorderSize = 0;
             this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMax.Location = new System.Drawing.Point(60, 0);
-            this.btnMax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMax.Location = new System.Drawing.Point(45, 0);
             this.btnMax.Name = "btnMax";
-            this.btnMax.Size = new System.Drawing.Size(60, 39);
+            this.btnMax.Size = new System.Drawing.Size(45, 32);
             this.btnMax.TabIndex = 2;
             this.btnMax.Text = "☐";
             this.btnMax.UseVisualStyleBackColor = true;
@@ -330,10 +315,9 @@ namespace POS_Group5_CMPG223
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(120, 0);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(90, 0);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(60, 39);
+            this.btnClose.Size = new System.Drawing.Size(45, 32);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -344,9 +328,8 @@ namespace POS_Group5_CMPG223
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.Location = new System.Drawing.Point(0, 0);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(1115, 74);
+            this.lblHeader.Size = new System.Drawing.Size(899, 60);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Home";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -355,22 +338,20 @@ namespace POS_Group5_CMPG223
             // pnlForm
             // 
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlForm.Location = new System.Drawing.Point(267, 74);
-            this.pnlForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlForm.Location = new System.Drawing.Point(200, 60);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(1115, 779);
+            this.pnlForm.Size = new System.Drawing.Size(899, 601);
             this.pnlForm.TabIndex = 2;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 853);
+            this.ClientSize = new System.Drawing.Size(1099, 661);
             this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlMenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(1024, 786);
+            this.MinimumSize = new System.Drawing.Size(772, 646);
             this.Name = "frmMain";
             this.Text = "Main";
             this.pnlMenu.ResumeLayout(false);
