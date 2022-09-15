@@ -72,14 +72,13 @@ namespace POS_Group5_CMPG223
                                            "POI.Cost_price, " +
                                            "PR.Description " +
                                            "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                           "LEFT JOIN PURCHASE_ORDER AS PO ON PO.Purchase_ID = POI.Purchase_ID " +
                                            "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                           $"WHERE PO.Purchase_ID LIKE '%{selector}%'",
+                                           $"WHERE POI.Purchase_ID LIKE '{selector}'",
                                            Methods.SQLCon);
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    lbxItems.Items.Add(dataReader.GetValue(1));
+                    lbxItems.Items.Add(dataReader.GetValue(4));
                 }
 
                 Methods.SQLCon.Close();
