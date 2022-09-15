@@ -66,20 +66,20 @@ namespace POS_Group5_CMPG223
 
                 lbxItems.Items.Clear();
                 SqlDataReader dataReader;
-                command = new SqlCommand($"SELECT Purchase_ID, " + 
-                                           "Product_ID, " +
-                                           "Quantity_purchased, " +
-                                           "Cost_price, " +
-                                           "Description " +
-                                           "FROM PURCHASE_ORDER AS PO " +
-                                           "LEFT JOIN PURCHASE_ORDER_ITEM AS POI ON POI.Purchase_ID = PO.Purchase_ID" +
+                command = new SqlCommand($"SELECT POI.Purchase_ID, " + 
+                                           "POI.Product_ID, " +
+                                           "POI.Quantity_purchased, " +
+                                           "POI.Cost_price, " +
+                                           "PR.Description " +
+                                           "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                           "LEFT JOIN PURCHASE_ORDER AS PO ON PO.Purchase_ID = POI.Purchase_ID " +
                                            "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                           "WHERE PO.Purchase_ID LIKE 'selector'",
+                                           $"WHERE PO.Purchase_ID LIKE '%{selector}%'",
                                            Methods.SQLCon);
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    lbxItems.Items.Add(dataReader.GetValue(0));
+                    lbxItems.Items.Add(dataReader.GetValue(1));
                 }
 
                 Methods.SQLCon.Close();
