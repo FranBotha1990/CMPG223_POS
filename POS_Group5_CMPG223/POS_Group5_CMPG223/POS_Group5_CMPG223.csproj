@@ -137,6 +137,12 @@
     <Compile Include="FrmSuppliers.Designer.cs">
       <DependentUpon>FrmSuppliers.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSuppliersAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSuppliersAdd.Designer.cs">
+      <DependentUpon>FrmSuppliersAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSuppliersUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
