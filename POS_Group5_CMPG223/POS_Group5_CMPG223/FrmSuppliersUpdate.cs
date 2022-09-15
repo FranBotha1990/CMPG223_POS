@@ -13,9 +13,16 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmSuppliersUpdate : Form
     {
+        int id;
         public FrmSuppliersUpdate()
         {
             InitializeComponent();
+        }
+
+        public FrmSuppliersUpdate(int oldID)
+        {
+            InitializeComponent();
+            id = oldID;
         }
 
         public void LoadGUI()
@@ -47,9 +54,9 @@ namespace POS_Group5_CMPG223
                 {
                     string name = txtName.Text;
 
-                    if (txtCell.Text.Length != 10)
+                    if (txtCell.Text.Length != 10 || !int.TryParse(txtCell.Text, out int age))
                     {
-                        MessageBox.Show("Please enter a valid supplier cell number");
+                        MessageBox.Show("Please enter a valid supplier cellphone number");
                     }
                     else
                     {
@@ -67,13 +74,46 @@ namespace POS_Group5_CMPG223
                             SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
                             adapter.InsertCommand = command;
                             command.ExecuteNonQuery();
+
+                            MessageBox.Show("Supplier successfully updated");
                         }
                     }
                 }
 
                 Methods.SQLCon.Close();
+
+                this.Close();
             }
-            catch
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database cannot be found");
+            }
+        }
+
+        private void FrmSuppliersUpdate_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = $"SELECT * from SUPPLIER where Supplier_ID = {id}";
+
+                Methods.SQLCon.Open();
+
+                DataSet ds = new DataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    txtName.Text = reader.GetValue(1).ToString();
+                    txtCell.Text = reader.GetValue(2).ToString();
+                    txtEmail.Text = reader.GetValue(3).ToString();
+                }
+                reader.Close();
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
             {
                 MessageBox.Show("Database cannot be found");
             }

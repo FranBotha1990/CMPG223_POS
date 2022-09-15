@@ -127,6 +127,7 @@ namespace POS_Group5_CMPG223
             this.Controls.Add(this.pnlSidebar);
             this.Name = "FrmSuppliers";
             this.Text = "FrmSuppliers";
+            this.Load += new System.EventHandler(this.FrmSuppliers_Load);
             this.pnlForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
             this.pnlSidebar.ResumeLayout(false);

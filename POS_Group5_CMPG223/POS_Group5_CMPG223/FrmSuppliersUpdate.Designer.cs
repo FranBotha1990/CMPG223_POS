@@ -122,6 +122,7 @@ namespace POS_Group5_CMPG223
             this.Controls.Add(this.btnUpdate);
             this.Name = "FrmSuppliersUpdate";
             this.Text = "FrmSuppliersUpdate";
+            this.Load += new System.EventHandler(this.FrmSuppliersUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
