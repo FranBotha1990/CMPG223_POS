@@ -14,13 +14,17 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmPurchaseOrders : Form
     {
+        #region Variables
         SqlCommand command, commandDelete;
         SqlDataAdapter adapter = new SqlDataAdapter();
-
+        #endregion
+        #region Constructor
         public FrmPurchaseOrders()
         {
             InitializeComponent();
         }
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Fore Colors
@@ -57,7 +61,9 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show(error.Message);
             }
         }
+        #endregion
 
+        #region PO Click Action
         private void dgvPurchaseOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -97,7 +103,8 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show(error.Message);
             }
         }
-
+        #endregion
+        #region Delete PO Button
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvPurchaseOrders.SelectedRows == null)
@@ -156,7 +163,8 @@ namespace POS_Group5_CMPG223
                 }
             }
         }
-
+        #endregion
+        #region Remove Items Button
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
@@ -240,5 +248,6 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show(error.Message);
             }
         }
+        #endregion
     }
 }
