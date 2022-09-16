@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POS_Group5_CMPG223
@@ -14,9 +10,15 @@ namespace POS_Group5_CMPG223
     public partial class FrmSales : Form
     {
         #region Variables
+        private int buttonsToLoad = 0;
         private int buttonsLoaded = 0;
-        private Button[] posButtons = new Button[100];
+        private Button[] posButtons;
+        private String[,] arrBill;
         private Boolean bFirstLoad = true;
+        private int billItemCount = 0;
+        private double billTotal = 0;
+        SqlDataAdapter adapter;
+        DataSet dataset;
         #endregion
         #region Constructor
         public FrmSales()
@@ -24,7 +26,6 @@ namespace POS_Group5_CMPG223
             InitializeComponent();
         }
         #endregion
-
         #region LoadGUI
         public void LoadGUI()
         {
@@ -37,26 +38,65 @@ namespace POS_Group5_CMPG223
             this.BackColor = Methods.clrForms;
             pnlBill.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
             pnlBillButtons.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
-            //Misc
-            LoadButtons(100);
-            LocateButtons(buttonsLoaded);
+            //POS Buttons
+            try
+            {
+                SqlCommand command = new SqlCommand($"SELECT COUNT(*) FROM PRODUCT", Methods.SQLCon);
+                Methods.SQLCon.Close();
+                Methods.SQLCon.Open();
+                buttonsToLoad = (int)command.ExecuteScalar();
+                posButtons = new Button[buttonsToLoad];
+                arrBill = new string[buttonsToLoad, 4];
+                LoadButtons(buttonsToLoad);
+                LocateButtons(buttonsLoaded);
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+        #region Pannel Size Change
+        private void pnlButtons_SizeChanged(object sender, EventArgs e)
+        {
+            if (!bFirstLoad)
+            {
+                LocateButtons(buttonsLoaded);
+            }
+            bFirstLoad = false;
         }
         #endregion
 
         #region POS Buttons
         public void LoadButtons(int ButtonAmnt)
         {
-            for (int i = 1; i <= ButtonAmnt; i++)
+            try
             {
-                buttonsLoaded++;
-                posButtons[buttonsLoaded-1] = new Button();
-                posButtons[buttonsLoaded-1].Height = 100;
-                posButtons[buttonsLoaded-1].Width = 150;
-                posButtons[buttonsLoaded-1].ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-                posButtons[buttonsLoaded-1].Text = "Item " + buttonsLoaded.ToString();
-                posButtons[buttonsLoaded-1].Parent = pnlButtons;
-                pnlButtons.Controls.Add(posButtons[buttonsLoaded-1]);
-                posButtons[buttonsLoaded-1].Name = buttonsLoaded.ToString();
+                Methods.SQLCon.Close();
+                Methods.SQLCon.Open();
+                SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT", Methods.SQLCon);
+                SqlDataReader reader;
+                reader = command.ExecuteReader();
+                for (int i = 1; i <= ButtonAmnt; i++)
+                {
+                    reader.Read();
+                    buttonsLoaded++;
+                    posButtons[buttonsLoaded - 1] = new Button();
+                    posButtons[buttonsLoaded - 1].Height = 100;
+                    posButtons[buttonsLoaded - 1].Width = 150;
+                    posButtons[buttonsLoaded - 1].ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+                    posButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString() + "\nR" + Convert.ToDouble(reader.GetValue(2)).ToString();
+                    posButtons[buttonsLoaded - 1].Parent = pnlButtons;
+                    pnlButtons.Controls.Add(posButtons[buttonsLoaded - 1]);
+                    posButtons[buttonsLoaded - 1].Name = reader.GetValue(0).ToString();
+                    posButtons[buttonsLoaded - 1].Click += new EventHandler(POSButton_Click);
+                }
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -84,21 +124,150 @@ namespace POS_Group5_CMPG223
             }
             pnlButtons.AutoScroll = true;
         }
-        #endregion
-        #region Pannel Size Change
-        private void pnlButtons_SizeChanged(object sender, EventArgs e)
+
+        private void POSButton_Click(object sender, EventArgs e)
         {
-            if (!bFirstLoad)
+            FrmSalesQuantity frmSalesQuantity = new FrmSalesQuantity();
+            frmSalesQuantity.LoadGUI();
+            frmSalesQuantity.ShowDialog();
+            int quantity = frmSalesQuantity.quantity;
+            if (frmSalesQuantity.bOk)
             {
-                LocateButtons(buttonsLoaded);
+                int i;
+                bool bExists = false;
+                for (i = 0; i < buttonsToLoad; i++)
+                {
+                    if ((sender as Button).Name.Equals(arrBill[i, 0]))
+                    {
+                        bExists = true;
+                        break;
+                    }
+                }
+                if (!bExists)
+                {
+                    try
+                    {
+                        Methods.SQLCon.Close();
+                        Methods.SQLCon.Open();
+                        SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
+                        SqlDataReader reader;
+                        reader = command.ExecuteReader();
+                        reader.Read();
+                        arrBill[billItemCount, 0] = reader.GetValue(0).ToString();
+                        arrBill[billItemCount, 1] = quantity.ToString();
+                        arrBill[billItemCount, 2] = reader.GetValue(1).ToString();
+                        arrBill[billItemCount, 3] = reader.GetValue(2).ToString();
+                        billItemCount++;
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    arrBill[i, 1] = (int.Parse(arrBill[i, 1]) + quantity).ToString();
+                }
+                LoadBill();
             }
-            bFirstLoad = false;
         }
         #endregion
-
+        #region Bill Buttons
         private void btnConfirmBill_Click(object sender, EventArgs e)
         {
+            int orderID = 0;
+            //Create Sales Order Record
+            try
+            {
+                Methods.SQLCon.Open();
+
+                SqlCommand commandInsert = new SqlCommand($"INSERT INTO SALES_ORDER(Sales_date) VALUES('{DateTime.Now.Date}')", Methods.SQLCon);
+
+                adapter = new SqlDataAdapter();
+                dataset = new DataSet();
+
+                adapter.InsertCommand = commandInsert;
+                adapter.InsertCommand.ExecuteNonQuery();
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Get Sales Order Record ID
+            try
+            {
+                SqlCommand command = new SqlCommand($"SELECT * FROM SALES_ORDER ORDER BY Sales_ID DESC", Methods.SQLCon);
+                Methods.SQLCon.Close();
+                Methods.SQLCon.Open();
+                orderID = (int)command.ExecuteScalar();
+                Methods.SQLCon.Close();
+                MessageBox.Show(orderID.ToString());
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Create Sales Order Items
+            try
+            {
+                Methods.SQLCon.Close();
+                Methods.SQLCon.Open();
+
+                for (int i = 0; i < billItemCount; i++)
+                {
+                    SqlCommand commandInsert = new SqlCommand($"INSERT INTO SALES_ORDER_ITEM(Sales_ID,Product_ID,Quantity_sold) VALUES('{orderID}','{arrBill[i,0]}','{arrBill[i, 1]}')", Methods.SQLCon);
+
+                    adapter = new SqlDataAdapter();
+                    dataset = new DataSet();
+
+                    adapter.InsertCommand = commandInsert;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Reset billItemCount
+            billItemCount = 0;
 
         }
+
+        private void btnDeleteItem_Click(object sender, EventArgs e)
+        {
+            for (int i = lbxBill.SelectedIndex; i < billItemCount; i++)
+            {
+                arrBill[i, 0] = arrBill[i + 1, 0];
+                arrBill[i, 1] = arrBill[i + 1, 1];
+                arrBill[i, 2] = arrBill[i + 1, 2];
+                arrBill[i, 3] = arrBill[i + 1, 3];
+            }
+            billItemCount--;
+            LoadBill();
+        }
+
+        private void LoadBill()
+        {
+            lbxBill.Items.Clear();
+            billTotal = 0;
+            for (int y = 0; y < billItemCount; y++)
+            {
+                string str = string.Format("{0} {1} {2} {3} {4}", arrBill[y, 1], " * ", arrBill[y, 2], " @ R ", Convert.ToDouble(Convert.ToDouble(arrBill[y, 3]) * int.Parse(arrBill[y, 1])));
+                billTotal += Convert.ToDouble(Convert.ToDouble(arrBill[y, 3]) * int.Parse(arrBill[y, 1]));
+                lbxBill.Items.Add(str);
+            }
+            lblTotalAmnt.Text = "R " + billTotal.ToString();
+        }
+        #endregion
     }
 }

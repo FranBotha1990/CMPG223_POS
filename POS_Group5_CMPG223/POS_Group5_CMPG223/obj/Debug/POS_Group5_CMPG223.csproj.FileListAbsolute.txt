@@ -127,3 +127,8 @@ C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Grou
 C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmPurchaseOrders.resources
 C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliers.resources
 C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliersUpdate.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data.mdf
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data_log.ldf
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmPurchaseOrders.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliersUpdate.resources
+C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSalesQuantity.resources
