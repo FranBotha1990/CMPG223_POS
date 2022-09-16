@@ -13,7 +13,8 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmSuppliersUpdate : Form
     {
-        int id;
+        private int id;
+        private string oldName;
         public FrmSuppliersUpdate()
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace POS_Group5_CMPG223
 
                     if (txtCell.Text.Length != 10 || !int.TryParse(txtCell.Text, out int age))
                     {
-                        MessageBox.Show("Please enter a valid supplier cellphone number");
+                        MessageBox.Show("Please enter a valid supplier cell number");
                     }
                     else
                     {
@@ -69,20 +70,64 @@ namespace POS_Group5_CMPG223
                         else
                         {
                             string email = txtEmail.Text;
-                            string sql = $"INSERT into SUPPLIER values('{name}', '{cell}', '{email}')";
-                            SqlDataAdapter adapter = new SqlDataAdapter();
-                            SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
-                            adapter.InsertCommand = command;
-                            command.ExecuteNonQuery();
 
-                            MessageBox.Show("Supplier successfully updated");
+                            string sqlSelect = $"SELECT * from SUPPLIER where Supplier_name = '{name}' " +
+                                $"OR Supplier_cell = '{cell}' OR Supplier_email = '{email}'";
+                            SqlCommand command = new SqlCommand(sqlSelect, Methods.SQLCon);
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (reader.Read())
+                            {
+                                if (name == reader.GetValue(1).ToString())
+                                {
+                                    MessageBox.Show("Supplier name already exists");
+                                }
+                                else if (cell == reader.GetValue(2).ToString())
+                                {
+                                    MessageBox.Show("Supplier cell number already exists");
+                                }
+                                else if (email == reader.GetValue(3).ToString())
+                                {
+                                    MessageBox.Show("Supplier email already exists");
+                                }
+                            }
+                            else
+                            {
+                                oldName = reader.GetValue(1).ToString();
+                                string title;
+
+                                if (oldName == name)
+                                {
+                                    title = "Are you sure you want to update the record of '" + name + "'?";
+                                }
+                                else
+                                {
+                                    title = "Are you sure you want to update the record of '" + oldName + "' to that of '" + name + "'?";
+                                }
+
+                                DialogResult dialogResult = MessageBox.Show(title, "Update Supplier", MessageBoxButtons.YesNo);
+
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    string sqlUpdate = $"UPDATE SUPPLIER " +
+                                        $"set Supplier_name = '{name}', Supplier_cell = '{cell}', Supplier_email = '{email}'" +
+                                        $"where Supplier_ID = {id})";
+
+                                    SqlDataAdapter adapter = new SqlDataAdapter();
+                                    command = new SqlCommand(sqlUpdate, Methods.SQLCon);
+                                    adapter.InsertCommand = command;
+                                    command.ExecuteNonQuery();
+
+                                    MessageBox.Show("Supplier successfully updated");
+                                    this.Close();
+                                }
+                            }
+                            reader.Close();
                         }
                     }
                 }
 
                 Methods.SQLCon.Close();
-
-                this.Close();
             }
             catch (SqlException ex)
             {
@@ -97,9 +142,6 @@ namespace POS_Group5_CMPG223
                 string sql = $"SELECT * from SUPPLIER where Supplier_ID = {id}";
 
                 Methods.SQLCon.Open();
-
-                DataSet ds = new DataSet();
-                SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -108,6 +150,7 @@ namespace POS_Group5_CMPG223
                     txtName.Text = reader.GetValue(1).ToString();
                     txtCell.Text = reader.GetValue(2).ToString();
                     txtEmail.Text = reader.GetValue(3).ToString();
+                    oldName = reader.GetValue(1).ToString();
                 }
                 reader.Close();
 
