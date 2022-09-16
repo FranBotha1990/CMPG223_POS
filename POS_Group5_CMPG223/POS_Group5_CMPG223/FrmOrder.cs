@@ -62,6 +62,7 @@ namespace POS_Group5_CMPG223
         #region POS Buttons
         public void LoadButtons(int ButtonAmnt)
         {
+            //Load Buttons
             try
             {
                 Methods.SQLCon.Close();
@@ -77,7 +78,7 @@ namespace POS_Group5_CMPG223
                     posButtons[buttonsLoaded - 1].Height = 100;
                     posButtons[buttonsLoaded - 1].Width = 150;
                     posButtons[buttonsLoaded - 1].ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-                    posButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString() + "\nR" + Convert.ToDouble(reader.GetValue(2)).ToString();
+                    posButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString();
                     posButtons[buttonsLoaded - 1].Parent = pnlForm;
                     pnlForm.Controls.Add(posButtons[buttonsLoaded - 1]);
                     posButtons[buttonsLoaded - 1].Name = reader.GetValue(0).ToString();
@@ -93,6 +94,7 @@ namespace POS_Group5_CMPG223
 
         public void LocateButtons(int ButtonAmnt)
         {
+            //Locate Buttons
             pnlForm.VerticalScroll.Value = 0;
             pnlForm.HorizontalScroll.Value = 0;
             int buttonsLocated = 0;
@@ -115,14 +117,15 @@ namespace POS_Group5_CMPG223
             }
             pnlForm.AutoScroll = true;
         }
-
+        //Order Button
         private void OrderButton_Click(object sender, EventArgs e)
         {
-            FrmSalesQuantity frmSalesQuantity = new FrmSalesQuantity();
-            frmSalesQuantity.LoadGUI();
-            frmSalesQuantity.ShowDialog();
-            int quantity = frmSalesQuantity.quantity;
-            if (frmSalesQuantity.bOk)
+            FrmOrderQuantity frmOrderQuantity = new FrmOrderQuantity();
+            frmOrderQuantity.LoadGUI();
+            frmOrderQuantity.ShowDialog();
+            int quantity = frmOrderQuantity.quantity;
+            double price = frmOrderQuantity.price;
+            if (frmOrderQuantity.bOk)
             {
                 int i;
                 bool bExists = false;
@@ -138,16 +141,17 @@ namespace POS_Group5_CMPG223
                 {
                     try
                     {
+                        //Assign to Array
                         Methods.SQLCon.Close();
                         Methods.SQLCon.Open();
                         SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
                         SqlDataReader reader;
                         reader = command.ExecuteReader();
                         reader.Read();
-                        arrOrder[orderItemCount, 0] = reader.GetValue(0).ToString();
-                        arrOrder[orderItemCount, 1] = quantity.ToString();
-                        arrOrder[orderItemCount, 2] = reader.GetValue(1).ToString();
-                        arrOrder[orderItemCount, 3] = reader.GetValue(2).ToString();
+                        arrOrder[orderItemCount, 0] = reader.GetValue(0).ToString();    //ID
+                        arrOrder[orderItemCount, 1] = quantity.ToString();              //Quantity
+                        arrOrder[orderItemCount, 2] = reader.GetValue(1).ToString();    //Desc
+                        arrOrder[orderItemCount, 3] = price.ToString();                 //Price
                         orderItemCount++;
                         Methods.SQLCon.Close();
                     }
@@ -158,6 +162,7 @@ namespace POS_Group5_CMPG223
                 }
                 else
                 {
+                    //Increase Quantity
                     arrOrder[i, 1] = (int.Parse(arrOrder[i, 1]) + quantity).ToString();
                 }
                 loadOrder();
@@ -166,6 +171,7 @@ namespace POS_Group5_CMPG223
 
         private void loadOrder()
         {
+            //Print Array onto ListBox
             lbxOrder.Items.Clear();
             orderTotal = 0;
             for (int y = 0; y < orderItemCount; y++)
@@ -180,6 +186,7 @@ namespace POS_Group5_CMPG223
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
+            //Delete Item
             for (int i = lbxOrder.SelectedIndex; i < orderItemCount; i++)
             {
                 arrOrder[i, 0] = arrOrder[i + 1, 0];
@@ -203,6 +210,80 @@ namespace POS_Group5_CMPG223
                 LocateButtons(buttonsLoaded);
             }
             bFirstLoad = false;
+        }
+
+        private void btnPlaceOrder_Click(object sender, EventArgs e)
+        {
+            FrmOrderSupplier frmOrderSupplier = new FrmOrderSupplier();
+            frmOrderSupplier.LoadGUI();
+            frmOrderSupplier.ShowDialog();
+            if (frmOrderSupplier.bOk)
+            {
+                int supplerID = frmOrderSupplier.supplierID;
+                //Create Sales Order Record
+                try
+                {
+                    Methods.SQLCon.Open();
+
+                    SqlCommand commandInsert = new SqlCommand($"INSERT INTO PURCHASE_ORDER(Supplier_ID,Purchase_date) VALUES('{supplerID}','{DateTime.Now.Date}')", Methods.SQLCon);
+
+                    adapter = new SqlDataAdapter();
+                    dataset = new DataSet();
+
+                    adapter.InsertCommand = commandInsert;
+                    adapter.InsertCommand.ExecuteNonQuery();
+
+                    Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Get Sales Order Record ID
+                int orderID = 0;
+                try
+                {
+                    SqlCommand command = new SqlCommand($"SELECT * FROM PURCHASE_ORDER ORDER BY Purchase_ID DESC", Methods.SQLCon);
+                    Methods.SQLCon.Close();
+                    Methods.SQLCon.Open();
+                    orderID = (int)command.ExecuteScalar();
+                    Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Create Sales Order Items
+                try
+                {
+                    Methods.SQLCon.Close();
+                    Methods.SQLCon.Open();
+
+                    for (int i = 0; i < orderItemCount; i++)
+                    {
+                        SqlCommand commandInsert = new SqlCommand($"INSERT INTO PURCHASE_ORDER_ITEM(Purchase_ID,Product_ID,Quantity_purchased,Cost_price) VALUES('{orderID}','{arrOrder[i, 0]}','{arrOrder[i, 1]}','{arrOrder[i, 3]}')", Methods.SQLCon);
+
+                        adapter = new SqlDataAdapter();
+                        dataset = new DataSet();
+
+                        adapter.InsertCommand = commandInsert;
+                        adapter.InsertCommand.ExecuteNonQuery();
+                    }
+
+                    Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Reset billItemCount
+                orderItemCount = 0;
+            }
         }
     }
 }

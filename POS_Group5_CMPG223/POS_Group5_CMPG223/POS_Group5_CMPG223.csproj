@@ -95,6 +95,18 @@
     <Compile Include="FrmOrder.Designer.cs">
       <DependentUpon>FrmOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmOrderQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOrderQuantity.Designer.cs">
+      <DependentUpon>FrmOrderQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOrderSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOrderSupplier.Designer.cs">
+      <DependentUpon>FrmOrderSupplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPurchaseOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOrderQuantity.resx">
+      <DependentUpon>FrmOrderQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOrderSupplier.resx">
+      <DependentUpon>FrmOrderSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPurchaseOrders.resx">
       <DependentUpon>FrmPurchaseOrders.cs</DependentUpon>
