@@ -114,7 +114,7 @@ namespace POS_Group5_CMPG223
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(250, 50);
             this.btnDelete.TabIndex = 3;
-            this.btnDelete.Text = "Delete Bill";
+            this.btnDelete.Text = "Delete Order";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -126,7 +126,7 @@ namespace POS_Group5_CMPG223
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(250, 50);
             this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update Bill";
+            this.btnUpdate.Text = "Remove Item";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -142,12 +142,19 @@ namespace POS_Group5_CMPG223
             // 
             // dgvSalesOrders
             // 
+            this.dgvSalesOrders.AllowUserToAddRows = false;
+            this.dgvSalesOrders.AllowUserToDeleteRows = false;
+            this.dgvSalesOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSalesOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSalesOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSalesOrders.Location = new System.Drawing.Point(10, 10);
+            this.dgvSalesOrders.MultiSelect = false;
             this.dgvSalesOrders.Name = "dgvSalesOrders";
+            this.dgvSalesOrders.ReadOnly = true;
+            this.dgvSalesOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalesOrders.Size = new System.Drawing.Size(530, 430);
             this.dgvSalesOrders.TabIndex = 0;
+            this.dgvSalesOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalesOrders_CellClick);
             // 
             // FrmSalesOrders
             // 
