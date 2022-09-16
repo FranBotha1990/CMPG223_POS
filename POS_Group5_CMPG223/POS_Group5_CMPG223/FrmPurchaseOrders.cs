@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Controls;
 
 namespace POS_Group5_CMPG223
 {
@@ -101,14 +102,15 @@ namespace POS_Group5_CMPG223
         {
             try
             {
-                lbxItems.Items.Clear();
                 //Use the selected row, first cell
                 int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+                string validator = (string)lbxItems.SelectedItem;
+                int product = 0;
                 double total = 0;
 
                 Methods.SQLCon.Open();
 
-                SqlDataReader dataReader, dataDeleter;
+                SqlDataReader dataReader;
                 //Join the POItems and Product tables by Product_ID
                 command = new SqlCommand($"SELECT POI.Purchase_ID, " +
                                            "POI.Product_ID, " +
@@ -122,12 +124,51 @@ namespace POS_Group5_CMPG223
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    total += (Convert.ToDouble(dataReader.GetValue(3)) * Convert.ToDouble(dataReader.GetValue(2)));
+                    if (validator.Contains(Convert.ToString(dataReader.GetValue(4))))
+                    {
+                        product = Convert.ToInt32(dataReader.GetValue(1));
+                    }
                 }
 
-                lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total)); ;
+                Methods.SQLCon.Close();
+
+                Methods.SQLCon.Open();
+                commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
+                                       $"WHERE Purchase_ID LIKE '{selector}' " +
+                                       $"AND Product_ID LIKE '{product}'",
+                                       Methods.SQLCon);
+                adapter.DeleteCommand = commandDelete;
+                adapter.DeleteCommand.ExecuteNonQuery();
+                Methods.SQLCon.Close();
+
+                lbxItems.Items.Clear();
+
+                Methods.SQLCon.Open();
+                SqlDataReader dataReader2;
+                //Join the POItems and Product tables by Product_ID
+                command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                           "POI.Product_ID, " +
+                                           "POI.Quantity_purchased, " +
+                                           "POI.Cost_price, " +
+                                           "PR.Description " +
+                                           "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                           "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                           $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                           Methods.SQLCon);
+                dataReader2 = command.ExecuteReader();
+                while (dataReader2.Read())
+                {
+                    string str = string.Format("{0} {1} {2} {3} {4}", dataReader2.GetValue(2), " * ", dataReader2.GetValue(4), " @ R", Convert.ToDouble(dataReader2.GetValue(3)));
+                    lbxItems.Items.Add(str);
+                    total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
+                }
+
+                lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
 
                 Methods.SQLCon.Close();
+
+                MessageBox.Show(validator);
+
             }
             catch (SqlException error)
             {
