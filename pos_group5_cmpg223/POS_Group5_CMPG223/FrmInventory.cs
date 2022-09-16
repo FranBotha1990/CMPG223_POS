@@ -13,7 +13,6 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmInventory : Form
     {
-        SqlConnection con = new SqlConnection(@"connection string copy paste");
         SqlDataAdapter adapter;
         DataSet dataset;
 
@@ -40,15 +39,15 @@ namespace POS_Group5_CMPG223
             string sql = $"SELECT * FROM PRODUCT WHERE Description LIKE '%" + txt + "%' ";
             try
             {
-                con.Open();
+                Methods.SQLCon.Open();
                 dataset = new DataSet();
-                adapter = new SqlDataAdapter(sql, con);
+                adapter = new SqlDataAdapter(sql, Methods.SQLCon);
 
                 adapter.Fill(dataset, "PRODUCT");
 
                 dataGridView1.DataSource = dataset;
                 dataGridView1.DataMember = "PRODUCT";
-                con.Close();
+                Methods.SQLCon.Close();
             }
             catch (SqlException error)
             {
@@ -64,12 +63,12 @@ namespace POS_Group5_CMPG223
             try
             {
                 string sql = $"INSERT INTO PRODUCT VALUES('{myForm.Product_ID}','{myForm.Description}',{myForm.Sell_price},{myForm.Quantity_in_stock}) ";
-                con.Open();
+                Methods.SQLCon.Open();
                 adapter = new SqlDataAdapter();
-                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlCommand cmd = new SqlCommand(sql, Methods.SQLCon);
                 adapter.InsertCommand = cmd;
                 adapter.InsertCommand.ExecuteNonQuery();
-                con.Close();
+                Methods.SQLCon.Close();
                 MessageBox.Show("Entry successfully entered.");
                 refresh();
             }
@@ -86,8 +85,8 @@ namespace POS_Group5_CMPG223
             {
                 int priceScroll = hScrollBar.Value;
                 lblDisplay.Text = priceScroll.ToString();
-                con.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM PRODUCT WHERE Age<=" + priceScroll, con);
+                Methods.SQLCon.Open();
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM PRODUCT WHERE Age<=" + priceScroll, Methods.SQLCon);
                 adapter = new SqlDataAdapter();
                 dataset = new DataSet();
 
@@ -97,7 +96,7 @@ namespace POS_Group5_CMPG223
                 dataGridView1.DataSource = dataset;
                 dataGridView1.DataMember = "PRODUCT";
 
-                con.Close();
+                Methods.SQLCon.Close();
             }
             catch (SqlException error)
             {
@@ -109,15 +108,15 @@ namespace POS_Group5_CMPG223
         {
             try
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM PRODUCT", con);
+                Methods.SQLCon.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM PRODUCT", Methods.SQLCon);
                 adapter = new SqlDataAdapter();
                 dataset = new DataSet();
                 adapter.SelectCommand = cmd;
                 adapter.Fill(dataset, "PRODUCT");
                 dataGridView1.DataSource = dataset;
                 dataGridView1.DataMember = "PRODUCT";
-                con.Close();
+                Methods.SQLCon.Close();
             }
             catch (SqlException error)
             {

@@ -38,7 +38,7 @@ namespace POS_Group5_CMPG223
             this.lbxItems = new System.Windows.Forms.ListBox();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.pnlForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchaseOrders)).BeginInit();
             this.pnlItems.SuspendLayout();
@@ -67,6 +67,7 @@ namespace POS_Group5_CMPG223
             this.dgvPurchaseOrders.MultiSelect = false;
             this.dgvPurchaseOrders.Name = "dgvPurchaseOrders";
             this.dgvPurchaseOrders.ReadOnly = true;
+            this.dgvPurchaseOrders.RowHeadersWidth = 51;
             this.dgvPurchaseOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPurchaseOrders.Size = new System.Drawing.Size(530, 430);
             this.dgvPurchaseOrders.TabIndex = 0;
@@ -125,7 +126,7 @@ namespace POS_Group5_CMPG223
             // pnlButtons
             // 
             this.pnlButtons.Controls.Add(this.btnDelete);
-            this.pnlButtons.Controls.Add(this.btnUpdate);
+            this.pnlButtons.Controls.Add(this.btnRemove);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlButtons.Location = new System.Drawing.Point(0, 350);
             this.pnlButtons.Name = "pnlButtons";
@@ -143,16 +144,17 @@ namespace POS_Group5_CMPG223
             this.btnDelete.Text = "Delete Order";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // btnUpdate
+            // btnRemove
             // 
-            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Location = new System.Drawing.Point(0, 0);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(250, 50);
-            this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "Update Order";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnRemove.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Location = new System.Drawing.Point(0, 0);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(250, 50);
+            this.btnRemove.TabIndex = 2;
+            this.btnRemove.Text = "Remove Item";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // FrmPurchaseOrders
             // 
@@ -183,6 +185,6 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.ListBox lbxItems;
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnRemove;
     }
 }

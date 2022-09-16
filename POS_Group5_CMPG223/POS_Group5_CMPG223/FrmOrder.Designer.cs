@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.pnlForm = new System.Windows.Forms.Panel();
-            this.dgvInventory = new System.Windows.Forms.DataGridView();
             this.pnlOrder = new System.Windows.Forms.Panel();
             this.pnlTotal = new System.Windows.Forms.Panel();
             this.lblTotalAmnt = new System.Windows.Forms.Label();
@@ -38,8 +37,6 @@
             this.pnlOrderButtons = new System.Windows.Forms.Panel();
             this.btnPlaceOrder = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
-            this.pnlForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.pnlOrder.SuspendLayout();
             this.pnlTotal.SuspendLayout();
             this.pnlOrderButtons.SuspendLayout();
@@ -48,22 +45,13 @@
             // pnlForm
             // 
             this.pnlForm.AutoScroll = true;
-            this.pnlForm.Controls.Add(this.dgvInventory);
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
             this.pnlForm.Size = new System.Drawing.Size(550, 450);
             this.pnlForm.TabIndex = 3;
-            // 
-            // dgvInventory
-            // 
-            this.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvInventory.Location = new System.Drawing.Point(10, 10);
-            this.dgvInventory.Name = "dgvInventory";
-            this.dgvInventory.Size = new System.Drawing.Size(530, 430);
-            this.dgvInventory.TabIndex = 0;
+            this.pnlForm.SizeChanged += new System.EventHandler(this.pnlForm_SizeChanged);
             // 
             // pnlOrder
             // 
@@ -93,7 +81,7 @@
             this.lblTotalAmnt.Name = "lblTotalAmnt";
             this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
             this.lblTotalAmnt.TabIndex = 1;
-            this.lblTotalAmnt.Text = "R00.00";
+            this.lblTotalAmnt.Text = "R 0";
             this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotal
@@ -146,6 +134,7 @@
             this.btnDeleteItem.TabIndex = 1;
             this.btnDeleteItem.Text = "Delete Item";
             this.btnDeleteItem.UseVisualStyleBackColor = true;
+            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
             // FrmOrder
             // 
@@ -156,8 +145,7 @@
             this.Controls.Add(this.pnlOrder);
             this.Name = "FrmOrder";
             this.Text = "FrmOrder";
-            this.pnlForm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).EndInit();
+            this.SizeChanged += new System.EventHandler(this.FrmOrder_SizeChanged);
             this.pnlOrder.ResumeLayout(false);
             this.pnlTotal.ResumeLayout(false);
             this.pnlOrderButtons.ResumeLayout(false);
@@ -176,6 +164,5 @@
         private System.Windows.Forms.Panel pnlOrderButtons;
         private System.Windows.Forms.Button btnPlaceOrder;
         private System.Windows.Forms.Button btnDeleteItem;
-        private System.Windows.Forms.DataGridView dgvInventory;
     }
 }
