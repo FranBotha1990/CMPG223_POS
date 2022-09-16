@@ -206,7 +206,6 @@ namespace POS_Group5_CMPG223
                 Methods.SQLCon.Open();
                 orderID = (int)command.ExecuteScalar();
                 Methods.SQLCon.Close();
-                MessageBox.Show(orderID.ToString());
             }
             catch (SqlException ex)
             {
