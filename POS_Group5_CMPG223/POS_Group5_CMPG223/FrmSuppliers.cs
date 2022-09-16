@@ -70,7 +70,7 @@ namespace POS_Group5_CMPG223
                     int id = Convert.ToInt32(dgvSuppliers.CurrentRow.Cells[0].Value);
                     string name = dgvSuppliers.CurrentRow.Cells[1].Value.ToString();
 
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the record of " + name, "Delete Supplier", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the record of '" + name + "'?", "Delete Supplier", MessageBoxButtons.YesNo);
 
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -90,7 +90,7 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database cannot be found");
+                MessageBox.Show("Error connecting to database");
             }
         }
 
@@ -123,7 +123,7 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database cannot be found");
+                MessageBox.Show("Error connecting to database");
             }
         }
 

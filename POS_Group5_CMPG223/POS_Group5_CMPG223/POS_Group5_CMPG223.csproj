@@ -194,6 +194,9 @@
     <EmbeddedResource Include="FrmSuppliers.resx">
       <DependentUpon>FrmSuppliers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSuppliersAdd.resx">
+      <DependentUpon>FrmSuppliersAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSuppliersUpdate.resx">
       <DependentUpon>FrmSuppliersUpdate.cs</DependentUpon>
     </EmbeddedResource>

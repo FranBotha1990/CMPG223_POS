@@ -115,7 +115,7 @@ namespace POS_Group5_CMPG223
 
                                     SqlDataAdapter adapter = new SqlDataAdapter();
                                     command = new SqlCommand(sqlUpdate, Methods.SQLCon);
-                                    adapter.InsertCommand = command;
+                                    adapter.UpdateCommand = command;
                                     command.ExecuteNonQuery();
 
                                     MessageBox.Show("Supplier successfully updated");
