@@ -39,6 +39,8 @@
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.pnlItems = new System.Windows.Forms.Panel();
+            this.groupBoxSelect = new System.Windows.Forms.GroupBox();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             this.groupBoxAdd = new System.Windows.Forms.GroupBox();
             this.btnAddToDB = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -49,15 +51,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.pnlForm = new System.Windows.Forms.Panel();
-            this.groupBoxSelect = new System.Windows.Forms.GroupBox();
-            this.comboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlItems.SuspendLayout();
+            this.groupBoxSelect.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.pnlForm.SuspendLayout();
-            this.groupBoxSelect.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -184,6 +184,25 @@
             this.pnlItems.Size = new System.Drawing.Size(250, 738);
             this.pnlItems.TabIndex = 10;
             // 
+            // groupBoxSelect
+            // 
+            this.groupBoxSelect.Controls.Add(this.comboBox);
+            this.groupBoxSelect.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxSelect.Location = new System.Drawing.Point(0, 387);
+            this.groupBoxSelect.Name = "groupBoxSelect";
+            this.groupBoxSelect.Size = new System.Drawing.Size(250, 75);
+            this.groupBoxSelect.TabIndex = 11;
+            this.groupBoxSelect.TabStop = false;
+            this.groupBoxSelect.Text = "Select a Product";
+            // 
+            // comboBox
+            // 
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(17, 31);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(154, 21);
+            this.comboBox.TabIndex = 0;
+            // 
             // groupBoxAdd
             // 
             this.groupBoxAdd.Controls.Add(this.btnAddToDB);
@@ -192,9 +211,10 @@
             this.groupBoxAdd.Controls.Add(this.lblSellPrice);
             this.groupBoxAdd.Controls.Add(this.txtDescription);
             this.groupBoxAdd.Controls.Add(this.lblDescription);
-            this.groupBoxAdd.Location = new System.Drawing.Point(32, 306);
+            this.groupBoxAdd.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxAdd.Location = new System.Drawing.Point(0, 187);
             this.groupBoxAdd.Name = "groupBoxAdd";
-            this.groupBoxAdd.Size = new System.Drawing.Size(191, 200);
+            this.groupBoxAdd.Size = new System.Drawing.Size(250, 200);
             this.groupBoxAdd.TabIndex = 10;
             this.groupBoxAdd.TabStop = false;
             this.groupBoxAdd.Text = "Add Product";
@@ -258,9 +278,10 @@
             this.panel1.Controls.Add(this.lblSearch);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.lblScroll);
-            this.panel1.Location = new System.Drawing.Point(32, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 187);
+            this.panel1.Size = new System.Drawing.Size(250, 187);
             this.panel1.TabIndex = 9;
             // 
             // pnlButtons
@@ -285,24 +306,6 @@
             this.pnlForm.Size = new System.Drawing.Size(308, 738);
             this.pnlForm.TabIndex = 11;
             // 
-            // groupBoxSelect
-            // 
-            this.groupBoxSelect.Controls.Add(this.comboBox);
-            this.groupBoxSelect.Location = new System.Drawing.Point(32, 214);
-            this.groupBoxSelect.Name = "groupBoxSelect";
-            this.groupBoxSelect.Size = new System.Drawing.Size(192, 75);
-            this.groupBoxSelect.TabIndex = 11;
-            this.groupBoxSelect.TabStop = false;
-            this.groupBoxSelect.Text = "Select a Product";
-            // 
-            // comboBox
-            // 
-            this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(17, 31);
-            this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(154, 21);
-            this.comboBox.TabIndex = 0;
-            // 
             // FrmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,13 +318,13 @@
             this.Text = "FrmInventory";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlItems.ResumeLayout(false);
+            this.groupBoxSelect.ResumeLayout(false);
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlButtons.ResumeLayout(false);
             this.pnlForm.ResumeLayout(false);
-            this.groupBoxSelect.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
