@@ -65,26 +65,7 @@ namespace POS_Group5_CMPG223
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            FrmAddProduct myForm = new FrmAddProduct();
-            myForm.ShowDialog();
-
-            try
-            {
-                string sql = $"INSERT INTO PRODUCT VALUES('{myForm.Description}',{myForm.Sell_price},{myForm.Quantity_in_stock}) ";
-                Methods.SQLCon.Open();
-                adapter = new SqlDataAdapter();
-                SqlCommand cmd = new SqlCommand(sql, Methods.SQLCon);
-                adapter.InsertCommand = cmd;
-                adapter.InsertCommand.ExecuteNonQuery();
-                Methods.SQLCon.Close();
-                MessageBox.Show("Entry successfully entered.");
-                refresh();
-            }
-
-            catch (SqlException error)
-            {
-                MessageBox.Show(error.Message);
-            }
+            groupBoxAdd.Visible = true;
         }
 
         private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
@@ -130,6 +111,45 @@ namespace POS_Group5_CMPG223
             {
                 MessageBox.Show("SQL Error Occurred.");
             }
+        }
+
+        private void btnAddToDB_Click(object sender, EventArgs e)
+        {
+            if (double.TryParse(txtSellPrice.Text, out double price))
+            {
+                try
+                {
+                    string sql = $"INSERT INTO PRODUCT VALUES('{txtDescription.Text}',{price},{0}) ";
+                    Methods.SQLCon.Open();
+                    adapter = new SqlDataAdapter();
+                    SqlCommand cmd = new SqlCommand(sql, Methods.SQLCon);
+                    adapter.InsertCommand = cmd;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                    Methods.SQLCon.Close();
+                    MessageBox.Show("Entry successfully entered.");
+                    refresh();
+                    txtSellPrice.Text = "";
+                    txtDescription.Text = "";
+                }
+
+                catch (SqlException error)
+                {
+                    MessageBox.Show(error.Message);
+                }                   
+            }
+            
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            groupBoxAdd.Visible = false;
+            txtSellPrice.Text = "";
+            txtDescription.Text = "";
+        }
+
+        private void btnBuyProduct_Click(object sender, EventArgs e)
+        {
+            //switch view to purchase orders
         }
     }
 }

@@ -14,7 +14,7 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmSalesOrders : Form
     {
-        #region Variables
+        #region Class Fields
         SqlCommand command, commandDelete;
         SqlDataAdapter adapter = new SqlDataAdapter();
         #endregion

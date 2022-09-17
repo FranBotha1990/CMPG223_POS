@@ -41,10 +41,20 @@
             this.pnlItems = new System.Windows.Forms.Panel();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBoxAdd = new System.Windows.Forms.GroupBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtSellPrice = new System.Windows.Forms.TextBox();
+            this.lblSellPrice = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnAddToDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlItems.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.pnlForm.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBoxAdd.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -61,7 +71,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(530, 430);
+            this.dataGridView1.Size = new System.Drawing.Size(288, 718);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnBuyProduct
@@ -74,6 +84,7 @@
             this.btnBuyProduct.TabIndex = 2;
             this.btnBuyProduct.Text = "Buy Product";
             this.btnBuyProduct.UseVisualStyleBackColor = true;
+            this.btnBuyProduct.Click += new System.EventHandler(this.btnBuyProduct_Click);
             // 
             // btnStockTake
             // 
@@ -99,7 +110,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(72, 37);
+            this.txtSearch.Location = new System.Drawing.Point(39, 41);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(112, 20);
@@ -109,7 +120,7 @@
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(75, 18);
+            this.lblSearch.Location = new System.Drawing.Point(42, 22);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(108, 13);
@@ -118,7 +129,7 @@
             // 
             // hScrollBar
             // 
-            this.hScrollBar.Location = new System.Drawing.Point(72, 135);
+            this.hScrollBar.Location = new System.Drawing.Point(41, 139);
             this.hScrollBar.Name = "hScrollBar";
             this.hScrollBar.Size = new System.Drawing.Size(110, 34);
             this.hScrollBar.TabIndex = 6;
@@ -127,7 +138,7 @@
             // lblScroll
             // 
             this.lblScroll.AutoSize = true;
-            this.lblScroll.Location = new System.Drawing.Point(84, 88);
+            this.lblScroll.Location = new System.Drawing.Point(51, 92);
             this.lblScroll.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScroll.Name = "lblScroll";
             this.lblScroll.Size = new System.Drawing.Size(87, 13);
@@ -137,7 +148,7 @@
             // lblDisplay
             // 
             this.lblDisplay.AutoSize = true;
-            this.lblDisplay.Location = new System.Drawing.Point(103, 111);
+            this.lblDisplay.Location = new System.Drawing.Point(70, 115);
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDisplay.Name = "lblDisplay";
             this.lblDisplay.Size = new System.Drawing.Size(47, 13);
@@ -158,16 +169,13 @@
             // 
             // pnlItems
             // 
-            this.pnlItems.Controls.Add(this.lblSearch);
-            this.pnlItems.Controls.Add(this.lblScroll);
-            this.pnlItems.Controls.Add(this.txtSearch);
-            this.pnlItems.Controls.Add(this.lblDisplay);
+            this.pnlItems.Controls.Add(this.groupBoxAdd);
+            this.pnlItems.Controls.Add(this.panel1);
             this.pnlItems.Controls.Add(this.pnlButtons);
-            this.pnlItems.Controls.Add(this.hScrollBar);
             this.pnlItems.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlItems.Location = new System.Drawing.Point(550, 0);
+            this.pnlItems.Location = new System.Drawing.Point(308, 0);
             this.pnlItems.Name = "pnlItems";
-            this.pnlItems.Size = new System.Drawing.Size(250, 450);
+            this.pnlItems.Size = new System.Drawing.Size(250, 738);
             this.pnlItems.TabIndex = 10;
             // 
             // pnlButtons
@@ -177,7 +185,7 @@
             this.pnlButtons.Controls.Add(this.btnStockTake);
             this.pnlButtons.Controls.Add(this.btnBuyProduct);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 250);
+            this.pnlButtons.Location = new System.Drawing.Point(0, 538);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(250, 200);
             this.pnlButtons.TabIndex = 0;
@@ -189,14 +197,93 @@
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlForm.Size = new System.Drawing.Size(550, 450);
+            this.pnlForm.Size = new System.Drawing.Size(308, 738);
             this.pnlForm.TabIndex = 11;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.hScrollBar);
+            this.panel1.Controls.Add(this.lblDisplay);
+            this.panel1.Controls.Add(this.lblSearch);
+            this.panel1.Controls.Add(this.txtSearch);
+            this.panel1.Controls.Add(this.lblScroll);
+            this.panel1.Location = new System.Drawing.Point(32, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(192, 187);
+            this.panel1.TabIndex = 9;
+            // 
+            // groupBoxAdd
+            // 
+            this.groupBoxAdd.Controls.Add(this.btnAddToDB);
+            this.groupBoxAdd.Controls.Add(this.btnBack);
+            this.groupBoxAdd.Controls.Add(this.txtSellPrice);
+            this.groupBoxAdd.Controls.Add(this.lblSellPrice);
+            this.groupBoxAdd.Controls.Add(this.txtDescription);
+            this.groupBoxAdd.Controls.Add(this.lblDescription);
+            this.groupBoxAdd.Location = new System.Drawing.Point(32, 218);
+            this.groupBoxAdd.Name = "groupBoxAdd";
+            this.groupBoxAdd.Size = new System.Drawing.Size(191, 200);
+            this.groupBoxAdd.TabIndex = 10;
+            this.groupBoxAdd.TabStop = false;
+            this.groupBoxAdd.Text = "Add Product";
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(16, 27);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(63, 13);
+            this.lblDescription.TabIndex = 0;
+            this.lblDescription.Text = "Description:";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(17, 52);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(154, 20);
+            this.txtDescription.TabIndex = 1;
+            // 
+            // txtSellPrice
+            // 
+            this.txtSellPrice.Location = new System.Drawing.Point(19, 122);
+            this.txtSellPrice.Name = "txtSellPrice";
+            this.txtSellPrice.Size = new System.Drawing.Size(154, 20);
+            this.txtSellPrice.TabIndex = 3;
+            // 
+            // lblSellPrice
+            // 
+            this.lblSellPrice.AutoSize = true;
+            this.lblSellPrice.Location = new System.Drawing.Point(18, 97);
+            this.lblSellPrice.Name = "lblSellPrice";
+            this.lblSellPrice.Size = new System.Drawing.Size(54, 13);
+            this.lblSellPrice.TabIndex = 2;
+            this.lblSellPrice.Text = "Sell Price:";
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(17, 161);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 4;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnAddToDB
+            // 
+            this.btnAddToDB.Location = new System.Drawing.Point(96, 161);
+            this.btnAddToDB.Name = "btnAddToDB";
+            this.btnAddToDB.Size = new System.Drawing.Size(75, 23);
+            this.btnAddToDB.TabIndex = 5;
+            this.btnAddToDB.Text = "Add";
+            this.btnAddToDB.UseVisualStyleBackColor = true;
+            this.btnAddToDB.Click += new System.EventHandler(this.btnAddToDB_Click);
             // 
             // FrmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(558, 738);
             this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.pnlItems);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -204,9 +291,12 @@
             this.Text = "FrmInventory";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlItems.ResumeLayout(false);
-            this.pnlItems.PerformLayout();
             this.pnlButtons.ResumeLayout(false);
             this.pnlForm.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupBoxAdd.ResumeLayout(false);
+            this.groupBoxAdd.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -226,5 +316,13 @@
         private System.Windows.Forms.Panel pnlItems;
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlForm;
+        private System.Windows.Forms.GroupBox groupBoxAdd;
+        private System.Windows.Forms.Button btnAddToDB;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.TextBox txtSellPrice;
+        private System.Windows.Forms.Label lblSellPrice;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Panel panel1;
     }
 }

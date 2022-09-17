@@ -14,9 +14,10 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmPurchaseOrders : Form
     {
-        #region Variables
-        SqlCommand command, commandDelete;
+        #region Class Fields
+        SqlCommand command, commandDelete, commandUpdate;
         SqlDataAdapter adapter = new SqlDataAdapter();
+        SqlDataAdapter adapterUpdate = new SqlDataAdapter();
         #endregion
         #region Constructor
         public FrmPurchaseOrders()
@@ -173,6 +174,8 @@ namespace POS_Group5_CMPG223
                 int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
                 string validator = (string)lbxItems.SelectedItem;
                 int product = 0;
+                int current = 0;
+                int quantity = 0;
                 double total = 0;
 
                 if (lbxItems.SelectedItem == null)
@@ -188,7 +191,8 @@ namespace POS_Group5_CMPG223
                                                "POI.Product_ID, " +
                                                "POI.Quantity_purchased, " +
                                                "POI.Cost_price, " +
-                                               "PR.Description " +
+                                               "PR.Description, " +
+                                               "PR.Quantity_in_stock " +
                                                "FROM PURCHASE_ORDER_ITEM AS POI " +
                                                "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
                                                $"WHERE POI.Purchase_ID LIKE '{selector}'",
@@ -199,7 +203,10 @@ namespace POS_Group5_CMPG223
                     {
                         if (validator.Contains(Convert.ToString(dataReader.GetValue(4))))
                         {
+                            //Save current values from reader in variables
                             product = Convert.ToInt32(dataReader.GetValue(1));
+                            quantity = Convert.ToInt32(dataReader.GetValue(2));
+                            current = Convert.ToInt32(dataReader.GetValue(5));
                         }
                     }
                     Methods.SQLCon.Close();
@@ -212,6 +219,14 @@ namespace POS_Group5_CMPG223
                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
+                    Methods.SQLCon.Close();
+
+                    //Update the Product with the new quantity in stock
+                    Methods.SQLCon.Open();
+                    commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{quantity + current}' " +
+                                                   $"WHERE Product_id LIKE '{product}'", Methods.SQLCon);
+                    adapter.UpdateCommand = commandUpdate;
+                    adapter.UpdateCommand.ExecuteNonQuery();
                     Methods.SQLCon.Close();
 
                     lbxItems.Items.Clear();
@@ -236,9 +251,8 @@ namespace POS_Group5_CMPG223
                         lbxItems.Items.Add(str);
                         total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
                     }
-                    Methods.SQLCon.Close();
-
                     lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
+                    Methods.SQLCon.Close();
 
                     MessageBox.Show("Purchase Order Item deleted successfully!");
                 }
