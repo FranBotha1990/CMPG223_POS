@@ -14,6 +14,8 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmInventory : Form
     {
+        String[,] arrProducts;
+        int size = 0;
         SqlDataAdapter adapter;
         DataSet dataset;
 
@@ -39,6 +41,7 @@ namespace POS_Group5_CMPG223
             hScrollBar.Maximum = 1000;
             hScrollBar.LargeChange = 20;
             hScrollBar.SmallChange = 1;
+            groupBoxAdd.Visible = false;
             refresh();
         }
 
@@ -96,6 +99,7 @@ namespace POS_Group5_CMPG223
 
         private void refresh()
         {
+            comboBox.Items.Clear();
             try
             {
                 Methods.SQLCon.Open();
@@ -116,20 +120,36 @@ namespace POS_Group5_CMPG223
             //Populate combo box
             try
             {
+                SqlCommand command = new SqlCommand($"SELECT COUNT(*) FROM PRODUCT", Methods.SQLCon);
+                Methods.SQLCon.Close();
                 Methods.SQLCon.Open();
-                SqlCommand cmd2 = new SqlCommand(@"SELECT DISTINCT Description from PRODUCT", Methods.SQLCon);
-                adapter = new SqlDataAdapter();
-                dataset = new DataSet();
-                adapter.SelectCommand = cmd2;
-                adapter.Fill(dataset, "PRODUCT");
-                comboBox.DisplayMember = "PRODUCT";
-                comboBox.ValueMember = "PRODUCT";
-                comboBox.DataSource = dataset.Tables["PRODUCT"];
+                size = (int)command.ExecuteScalar();
+                arrProducts = new String[size, 2];
                 Methods.SQLCon.Close();
             }
-            catch
+            catch (SqlException ex)
             {
-                MessageBox.Show("SQL Error Occurred.");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+                Methods.SQLCon.Close();
+                Methods.SQLCon.Open();
+                SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT", Methods.SQLCon);
+                SqlDataReader reader;
+                reader = command.ExecuteReader();
+                for (int i = 0; i < size; i++)
+                {
+                    reader.Read();
+                    arrProducts[i, 0] = reader.GetValue(0).ToString();
+                    arrProducts[i, 1] = reader.GetValue(1).ToString();
+                    comboBox.Items.Add(arrProducts[i, 1]);
+                }
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -176,15 +196,23 @@ namespace POS_Group5_CMPG223
         {
             try
             {
-                int quantity = 0;
-                string sqlUpdate = $"UPDATE PRODUCT SET Quantity_in_stock = "+quantity+" WHERE Description = '{comboBox.Text}'";
-                Methods.SQLCon.Open();
-                SqlCommand cmdDelete = new SqlCommand(sqlUpdate, Methods.SQLCon);
-                adapter = new SqlDataAdapter();
-                adapter.DeleteCommand = cmdDelete;
-                adapter.DeleteCommand.ExecuteNonQuery();
-                Methods.SQLCon.Close();
-                MessageBox.Show(comboBox.Text + ", was updated successfully");
+                FrmSalesQuantity frmSalesQuantity = new FrmSalesQuantity();
+                frmSalesQuantity.LoadGUI();
+                frmSalesQuantity.ShowDialog();
+                if (frmSalesQuantity.bOk)
+                {
+                    MessageBox.Show(comboBox.SelectedIndex.ToString());
+                    int quantity = frmSalesQuantity.quantity;
+                    string sqlUpdate = $"UPDATE PRODUCT SET Quantity_in_stock = {quantity} WHERE Product_ID = '{arrProducts[comboBox.SelectedIndex, 0]}'";
+                    Methods.SQLCon.Open();
+                    SqlCommand cmdDelete = new SqlCommand(sqlUpdate, Methods.SQLCon);
+                    adapter = new SqlDataAdapter();
+                    adapter.DeleteCommand = cmdDelete;
+                    adapter.DeleteCommand.ExecuteNonQuery();
+                    Methods.SQLCon.Close();
+                    MessageBox.Show(comboBox.Text + ", was updated successfully");
+                    refresh();
+                }
             }
             catch (SqlException error)
             {
@@ -194,21 +222,62 @@ namespace POS_Group5_CMPG223
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            bool flag = false;
             try
             {
-                string sqlDelete = $"DELETE FROM PRODUCT WHERE Description = '{comboBox.Text}'";
                 Methods.SQLCon.Open();
-                SqlCommand cmdDelete = new SqlCommand(sqlDelete, Methods.SQLCon);
-                adapter = new SqlDataAdapter();
-                adapter.DeleteCommand = cmdDelete;
-                adapter.DeleteCommand.ExecuteNonQuery();
+                SqlCommand command = new SqlCommand($"SELECT * FROM SALES_ORDER_ITEM", Methods.SQLCon);
+                SqlDataReader reader;
+                reader = command.ExecuteReader();
+                while(reader.Read() && !flag)
+                {
+                    if (reader.GetValue(1).ToString() == arrProducts[comboBox.SelectedIndex, 0])
+                    {
+                        flag = true;
+                    }
+                }
                 Methods.SQLCon.Close();
-                MessageBox.Show(comboBox.Text + ", was deleted successfully");
+                Methods.SQLCon.Open();
+                SqlCommand command2 = new SqlCommand($"SELECT * FROM PURCHASE_ORDER_ITEM", Methods.SQLCon);
+                SqlDataReader reader2;
+                reader2 = command2.ExecuteReader();
+                while(reader2.Read() && !flag)
+                {
+                    if (reader2.GetValue(1).ToString() == arrProducts[comboBox.SelectedIndex, 0])
+                    {
+                        flag = true;
+                    }
+                }
+                Methods.SQLCon.Close();
             }
             catch (SqlException error)
             {
                 MessageBox.Show(error.Message);
             }
+            if (!flag)
+            {
+                try
+                {
+                    string sqlDelete = $"DELETE FROM PRODUCT WHERE Product_ID = '{arrProducts[comboBox.SelectedIndex, 0]}'";
+                    Methods.SQLCon.Open();
+                    SqlCommand cmdDelete = new SqlCommand(sqlDelete, Methods.SQLCon);
+                    adapter = new SqlDataAdapter();
+                    adapter.DeleteCommand = cmdDelete;
+                    adapter.DeleteCommand.ExecuteNonQuery();
+                    Methods.SQLCon.Close();
+                    MessageBox.Show(comboBox.Text + ", was deleted successfully");
+                    size--;
+                }
+                catch (SqlException error)
+                {
+                    MessageBox.Show(error.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("A sales order already contains this product, therefor it can not be deleted.");
+            }
+            refresh();
         }
     }
 }
