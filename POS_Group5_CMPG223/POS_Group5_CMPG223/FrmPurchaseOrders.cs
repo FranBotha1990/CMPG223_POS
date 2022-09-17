@@ -43,32 +43,7 @@ namespace POS_Group5_CMPG223
             btnRemove.Enabled = false;
 
             //Fill data grid with all PO's
-            try
-            {
-                Methods.SQLCon.Open();
-
-                command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
-                                           SU.Supplier_ID AS 'Supplier ID', 
-                                           Supplier_name AS 'Supplier Name', 
-                                           Purchase_date AS 'Purchase Date'
-                                           FROM PURCHASE_ORDER AS PO
-                                           LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID", 
-                                           Methods.SQLCon);
-                DataSet dataSet = new DataSet();
-
-                adapter.SelectCommand = command;
-                adapter.Fill(dataSet, "PURCHASE_ORDER");
-
-                dgvPurchaseOrders.DataSource = dataSet;
-                dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
-
-                Methods.SQLCon.Close();
-            }
-            catch (SqlException ex)
-            {
-                //Error message
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            fillDataGrid();
         }
         #endregion
 
@@ -79,7 +54,7 @@ namespace POS_Group5_CMPG223
             int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
             double total = 0;
 
-            //Enable the receive button
+            //Enable buttons based on receive value true/false
             try
             {
                 Methods.SQLCon.Open();
@@ -98,6 +73,14 @@ namespace POS_Group5_CMPG223
                     if (Convert.ToBoolean(dataReader.GetValue(1)) == false)
                     {
                         btnReceive.Enabled = true;
+                        btnDelete.Enabled = true;
+                        btnRemove.Enabled = true;
+                    }
+                    else
+                    {
+                        btnReceive.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btnRemove.Enabled = false;
                     }
                 }
 
@@ -213,8 +196,8 @@ namespace POS_Group5_CMPG223
                         Methods.SQLCon.Open();
 
                         commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
-                                                $"WHERE Purchase_ID LIKE '{selector}'",
-                                                Methods.SQLCon);
+                                                       $"WHERE Purchase_ID LIKE '{selector}'",
+                                                       Methods.SQLCon);
                         adapter.DeleteCommand = commandDelete;
                         adapter.DeleteCommand.ExecuteNonQuery();
 
@@ -246,38 +229,82 @@ namespace POS_Group5_CMPG223
                     }
 
                     //Refresh the data grid
-                    try
-                    {
-                        Methods.SQLCon.Close();
-
-                        command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
-                                        Supplier_name AS 'Supplier Name', 
-                                        Purchase_date AS 'Purchase Date'
-                                        FROM PURCHASE_ORDER AS PO
-                                        LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
-                                                    Methods.SQLCon);
-                        DataSet dataSet = new DataSet();
-
-                        adapter.SelectCommand = command;
-                        adapter.Fill(dataSet, "PURCHASE_ORDER");
-
-                        dgvPurchaseOrders.DataSource = dataSet;
-                        dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
-
-                        Methods.SQLCon.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        //Error message
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    fillDataGrid();
 
                     MessageBox.Show("Purchase Order deleted successfully!");
                 }
             }
         }
         #endregion
-        #region Remove Items Button
+        #region Receive Button
+        private void btnReceive_Click(object sender, EventArgs e)
+        {
+            int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+            int product, current, quantity;
+            bool itsTrue = true;
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete Purchase Order number '" + selector + "'?", "Delete Purchase Order", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                lblTotalAmnt.Text = " ";
+
+                //Adjust product quantity
+                try
+                {
+                    Methods.SQLCon.Open();
+
+                    SqlDataReader dataReader;
+                    command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                                   "POI.Product_ID, " +
+                                                   "POI.Quantity_purchased, " +
+                                                   "POI.Cost_price, " +
+                                                   "PR.Description, " +
+                                                   "PR.Quantity_in_stock " +
+                                                   "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                                   "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                                   $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                                   Methods.SQLCon);
+                    dataReader = command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        product = Convert.ToInt32(dataReader.GetValue(1));
+                        quantity = Convert.ToInt32(dataReader.GetValue(2));
+                        current = Convert.ToInt32(dataReader.GetValue(5));
+
+                        Methods.SQLCon2.Open();
+
+                        commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current + quantity}' " +
+                                                       $"WHERE Product_id LIKE '{product}'", Methods.SQLCon2);
+                        adapter.UpdateCommand = commandUpdate;
+                        adapter.UpdateCommand.ExecuteNonQuery();
+
+                        Methods.SQLCon2.Close();
+                    }
+                    Methods.SQLCon.Close();
+
+                    //Set PO to received = true
+                    Methods.SQLCon.Open();
+
+                    commandUpdate = new SqlCommand($"UPDATE PURCHASE_ORDER SET Received = '{itsTrue}' " +
+                                                   $"WHERE Purchase_ID LIKE '{selector}'", Methods.SQLCon);
+                    adapter.UpdateCommand = commandUpdate;
+                    adapter.UpdateCommand.ExecuteNonQuery();
+
+                    Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                LoadGUI();
+            }
+        }
+        #endregion
+        #region Remove Item Button
         private void btnRemove_Click(object sender, EventArgs e)
         {
             int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
@@ -374,42 +401,43 @@ namespace POS_Group5_CMPG223
                     }
 
                     //Display all items remaining in the list
-                    try
-                    {
-                        Methods.SQLCon.Open();
-
-                        SqlDataReader dataReader2;
-                        command = new SqlCommand($"SELECT POI.Purchase_ID, " +
-                                                   "POI.Product_ID, " +
-                                                   "POI.Quantity_purchased, " +
-                                                   "POI.Cost_price, " +
-                                                   "PR.Description " +
-                                                   "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                                   "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                                   $"WHERE POI.Purchase_ID LIKE '{selector}'",
-                                                   Methods.SQLCon);
-                        dataReader2 = command.ExecuteReader();
-
-                        while (dataReader2.Read())
-                        {
-                            string str = string.Format("{0} {1} {2} {3} {4}", dataReader2.GetValue(2), " * ", dataReader2.GetValue(4), " @ R", Convert.ToDouble(dataReader2.GetValue(3)));
-                            lbxItems.Items.Add(str);
-
-                            total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
-                        }
-
-                        lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
-
-                        Methods.SQLCon.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        //Error message
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    fillDataGrid();
 
                     MessageBox.Show("Purchase Order Item deleted successfully!");
                 }
+            }
+        }
+        #endregion
+
+        #region PO Methods
+        private void fillDataGrid()
+        {
+            //Fill data grid with all PO's
+            try
+            {
+                Methods.SQLCon.Open();
+
+                command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
+                                           SU.Supplier_ID AS 'Supplier ID', 
+                                           Supplier_name AS 'Supplier Name', 
+                                           Purchase_date AS 'Purchase Date'
+                                           FROM PURCHASE_ORDER AS PO
+                                           LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
+                                           Methods.SQLCon);
+                DataSet dataSet = new DataSet();
+
+                adapter.SelectCommand = command;
+                adapter.Fill(dataSet, "PURCHASE_ORDER");
+
+                dgvPurchaseOrders.DataSource = dataSet;
+                dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
