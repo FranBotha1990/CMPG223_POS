@@ -120,23 +120,23 @@ namespace POS_Group5_CMPG223
         //Order Button
         private void OrderButton_Click(object sender, EventArgs e)
         {
-            FrmOrderQuantity frmOrderQuantity = new FrmOrderQuantity();
+            int i;
+            bool bExists = false;
+            for (i = 0; i < buttonsToLoad; i++)
+            {
+                if ((sender as Button).Name.Equals(arrOrder[i, 0]))
+                {
+                    bExists = true;
+                    break;
+                }
+            }
+            FrmOrderQuantity frmOrderQuantity = new FrmOrderQuantity(bExists);
             frmOrderQuantity.LoadGUI();
             frmOrderQuantity.ShowDialog();
             int quantity = frmOrderQuantity.quantity;
             double price = frmOrderQuantity.price;
             if (frmOrderQuantity.bOk)
             {
-                int i;
-                bool bExists = false;
-                for (i = 0; i < buttonsToLoad; i++)
-                {
-                    if ((sender as Button).Name.Equals(arrOrder[i, 0]))
-                    {
-                        bExists = true;
-                        break;
-                    }
-                }
                 if (!bExists)
                 {
                     try
@@ -176,7 +176,7 @@ namespace POS_Group5_CMPG223
             orderTotal = 0;
             for (int y = 0; y < orderItemCount; y++)
             {
-                string str = string.Format("{0} {1} {2} {3} {4}", arrOrder[y, 1], " * ", arrOrder[y, 2], " @ R ", Convert.ToDouble(Convert.ToDouble(arrOrder[y, 3]) * int.Parse(arrOrder[y, 1])));
+                string str = string.Format("{0} {1} {2} {3} {4}", arrOrder[y, 1], " x ", arrOrder[y, 2], " @ R ", Convert.ToDouble(arrOrder[y, 3]));
                 orderTotal += Convert.ToDouble(Convert.ToDouble(arrOrder[y, 3]) * int.Parse(arrOrder[y, 1]));
                 lbxOrder.Items.Add(str);
             }
@@ -283,6 +283,8 @@ namespace POS_Group5_CMPG223
 
                 //Reset billItemCount
                 orderItemCount = 0;
+                lbxOrder.Items.Clear();
+                lblTotalAmnt.Text = "R 0";
             }
         }
     }

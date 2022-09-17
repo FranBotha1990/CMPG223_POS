@@ -67,9 +67,9 @@ namespace POS_Group5_CMPG223
             this.lblPrice.AutoSize = true;
             this.lblPrice.Location = new System.Drawing.Point(12, 48);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(34, 13);
+            this.lblPrice.Size = new System.Drawing.Size(76, 13);
             this.lblPrice.TabIndex = 6;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = "Price Per Item:";
             // 
             // txtPrice
             // 
