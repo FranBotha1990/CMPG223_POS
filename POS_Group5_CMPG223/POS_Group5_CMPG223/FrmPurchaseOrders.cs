@@ -113,6 +113,7 @@ namespace POS_Group5_CMPG223
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+            int product, current, quantity;
 
             if (dgvPurchaseOrders.SelectedRows == null)
             {
@@ -127,6 +128,48 @@ namespace POS_Group5_CMPG223
                     //Clear the listbox and total label
                     lbxItems.Items.Clear();
                     lblTotalAmnt.Text = " ";
+
+                    //Join the POItems and Product tables by Product_ID
+                    try
+                    {
+                        Methods.SQLCon.Open();
+
+                        SqlDataReader dataReader;
+                        command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                                   "POI.Product_ID, " +
+                                                   "POI.Quantity_purchased, " +
+                                                   "POI.Cost_price, " +
+                                                   "PR.Description, " +
+                                                   "PR.Quantity_in_stock " +
+                                                   "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                                   "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                                   $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                                   Methods.SQLCon);
+                        dataReader = command.ExecuteReader();
+
+                        while (dataReader.Read())
+                        {
+                            product = Convert.ToInt32(dataReader.GetValue(1));
+                            quantity = Convert.ToInt32(dataReader.GetValue(2));
+                            current = Convert.ToInt32(dataReader.GetValue(5));
+
+                            Methods.SQLCon2.Open();
+
+                            commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current - quantity}' " +
+                                                           $"WHERE Product_id LIKE '{product}'", Methods.SQLCon2);
+                            adapter.UpdateCommand = commandUpdate;
+                            adapter.UpdateCommand.ExecuteNonQuery();
+
+                            Methods.SQLCon2.Close();
+                        }
+
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
                     //Remove the PO Items
                     try
@@ -218,6 +261,8 @@ namespace POS_Group5_CMPG223
 
                 if (dialogResult == DialogResult.Yes)
                 {
+                    lbxItems.Items.Clear();
+
                     //Join the POItems and Product tables by Product_ID
                     try
                     {
@@ -285,8 +330,6 @@ namespace POS_Group5_CMPG223
                         adapter.UpdateCommand.ExecuteNonQuery();
 
                         Methods.SQLCon.Close();
-
-                        lbxItems.Items.Clear();
                     }
                     catch (SqlException ex)
                     {
