@@ -32,6 +32,12 @@ namespace POS_Group5_CMPG223
             this.pnlForm = new System.Windows.Forms.Panel();
             this.dgvSuppliers = new System.Windows.Forms.DataGridView();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.txtFilterCell = new System.Windows.Forms.TextBox();
+            this.lblFilterCell = new System.Windows.Forms.Label();
+            this.txtFilterEmail = new System.Windows.Forms.TextBox();
+            this.lblFilterEmail = new System.Windows.Forms.Label();
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.lblFilter = new System.Windows.Forms.Label();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -55,21 +61,84 @@ namespace POS_Group5_CMPG223
             // 
             // dgvSuppliers
             // 
+            this.dgvSuppliers.AllowUserToAddRows = false;
+            this.dgvSuppliers.AllowUserToDeleteRows = false;
+            this.dgvSuppliers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSuppliers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSuppliers.Location = new System.Drawing.Point(10, 10);
+            this.dgvSuppliers.MultiSelect = false;
             this.dgvSuppliers.Name = "dgvSuppliers";
+            this.dgvSuppliers.ReadOnly = true;
+            this.dgvSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSuppliers.Size = new System.Drawing.Size(530, 430);
             this.dgvSuppliers.TabIndex = 0;
             // 
             // pnlSidebar
             // 
+            this.pnlSidebar.Controls.Add(this.txtFilterCell);
+            this.pnlSidebar.Controls.Add(this.lblFilterCell);
+            this.pnlSidebar.Controls.Add(this.txtFilterEmail);
+            this.pnlSidebar.Controls.Add(this.lblFilterEmail);
+            this.pnlSidebar.Controls.Add(this.txtFilter);
+            this.pnlSidebar.Controls.Add(this.lblFilter);
             this.pnlSidebar.Controls.Add(this.pnlButtons);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlSidebar.Location = new System.Drawing.Point(550, 0);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(250, 450);
             this.pnlSidebar.TabIndex = 4;
+            // 
+            // txtFilterCell
+            // 
+            this.txtFilterCell.Location = new System.Drawing.Point(51, 155);
+            this.txtFilterCell.Name = "txtFilterCell";
+            this.txtFilterCell.Size = new System.Drawing.Size(115, 20);
+            this.txtFilterCell.TabIndex = 6;
+            this.txtFilterCell.TextChanged += new System.EventHandler(this.txtFilterCell_TextChanged);
+            // 
+            // lblFilterCell
+            // 
+            this.lblFilterCell.AutoSize = true;
+            this.lblFilterCell.Location = new System.Drawing.Point(48, 124);
+            this.lblFilterCell.Name = "lblFilterCell";
+            this.lblFilterCell.Size = new System.Drawing.Size(107, 13);
+            this.lblFilterCell.TabIndex = 5;
+            this.lblFilterCell.Text = "Filter by Supplier Cell:";
+            // 
+            // txtFilterEmail
+            // 
+            this.txtFilterEmail.Location = new System.Drawing.Point(48, 232);
+            this.txtFilterEmail.Name = "txtFilterEmail";
+            this.txtFilterEmail.Size = new System.Drawing.Size(115, 20);
+            this.txtFilterEmail.TabIndex = 4;
+            this.txtFilterEmail.TextChanged += new System.EventHandler(this.txtFilterEmail_TextChanged);
+            // 
+            // lblFilterEmail
+            // 
+            this.lblFilterEmail.AutoSize = true;
+            this.lblFilterEmail.Location = new System.Drawing.Point(45, 201);
+            this.lblFilterEmail.Name = "lblFilterEmail";
+            this.lblFilterEmail.Size = new System.Drawing.Size(115, 13);
+            this.lblFilterEmail.TabIndex = 3;
+            this.lblFilterEmail.Text = "Filter by Supplier Email:";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(48, 75);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(115, 20);
+            this.txtFilter.TabIndex = 2;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(45, 44);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(118, 13);
+            this.lblFilter.TabIndex = 1;
+            this.lblFilter.Text = "Filter by Supplier Name:";
             // 
             // pnlButtons
             // 
@@ -131,6 +200,7 @@ namespace POS_Group5_CMPG223
             this.pnlForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
             this.pnlSidebar.ResumeLayout(false);
+            this.pnlSidebar.PerformLayout();
             this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -145,5 +215,11 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox txtFilterEmail;
+        private System.Windows.Forms.Label lblFilterEmail;
+        private System.Windows.Forms.TextBox txtFilterCell;
+        private System.Windows.Forms.Label lblFilterCell;
     }
 }

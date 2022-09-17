@@ -23,7 +23,15 @@ namespace POS_Group5_CMPG223
 
         public void LoadGUI()
         {
+            //Fore Colors
+            btnBuyProduct.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnAddProduct.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnDiscard.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnStockTake.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblDisplay.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            //Back Colors
             this.BackColor = Methods.clrForms;
+            pnlItems.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
             lblDisplay.Text = "";
             hScrollBar.Value = 0;
             hScrollBar.Minimum = 0;

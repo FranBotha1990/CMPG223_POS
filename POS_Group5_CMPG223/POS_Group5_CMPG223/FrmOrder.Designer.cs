@@ -123,6 +123,7 @@
             this.btnPlaceOrder.TabIndex = 2;
             this.btnPlaceOrder.Text = "Place Order";
             this.btnPlaceOrder.UseVisualStyleBackColor = true;
+            this.btnPlaceOrder.Click += new System.EventHandler(this.btnPlaceOrder_Click);
             // 
             // btnDeleteItem
             // 

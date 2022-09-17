@@ -143,6 +143,7 @@ namespace POS_Group5_CMPG223
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete Order";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRemove
             // 

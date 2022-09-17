@@ -30,32 +30,24 @@ namespace POS_Group5_CMPG223
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
+            if (dgvSuppliers.SelectedRows.Count < 0)
             {
-                Methods.SQLCon.Open();
-
-                if (dgvSuppliers.SelectedRows.Count < 0)
-                {
-                    MessageBox.Show("Please select a supplier to update");
-                }
-                else if (dgvSuppliers.SelectedRows.Count > 1)
-                {
-                    MessageBox.Show("Please select only one supplier to update");
-                }
-                else
-                {
-                    int id = Convert.ToInt32(dgvSuppliers.SelectedRows[0].Cells[0].Value);
-
-                    FrmSuppliersUpdate frmSuppliersUpdate = new FrmSuppliersUpdate(id);
-                    frmSuppliersUpdate.LoadGUI();
-                    frmSuppliersUpdate.ShowDialog();
-                }
-
-                Methods.SQLCon.Close();
+                MessageBox.Show("Please select a supplier to update");
             }
-            catch (SqlException ex)
+            else if (dgvSuppliers.SelectedRows.Count > 1)
             {
-                MessageBox.Show("Database cannot be found");
+                MessageBox.Show("Please select only one supplier to update");
+            }
+            else
+            {
+                //int index = dgvSuppliers.SelectedCells[0].RowIndex;
+                //dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                //int id = Convert.ToInt32(dgvSuppliers.SelectedRows[0].Cells[0].Value);
+                int id = Convert.ToInt32(dgvSuppliers.CurrentRow.Cells[0].Value);
+
+                FrmSuppliersUpdate frmSuppliersUpdate = new FrmSuppliersUpdate(id);
+                frmSuppliersUpdate.LoadGUI();
+                frmSuppliersUpdate.ShowDialog();
             }
         }
 
@@ -75,25 +67,30 @@ namespace POS_Group5_CMPG223
                 }
                 else
                 {
-                    int id = Convert.ToInt32(dgvSuppliers.SelectedRows[0].Cells[0].Value);
-                    
-                    string sql = $"DELETE from SUPPLIER where Supplier_ID = {id}";
+                    int id = Convert.ToInt32(dgvSuppliers.CurrentRow.Cells[0].Value);
+                    string name = dgvSuppliers.CurrentRow.Cells[1].Value.ToString();
 
-                    SqlDataAdapter adapter = new SqlDataAdapter();
-                    SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
-                    adapter.DeleteCommand = command;
-                    command.ExecuteNonQuery();
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the record of '" + name + "'?", "Delete Supplier", MessageBoxButtons.YesNo);
 
-                    MessageBox.Show("Supplier successfully deleted");
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string sql = $"DELETE from SUPPLIER where Supplier_ID = {id}";
 
-                    DisplayData();
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
+                        adapter.DeleteCommand = command;
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show("Supplier successfully deleted");
+                    }
                 }
 
                 Methods.SQLCon.Close();
+                DisplayData($"SELECT * from SUPPLIER");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database cannot be found");
+                MessageBox.Show("Error connecting to database");
             }
         }
 
@@ -104,16 +101,15 @@ namespace POS_Group5_CMPG223
 
         private void FrmSuppliers_Load(object sender, EventArgs e)
         {
-            DisplayData();
+            DisplayData($"SELECT * from SUPPLIER");
         }
 
-        private void DisplayData()
+        private void DisplayData(string sql)
         {
             try
             {
                 DataSet ds = new DataSet();
                 SqlDataAdapter adapter = new SqlDataAdapter();
-                string sql = $"SELECT * from SUPPLIER";
 
                 Methods.SQLCon.Open();
 
@@ -127,8 +123,26 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database cannot be found");
+                MessageBox.Show("Error connecting to database");
             }
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            string name = txtFilter.Text;
+            DisplayData($"SELECT * from SUPPLIER where Supplier_Name LIKE '%{name}%'");
+        }
+
+        private void txtFilterEmail_TextChanged(object sender, EventArgs e)
+        {
+            string email = txtFilterEmail.Text;
+            DisplayData($"SELECT * from SUPPLIER where Supplier_Email LIKE '%{email}%'");
+        }
+
+        private void txtFilterCell_TextChanged(object sender, EventArgs e)
+        {
+            string cell = txtFilterCell.Text;
+            DisplayData($"SELECT * from SUPPLIER where Supplier_Cell LIKE '%{cell}%'");
         }
     }
 }
