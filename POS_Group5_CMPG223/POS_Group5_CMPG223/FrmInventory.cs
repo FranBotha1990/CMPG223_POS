@@ -70,7 +70,7 @@ namespace POS_Group5_CMPG223
 
             try
             {
-                string sql = $"INSERT INTO PRODUCT VALUES('{myForm.Product_ID}','{myForm.Description}',{myForm.Sell_price},{myForm.Quantity_in_stock}) ";
+                string sql = $"INSERT INTO PRODUCT VALUES('{myForm.Description}',{myForm.Sell_price},{myForm.Quantity_in_stock}) ";
                 Methods.SQLCon.Open();
                 adapter = new SqlDataAdapter();
                 SqlCommand cmd = new SqlCommand(sql, Methods.SQLCon);
@@ -94,7 +94,7 @@ namespace POS_Group5_CMPG223
                 int priceScroll = hScrollBar.Value;
                 lblDisplay.Text = priceScroll.ToString();
                 Methods.SQLCon.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM PRODUCT WHERE Age<=" + priceScroll, Methods.SQLCon);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM PRODUCT WHERE Sell_price<=" + priceScroll, Methods.SQLCon);
                 adapter = new SqlDataAdapter();
                 dataset = new DataSet();
 
