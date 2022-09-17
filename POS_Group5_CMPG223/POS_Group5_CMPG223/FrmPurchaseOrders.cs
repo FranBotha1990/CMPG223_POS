@@ -120,76 +120,81 @@ namespace POS_Group5_CMPG223
             }
             else
             {
-                //Clear the listbox and total label
-                lbxItems.Items.Clear();
-                lblTotalAmnt.Text = " ";
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete Purchase Order number '" + selector + "'?", "Delete Purchase Order", MessageBoxButtons.YesNo);
 
-                //Remove the PO Items
-                try
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Methods.SQLCon.Open();
+                    //Clear the listbox and total label
+                    lbxItems.Items.Clear();
+                    lblTotalAmnt.Text = " ";
 
-                    commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
-                                            $"WHERE Purchase_ID LIKE '{selector}'",
-                                            Methods.SQLCon);
-                    adapter.DeleteCommand = commandDelete;
-                    adapter.DeleteCommand.ExecuteNonQuery();
+                    //Remove the PO Items
+                    try
+                    {
+                        Methods.SQLCon.Open();
 
-                    Methods.SQLCon.Close();
-                }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                        commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
+                                                $"WHERE Purchase_ID LIKE '{selector}'",
+                                                Methods.SQLCon);
+                        adapter.DeleteCommand = commandDelete;
+                        adapter.DeleteCommand.ExecuteNonQuery();
 
-                //Remove the PO
-                try
-                {
-                    Methods.SQLCon.Open();
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-                    commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER " +
-                                            $"WHERE Purchase_ID LIKE '{selector}'",
-                                            Methods.SQLCon);
-                    adapter.DeleteCommand = commandDelete;
-                    adapter.DeleteCommand.ExecuteNonQuery();
+                    //Remove the PO
+                    try
+                    {
+                        Methods.SQLCon.Open();
 
-                    Methods.SQLCon.Close();
-                }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                        commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER " +
+                                                $"WHERE Purchase_ID LIKE '{selector}'",
+                                                Methods.SQLCon);
+                        adapter.DeleteCommand = commandDelete;
+                        adapter.DeleteCommand.ExecuteNonQuery();
 
-                //Refresh the data grid
-                try
-                {
-                    Methods.SQLCon.Close();
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-                    command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
+                    //Refresh the data grid
+                    try
+                    {
+                        Methods.SQLCon.Close();
+
+                        command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
                                         Supplier_name AS 'Supplier Name', 
                                         Purchase_date AS 'Purchase Date'
                                         FROM PURCHASE_ORDER AS PO
                                         LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
-                                                Methods.SQLCon);
-                    DataSet dataSet = new DataSet();
+                                                    Methods.SQLCon);
+                        DataSet dataSet = new DataSet();
 
-                    adapter.SelectCommand = command;
-                    adapter.Fill(dataSet, "PURCHASE_ORDER");
+                        adapter.SelectCommand = command;
+                        adapter.Fill(dataSet, "PURCHASE_ORDER");
 
-                    dgvPurchaseOrders.DataSource = dataSet;
-                    dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
+                        dgvPurchaseOrders.DataSource = dataSet;
+                        dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
 
-                    Methods.SQLCon.Close();
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MessageBox.Show("Purchase Order deleted successfully!");
                 }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                MessageBox.Show("Purchase Order deleted successfully!");
             }
         }
         #endregion
@@ -209,118 +214,123 @@ namespace POS_Group5_CMPG223
             }
             else
             {
-                //Join the POItems and Product tables by Product_ID
-                try
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this item from the Purchase Order?", "Remove Item from PO", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Methods.SQLCon.Open();
-
-                    SqlDataReader dataReader;
-                    command = new SqlCommand($"SELECT POI.Purchase_ID, " +
-                                               "POI.Product_ID, " +
-                                               "POI.Quantity_purchased, " +
-                                               "POI.Cost_price, " +
-                                               "PR.Description, " +
-                                               "PR.Quantity_in_stock " +
-                                               "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                               "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                               $"WHERE POI.Purchase_ID LIKE '{selector}'",
-                                               Methods.SQLCon);
-                    dataReader = command.ExecuteReader();
-
-                    while (dataReader.Read())
+                    //Join the POItems and Product tables by Product_ID
+                    try
                     {
-                        if (validator.Contains(Convert.ToString(dataReader.GetValue(4))))
+                        Methods.SQLCon.Open();
+
+                        SqlDataReader dataReader;
+                        command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                                   "POI.Product_ID, " +
+                                                   "POI.Quantity_purchased, " +
+                                                   "POI.Cost_price, " +
+                                                   "PR.Description, " +
+                                                   "PR.Quantity_in_stock " +
+                                                   "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                                   "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                                   $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                                   Methods.SQLCon);
+                        dataReader = command.ExecuteReader();
+
+                        while (dataReader.Read())
                         {
-                            product = Convert.ToInt32(dataReader.GetValue(1));
-                            quantity = Convert.ToInt32(dataReader.GetValue(2));
-                            current = Convert.ToInt32(dataReader.GetValue(5));
+                            if (validator.Contains(Convert.ToString(dataReader.GetValue(4))))
+                            {
+                                product = Convert.ToInt32(dataReader.GetValue(1));
+                                quantity = Convert.ToInt32(dataReader.GetValue(2));
+                                current = Convert.ToInt32(dataReader.GetValue(5));
+                            }
                         }
+
+                        Methods.SQLCon.Close();
                     }
-
-                    Methods.SQLCon.Close();
-                }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                //Remove the record based on PO ID and Product ID
-                try
-                {
-                    Methods.SQLCon.Open();
-
-                    commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
-                                           $"WHERE Purchase_ID LIKE '{selector}' " +
-                                           $"AND Product_ID LIKE '{product}'",
-                                           Methods.SQLCon);
-                    adapter.DeleteCommand = commandDelete;
-                    adapter.DeleteCommand.ExecuteNonQuery();
-
-                    Methods.SQLCon.Close();
-                }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                //Update the Product with the new quantity
-                try
-                {
-                    Methods.SQLCon.Open();
-
-                    commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current - quantity}' " +
-                                                   $"WHERE Product_id LIKE '{product}'", Methods.SQLCon);
-                    adapter.UpdateCommand = commandUpdate;
-                    adapter.UpdateCommand.ExecuteNonQuery();
-
-                    Methods.SQLCon.Close();
-
-                    lbxItems.Items.Clear();
-                }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                //Display all items remaining in the list
-                try
-                {
-                    Methods.SQLCon.Open();
-
-                    SqlDataReader dataReader2;
-                    command = new SqlCommand($"SELECT POI.Purchase_ID, " +
-                                               "POI.Product_ID, " +
-                                               "POI.Quantity_purchased, " +
-                                               "POI.Cost_price, " +
-                                               "PR.Description " +
-                                               "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                               "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                               $"WHERE POI.Purchase_ID LIKE '{selector}'",
-                                               Methods.SQLCon);
-                    dataReader2 = command.ExecuteReader();
-
-                    while (dataReader2.Read())
+                    catch (SqlException ex)
                     {
-                        string str = string.Format("{0} {1} {2} {3} {4}", dataReader2.GetValue(2), " * ", dataReader2.GetValue(4), " @ R", Convert.ToDouble(dataReader2.GetValue(3)));
-                        lbxItems.Items.Add(str);
-
-                        total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
-                    lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
+                    //Remove the record based on PO ID and Product ID
+                    try
+                    {
+                        Methods.SQLCon.Open();
 
-                    Methods.SQLCon.Close();
-                }
-                catch (SqlException ex)
-                {
-                    //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                        commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
+                                               $"WHERE Purchase_ID LIKE '{selector}' " +
+                                               $"AND Product_ID LIKE '{product}'",
+                                               Methods.SQLCon);
+                        adapter.DeleteCommand = commandDelete;
+                        adapter.DeleteCommand.ExecuteNonQuery();
 
-                MessageBox.Show("Purchase Order Item deleted successfully!");
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    //Update the Product with the new quantity
+                    try
+                    {
+                        Methods.SQLCon.Open();
+
+                        commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current - quantity}' " +
+                                                       $"WHERE Product_id LIKE '{product}'", Methods.SQLCon);
+                        adapter.UpdateCommand = commandUpdate;
+                        adapter.UpdateCommand.ExecuteNonQuery();
+
+                        Methods.SQLCon.Close();
+
+                        lbxItems.Items.Clear();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    //Display all items remaining in the list
+                    try
+                    {
+                        Methods.SQLCon.Open();
+
+                        SqlDataReader dataReader2;
+                        command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                                   "POI.Product_ID, " +
+                                                   "POI.Quantity_purchased, " +
+                                                   "POI.Cost_price, " +
+                                                   "PR.Description " +
+                                                   "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                                   "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                                   $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                                   Methods.SQLCon);
+                        dataReader2 = command.ExecuteReader();
+
+                        while (dataReader2.Read())
+                        {
+                            string str = string.Format("{0} {1} {2} {3} {4}", dataReader2.GetValue(2), " * ", dataReader2.GetValue(4), " @ R", Convert.ToDouble(dataReader2.GetValue(3)));
+                            lbxItems.Items.Add(str);
+
+                            total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
+                        }
+
+                        lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
+
+                        Methods.SQLCon.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        //Error message
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MessageBox.Show("Purchase Order Item deleted successfully!");
+                }
             }
         }
         #endregion
