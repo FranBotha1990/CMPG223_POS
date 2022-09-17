@@ -14,7 +14,7 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmPurchaseOrders : Form
     {
-        #region Class Fields
+        #region Variables
         SqlCommand command, commandDelete, commandUpdate;
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlDataAdapter adapterUpdate = new SqlDataAdapter();
@@ -37,29 +37,32 @@ namespace POS_Group5_CMPG223
             this.BackColor = Methods.clrForms;
             pnlItems.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
 
-            //Fill Purhcase Orders form with all PO's.
+            //Fill data grid with all PO's
             try
             {
                 Methods.SQLCon.Open();
 
-                //Join PO and Supplier tables by Supplier_ID
                 command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
+                                           SU.Supplier_ID AS 'Supplier ID', 
                                            Supplier_name AS 'Supplier Name', 
                                            Purchase_date AS 'Purchase Date'
                                            FROM PURCHASE_ORDER AS PO
                                            LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID", 
                                            Methods.SQLCon);
                 DataSet dataSet = new DataSet();
+
                 adapter.SelectCommand = command;
                 adapter.Fill(dataSet, "PURCHASE_ORDER");
+
                 dgvPurchaseOrders.DataSource = dataSet;
                 dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch (SqlException ex)
             {
-                MessageBox.Show(error.Message);
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -67,27 +70,27 @@ namespace POS_Group5_CMPG223
         #region PO Click Action
         private void dgvPurchaseOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            lbxItems.Items.Clear();
+            int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+            double total = 0;
+
+            //Join the POItems and Product tables by Product_ID
             try
             {
-                lbxItems.Items.Clear();
-                //Use the selected row, first cell
-                int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
-                double total = 0;
-
                 Methods.SQLCon.Open();
 
                 SqlDataReader dataReader;
-                //Join the POItems and Product tables by Product_ID
-                command = new SqlCommand($"SELECT POI.Purchase_ID, " + 
-                                           "POI.Product_ID, " +
-                                           "POI.Quantity_purchased, " +
-                                           "POI.Cost_price, " +
-                                           "PR.Description " +
-                                           "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                           "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                           $"WHERE POI.Purchase_ID LIKE '{selector}'",
-                                           Methods.SQLCon);
+                command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                            "POI.Product_ID, " +
+                                            "POI.Quantity_purchased, " +
+                                            "POI.Cost_price, " +
+                                            "PR.Description " +
+                                            "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                            "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                            $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
                 dataReader = command.ExecuteReader();
+
                 while (dataReader.Read())
                 {
                     string str = string.Format("{0} {1} {2} {3} {4}", dataReader.GetValue(2), " * ", dataReader.GetValue(4), " @ R", Convert.ToDouble(dataReader.GetValue(3)));
@@ -99,94 +102,119 @@ namespace POS_Group5_CMPG223
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch (SqlException ex)
             {
-                MessageBox.Show(error.Message);
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
         #region Delete PO Button
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+
             if (dgvPurchaseOrders.SelectedRows == null)
             {
                 MessageBox.Show("There are no purchase orders to delete.");
             }
             else
             {
+                //Clear the listbox and total label
+                lbxItems.Items.Clear();
+                lblTotalAmnt.Text = " ";
+
+                //Remove the PO Items
                 try
                 {
-                    //Use the selected row, first cell
-                    int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
-
-                    //Remove the PO Items first
                     Methods.SQLCon.Open();
+
                     commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
-                                           $"WHERE Purchase_ID LIKE '{selector}'",
-                                           Methods.SQLCon);
+                                            $"WHERE Purchase_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
+
                     Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-                    //Clear the listbox and total label
-                    lbxItems.Items.Clear();
-                    lblTotalAmnt.Text = " ";
-
-                    //Remove the PO
+                //Remove the PO
+                try
+                {
                     Methods.SQLCon.Open();
+
                     commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER " +
-                                           $"WHERE Purchase_ID LIKE '{selector}'",
-                                           Methods.SQLCon);
+                                            $"WHERE Purchase_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
 
-                    //Refresh the data grid
                     Methods.SQLCon.Close();
-                    //Join PO and Supplier tables by Supplier_ID
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Refresh the data grid
+                try
+                {
+                    Methods.SQLCon.Close();
+
                     command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
-                                           Supplier_name AS 'Supplier Name', 
-                                           Purchase_date AS 'Purchase Date'
-                                           FROM PURCHASE_ORDER AS PO
-                                           LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
-                                               Methods.SQLCon);
+                                        Supplier_name AS 'Supplier Name', 
+                                        Purchase_date AS 'Purchase Date'
+                                        FROM PURCHASE_ORDER AS PO
+                                        LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
+                                                Methods.SQLCon);
                     DataSet dataSet = new DataSet();
+
                     adapter.SelectCommand = command;
                     adapter.Fill(dataSet, "PURCHASE_ORDER");
+
                     dgvPurchaseOrders.DataSource = dataSet;
                     dgvPurchaseOrders.DataMember = "PURCHASE_ORDER";
-                    Methods.SQLCon.Close();
 
-                    MessageBox.Show("Purchase Order deleted successfully!");
+                    Methods.SQLCon.Close();
                 }
-                catch (SqlException error)
+                catch (SqlException ex)
                 {
-                    MessageBox.Show(error.Message);
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                MessageBox.Show("Purchase Order deleted successfully!");
             }
         }
         #endregion
         #region Remove Items Button
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //Use the selected row, first cell
-                int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
-                string validator = (string)lbxItems.SelectedItem;
-                int product = 0;
-                int current = 0;
-                int quantity = 0;
-                double total = 0;
+            int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+            string validator = (string)lbxItems.SelectedItem;
+            int product = 0;
+            int current = 0;
+            int quantity = 0;
+            double total = 0;
 
-                if (lbxItems.SelectedItem == null)
-                {
-                    MessageBox.Show("Please select an item from the items list.");
-                }
-                else
+            if (lbxItems.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an item from the items list.");
+            }
+            else
+            {
+                //Join the POItems and Product tables by Product_ID
+                try
                 {
                     Methods.SQLCon.Open();
+
                     SqlDataReader dataReader;
-                    //Join the POItems and Product tables by Product_ID
                     command = new SqlCommand($"SELECT POI.Purchase_ID, " +
                                                "POI.Product_ID, " +
                                                "POI.Quantity_purchased, " +
@@ -198,42 +226,71 @@ namespace POS_Group5_CMPG223
                                                $"WHERE POI.Purchase_ID LIKE '{selector}'",
                                                Methods.SQLCon);
                     dataReader = command.ExecuteReader();
-                    //Find the product ID of the selected item
+
                     while (dataReader.Read())
                     {
                         if (validator.Contains(Convert.ToString(dataReader.GetValue(4))))
                         {
-                            //Save current values from reader in variables
                             product = Convert.ToInt32(dataReader.GetValue(1));
                             quantity = Convert.ToInt32(dataReader.GetValue(2));
                             current = Convert.ToInt32(dataReader.GetValue(5));
                         }
                     }
-                    Methods.SQLCon.Close();
 
-                    //Remove the record based on PO ID and Product ID
+                    Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Remove the record based on PO ID and Product ID
+                try
+                {
                     Methods.SQLCon.Open();
+
                     commandDelete = new SqlCommand($"DELETE FROM PURCHASE_ORDER_ITEM " +
                                            $"WHERE Purchase_ID LIKE '{selector}' " +
                                            $"AND Product_ID LIKE '{product}'",
                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
-                    Methods.SQLCon.Close();
 
-                    //Update the Product with the new quantity in stock
+                    Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Update the Product with the new quantity
+                try
+                {
                     Methods.SQLCon.Open();
-                    commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{quantity + current}' " +
+
+                    commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current - quantity}' " +
                                                    $"WHERE Product_id LIKE '{product}'", Methods.SQLCon);
                     adapter.UpdateCommand = commandUpdate;
                     adapter.UpdateCommand.ExecuteNonQuery();
+
                     Methods.SQLCon.Close();
 
                     lbxItems.Items.Clear();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
+                //Display all items remaining in the list
+                try
+                {
                     Methods.SQLCon.Open();
+
                     SqlDataReader dataReader2;
-                    //Join the POItems and Product tables by Product_ID
                     command = new SqlCommand($"SELECT POI.Purchase_ID, " +
                                                "POI.Product_ID, " +
                                                "POI.Quantity_purchased, " +
@@ -244,22 +301,26 @@ namespace POS_Group5_CMPG223
                                                $"WHERE POI.Purchase_ID LIKE '{selector}'",
                                                Methods.SQLCon);
                     dataReader2 = command.ExecuteReader();
-                    //Add all items remaining in the PO
+
                     while (dataReader2.Read())
                     {
                         string str = string.Format("{0} {1} {2} {3} {4}", dataReader2.GetValue(2), " * ", dataReader2.GetValue(4), " @ R", Convert.ToDouble(dataReader2.GetValue(3)));
                         lbxItems.Items.Add(str);
+
                         total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
                     }
-                    lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
-                    Methods.SQLCon.Close();
 
-                    MessageBox.Show("Purchase Order Item deleted successfully!");
+                    lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
+
+                    Methods.SQLCon.Close();
                 }
-            }
-            catch (SqlException error)
-            {
-                MessageBox.Show(error.Message);
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                MessageBox.Show("Purchase Order Item deleted successfully!");
             }
         }
         #endregion

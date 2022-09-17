@@ -53,85 +53,112 @@ namespace POS_Group5_CMPG223
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch (SqlException ex)
             {
-                MessageBox.Show(error.Message);
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
         #endregion
 
         #region Delete SO Button
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
+
             if (dgvSalesOrders.SelectedRows == null)
             {
                 MessageBox.Show("There are no sale orders to delete.");
             }
             else
             {
+                //Clear the listbox and total label
+                lbxItems.Items.Clear();
+                lblTotalAmnt.Text = " ";
+
+                //Remove the SO Items first
                 try
                 {
-                    //Use the selected row, first cell
-                    int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
-
-                    //Remove the SO Items first
                     Methods.SQLCon.Open();
+
                     commandDelete = new SqlCommand($"DELETE FROM SALES_ORDER_ITEM " +
-                                           $"WHERE Sales_ID LIKE '{selector}'",
-                                           Methods.SQLCon);
+                                            $"WHERE Sales_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
+
                     Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-                    //Clear the listbox and total label
-                    lbxItems.Items.Clear();
-                    lblTotalAmnt.Text = " ";
-
-                    //Remove the SO
+                //Remove the SO
+                try
+                {
                     Methods.SQLCon.Open();
+
                     commandDelete = new SqlCommand($"DELETE FROM SALES_ORDER " +
-                                           $"WHERE Sales_ID LIKE '{selector}'",
-                                           Methods.SQLCon);
+                                            $"WHERE Sales_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
 
-                    //Refresh the data grid
                     Methods.SQLCon.Close();
-                    //Join SO and Supplier tables by Supplier_ID
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //Refresh the data grid with SO's
+                try
+                {
+                    Methods.SQLCon.Open();
+
                     command = new SqlCommand(@"SELECT Sales_ID AS 'SO Number', 
-                                           Sales_date AS 'Date of Sale' 
-                                           FROM SALES_ORDER",
-                                               Methods.SQLCon);
+                                        Sales_date AS 'Date of Sale' 
+                                        FROM SALES_ORDER",
+                                                Methods.SQLCon);
                     DataSet dataSet = new DataSet();
+
                     adapter.SelectCommand = command;
                     adapter.Fill(dataSet, "SALES_ORDER");
+
                     dgvSalesOrders.DataSource = dataSet;
                     dgvSalesOrders.DataMember = "SALES_ORDER";
-                    Methods.SQLCon.Close();
 
-                    MessageBox.Show("Sales Order deleted successfully!");
+                    Methods.SQLCon.Close();
                 }
-                catch (SqlException error)
+                catch (SqlException ex)
                 {
-                    MessageBox.Show(error.Message);
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                MessageBox.Show("Sales Order deleted successfully!");
+
             }
         }
         #endregion
         #region SO Click Action
         private void dgvSalesOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            lbxItems.Items.Clear();
+
+            int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
+            double total = 0;
+
+            //Fill data grid with Sales Orders
             try
             {
-                lbxItems.Items.Clear();
-                //Use the selected row, first cell
-                int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
-                double total = 0;
-
                 Methods.SQLCon.Open();
 
                 SqlDataReader dataReader;
-                //Join the SOItems and Product tables by Product_ID
                 command = new SqlCommand($"SELECT SOI.Sales_ID, " +
                                            "SOI.Product_ID, " +
                                            "SOI.Quantity_sold, " +
@@ -142,6 +169,7 @@ namespace POS_Group5_CMPG223
                                            $"WHERE SOI.Sales_ID LIKE '{selector}'",
                                            Methods.SQLCon);
                 dataReader = command.ExecuteReader();
+
                 while (dataReader.Read())
                 {
                     string str = string.Format("{0} {1} {2} {3} {4}", dataReader.GetValue(2), " * ", dataReader.GetValue(4), " @ R", Convert.ToDouble(dataReader.GetValue(3)));
@@ -153,43 +181,45 @@ namespace POS_Group5_CMPG223
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch (SqlException ex)
             {
-                MessageBox.Show(error.Message);
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
         #region Remove Items Button
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //Use the selected row, first cell
+            int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
+            string validator = (string)lbxItems.SelectedItem;
+            int product = 0;
+            double total = 0;
+
             if (lbxItems.SelectedItem == null)
             {
                 MessageBox.Show("Please select an item from the items list.");
             }
             else
             {
+
+                //Join the SOItems and Product tables by Product_ID
                 try
                 {
-                    //Use the selected row, first cell
-                    int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
-                    string validator = (string)lbxItems.SelectedItem;
-                    int product = 0;
-                    double total = 0;
-
                     Methods.SQLCon.Open();
                     SqlDataReader dataReader;
-                    //Join the SOItems and Product tables by Product_ID
                     command = new SqlCommand($"SELECT SOI.Sales_ID, " +
-                                               "SOI.Product_ID, " +
-                                               "SOI.Quantity_sold, " +
-                                               "PR.Sell_price, " +
-                                               "PR.Description " +
-                                               "FROM SALES_ORDER_ITEM AS SOI " +
-                                               "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = SOI.Product_ID " +
-                                               $"WHERE SOI.Sales_ID LIKE '{selector}'",
-                                               Methods.SQLCon);
+                                                "SOI.Product_ID, " +
+                                                "SOI.Quantity_sold, " +
+                                                "PR.Sell_price, " +
+                                                "PR.Description " +
+                                                "FROM SALES_ORDER_ITEM AS SOI " +
+                                                "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = SOI.Product_ID " +
+                                                $"WHERE SOI.Sales_ID LIKE '{selector}'",
+                                                Methods.SQLCon);
                     dataReader = command.ExecuteReader();
-                    //Find the product ID of the selected item
+
                     while (dataReader.Read())
                     {
                         if (validator.Contains(Convert.ToString(dataReader.GetValue(4))))
@@ -198,51 +228,72 @@ namespace POS_Group5_CMPG223
                         }
                     }
                     Methods.SQLCon.Close();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-                    //Remove the record based on SO ID and Product ID
+                //Remove the record based on SO ID and Product ID
+                try
+                {
                     Methods.SQLCon.Open();
+
                     commandDelete = new SqlCommand($"DELETE FROM SALES_ORDER_ITEM " +
-                                           $"WHERE Sales_ID LIKE '{selector}' " +
-                                           $"AND Product_ID LIKE '{product}'",
-                                           Methods.SQLCon);
+                                            $"WHERE Sales_ID LIKE '{selector}' " +
+                                            $"AND Product_ID LIKE '{product}'",
+                                            Methods.SQLCon);
                     adapter.DeleteCommand = commandDelete;
                     adapter.DeleteCommand.ExecuteNonQuery();
+
                     Methods.SQLCon.Close();
 
                     lbxItems.Items.Clear();
+                }
+                catch (SqlException ex)
+                {
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
+                //Add all items remaining in the PO
+                try
+                {
                     Methods.SQLCon.Open();
+
                     SqlDataReader dataReader2;
-                    //Join the POItems and Product tables by Product_ID
                     command = new SqlCommand($"SELECT SOI.Sales_ID, " +
-                                               "SOI.Product_ID, " +
-                                               "SOI.Quantity_sold, " +
-                                               "PR.Sell_price, " +
-                                               "PR.Description " +
-                                               "FROM SALES_ORDER_ITEM AS SOI " +
-                                               "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = SOI.Product_ID " +
-                                               $"WHERE SOI.Sales_ID LIKE '{selector}'",
-                                               Methods.SQLCon);
+                                                "SOI.Product_ID, " +
+                                                "SOI.Quantity_sold, " +
+                                                "PR.Sell_price, " +
+                                                "PR.Description " +
+                                                "FROM SALES_ORDER_ITEM AS SOI " +
+                                                "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = SOI.Product_ID " +
+                                                $"WHERE SOI.Sales_ID LIKE '{selector}'",
+                                                Methods.SQLCon);
                     dataReader2 = command.ExecuteReader();
-                    //Add all items remaining in the PO
+
                     while (dataReader2.Read())
                     {
                         string str = string.Format("{0} {1} {2} {3} {4}", dataReader2.GetValue(2), " * ", dataReader2.GetValue(4), " @ R", Convert.ToDouble(dataReader2.GetValue(3)));
                         lbxItems.Items.Add(str);
                         total += (Convert.ToDouble(dataReader2.GetValue(3)) * Convert.ToDouble(dataReader2.GetValue(2)));
                     }
-                    Methods.SQLCon.Close();
 
                     lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total));
 
-                    MessageBox.Show("Sales Order Item deleted successfully!");
+
+                    Methods.SQLCon.Close();
                 }
-                catch (SqlException error)
+                catch (SqlException ex)
                 {
-                    MessageBox.Show(error.Message);
+                    //Error message
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
         #endregion
+
     }
 }
