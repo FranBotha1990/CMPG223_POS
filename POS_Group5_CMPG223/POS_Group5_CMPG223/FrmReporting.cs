@@ -15,7 +15,7 @@ namespace POS_Group5_CMPG223
     {
         SqlCommand commandReport;
         SqlDataAdapter adapterReport = new SqlDataAdapter();
-        SqlDataReader readerReport = null;
+        SqlDataReader readerReport1, readerReport2, readerReport3 = null;
 
         public FrmReporting()
         {
@@ -109,11 +109,11 @@ namespace POS_Group5_CMPG223
                 dataGridViewReports.DataSource = dataSetReport;
                 dataGridViewReports.DataMember = "PRODUCT";
 
-                readerReport = commandReport.ExecuteReader();
+                readerReport1 = commandReport.ExecuteReader();
 
-                while(readerReport.Read())
+                while(readerReport1.Read())
                 {
-                    listBoxReports.Items.Add(readerReport["Quantity"] +"\t"+ readerReport["Item sold"]+"\t"+ readerReport["Sales Price"]+"\t"+ readerReport["Date Sold"]);
+                    listBoxReports.Items.Add(readerReport1["Quantity"] +"\t"+ readerReport1["Item sold"]+"\t"+ readerReport1["Sales Price"]+"\t"+ readerReport1["Date Sold"]);
                 }
                 //listBoxReports.DataSource = dataSetReport;
                 //listBoxReports.
@@ -146,8 +146,79 @@ namespace POS_Group5_CMPG223
 
         private void buttonGenerateReport_Click(object sender, EventArgs e)
         {
-            Methods.SQLCon.Open();
+            try
+            {
+                listBoxReports.Items.Clear();
+                //Methods.SQLCon.Open();
+                if (comboBoxReports.SelectedIndex == 0)
+                {
+                    //Sales Report
+                    Methods.SQLCon.Open();
+                    listBoxReports.Items.Add("Sales between yyyyMMdd and yyyyMMdd");
+                    commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', PRODUCT.Sell_price AS 'Sales Price', SALES_ORDER.Sales_Date AS 'Date Sold'
+                                           FROM PRODUCT
+                                           INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
+                                           INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
+                                           WHERE SALES_ORDER.Sales_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "'", Methods.SQLCon);
+                    DataSet dataSetReport = new DataSet();
+                    adapterReport.SelectCommand = commandReport;
 
+                    adapterReport.Fill(dataSetReport, "PRODUCT");
+                    dataGridViewReports.DataSource = dataSetReport;
+                    dataGridViewReports.DataMember = "PRODUCT";
+
+                    readerReport2 = commandReport.ExecuteReader();
+
+                    while (readerReport2.Read())
+                    {
+                        listBoxReports.Items.Add(readerReport2["Quantity"] + "\t" + readerReport2["Item sold"] + "\t" + readerReport2["Sales Price"] + "\t" + readerReport2["Date Sold"]);
+                    }
+                    Methods.SQLCon.Close();
+                }
+                else if(comboBoxReports.SelectedIndex == 1)
+                {
+                    //Purchases Report
+                    Methods.SQLCon.Open();
+                    listBoxReports.Items.Add("Purchases between yyyyMMdd and yyyyMMdd");
+                    try
+                    {
+                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchases AS 'Quantity', PRODUCT.Description AS 'Item purchased', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price', PURCHASE_ORDER.Purchase_date AS 'Date Purchased'
+                                           FROM PRODUCT
+                                           INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
+                                           INNER JOIN PURCHASE_ORDER ON PURCHASE_ORDER.Purchase_ID = PURCHASE_ORDER_ITEM.Purchase_ID
+                                           WHERE PURCHASE_ORDER.Purchase_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "'", Methods.SQLCon);
+                        DataSet dataSetReport = new DataSet();
+                        adapterReport.SelectCommand = commandReport;
+                        adapterReport.Fill(dataSetReport, "PRODUCT");
+                        dataGridViewReports.DataSource = dataSetReport;
+                        dataGridViewReports.DataMember = "PRODUCT";
+
+                        readerReport3 = commandReport.ExecuteReader();
+
+                        while (readerReport3.Read())
+                        {
+                            listBoxReports.Items.Add(readerReport3["Quantity"] + "\t" + readerReport3["Item purchased"] + "\t" + readerReport3["Cost Price"] + "\t" + readerReport3["Date Purchased"]);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    Methods.SQLCon.Close();
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //Methods.SQLCon.Open();
+            //if(comboBoxReports.SelectedIndex == 0)
+            //{
+                //Sales Report
+
+            //}
+            //Methods.SQLCon.Close();
         }
     }
 }

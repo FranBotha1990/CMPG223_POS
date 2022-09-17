@@ -133,3 +133,6 @@ C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG22
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliersUpdate.resources
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSalesQuantity.resources
 C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSalesQuantity.resources
+C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmOrderQuantity.resources
+C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmOrderSupplier.resources
+C:\Users\micha\OneDrive\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliersAdd.resources
