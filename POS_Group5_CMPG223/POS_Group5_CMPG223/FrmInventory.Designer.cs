@@ -30,8 +30,8 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnBuyProduct = new System.Windows.Forms.Button();
-            this.btnStockTake = new System.Windows.Forms.Button();
-            this.btnDiscard = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -39,22 +39,25 @@
             this.lblDisplay = new System.Windows.Forms.Label();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.pnlItems = new System.Windows.Forms.Panel();
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.pnlForm = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBoxAdd = new System.Windows.Forms.GroupBox();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.btnAddToDB = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.txtSellPrice = new System.Windows.Forms.TextBox();
             this.lblSellPrice = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnAddToDB = new System.Windows.Forms.Button();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlButtons = new System.Windows.Forms.Panel();
+            this.pnlForm = new System.Windows.Forms.Panel();
+            this.groupBoxSelect = new System.Windows.Forms.GroupBox();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlItems.SuspendLayout();
+            this.groupBoxAdd.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.pnlForm.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.groupBoxAdd.SuspendLayout();
+            this.groupBoxSelect.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -86,27 +89,29 @@
             this.btnBuyProduct.UseVisualStyleBackColor = true;
             this.btnBuyProduct.Click += new System.EventHandler(this.btnBuyProduct_Click);
             // 
-            // btnStockTake
+            // btnDelete
             // 
-            this.btnStockTake.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnStockTake.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStockTake.Location = new System.Drawing.Point(0, 150);
-            this.btnStockTake.Name = "btnStockTake";
-            this.btnStockTake.Size = new System.Drawing.Size(250, 50);
-            this.btnStockTake.TabIndex = 3;
-            this.btnStockTake.Text = "Stock Take";
-            this.btnStockTake.UseVisualStyleBackColor = true;
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Location = new System.Drawing.Point(0, 150);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(250, 50);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete Product";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnDiscard
+            // btnUpdate
             // 
-            this.btnDiscard.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscard.Location = new System.Drawing.Point(0, 100);
-            this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(250, 50);
-            this.btnDiscard.TabIndex = 4;
-            this.btnDiscard.Text = "Discard Stock";
-            this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Location = new System.Drawing.Point(0, 100);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(250, 50);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update Product";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // txtSearch
             // 
@@ -169,6 +174,7 @@
             // 
             // pnlItems
             // 
+            this.pnlItems.Controls.Add(this.groupBoxSelect);
             this.pnlItems.Controls.Add(this.groupBoxAdd);
             this.pnlItems.Controls.Add(this.panel1);
             this.pnlItems.Controls.Add(this.pnlButtons);
@@ -178,40 +184,6 @@
             this.pnlItems.Size = new System.Drawing.Size(250, 738);
             this.pnlItems.TabIndex = 10;
             // 
-            // pnlButtons
-            // 
-            this.pnlButtons.Controls.Add(this.btnAddProduct);
-            this.pnlButtons.Controls.Add(this.btnDiscard);
-            this.pnlButtons.Controls.Add(this.btnStockTake);
-            this.pnlButtons.Controls.Add(this.btnBuyProduct);
-            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 538);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(250, 200);
-            this.pnlButtons.TabIndex = 0;
-            // 
-            // pnlForm
-            // 
-            this.pnlForm.Controls.Add(this.dataGridView1);
-            this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlForm.Location = new System.Drawing.Point(0, 0);
-            this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlForm.Size = new System.Drawing.Size(308, 738);
-            this.pnlForm.TabIndex = 11;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.hScrollBar);
-            this.panel1.Controls.Add(this.lblDisplay);
-            this.panel1.Controls.Add(this.lblSearch);
-            this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Controls.Add(this.lblScroll);
-            this.panel1.Location = new System.Drawing.Point(32, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 187);
-            this.panel1.TabIndex = 9;
-            // 
             // groupBoxAdd
             // 
             this.groupBoxAdd.Controls.Add(this.btnAddToDB);
@@ -220,28 +192,32 @@
             this.groupBoxAdd.Controls.Add(this.lblSellPrice);
             this.groupBoxAdd.Controls.Add(this.txtDescription);
             this.groupBoxAdd.Controls.Add(this.lblDescription);
-            this.groupBoxAdd.Location = new System.Drawing.Point(32, 218);
+            this.groupBoxAdd.Location = new System.Drawing.Point(32, 306);
             this.groupBoxAdd.Name = "groupBoxAdd";
             this.groupBoxAdd.Size = new System.Drawing.Size(191, 200);
             this.groupBoxAdd.TabIndex = 10;
             this.groupBoxAdd.TabStop = false;
             this.groupBoxAdd.Text = "Add Product";
             // 
-            // lblDescription
+            // btnAddToDB
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(16, 27);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(63, 13);
-            this.lblDescription.TabIndex = 0;
-            this.lblDescription.Text = "Description:";
+            this.btnAddToDB.Location = new System.Drawing.Point(96, 161);
+            this.btnAddToDB.Name = "btnAddToDB";
+            this.btnAddToDB.Size = new System.Drawing.Size(75, 23);
+            this.btnAddToDB.TabIndex = 5;
+            this.btnAddToDB.Text = "Add";
+            this.btnAddToDB.UseVisualStyleBackColor = true;
+            this.btnAddToDB.Click += new System.EventHandler(this.btnAddToDB_Click);
             // 
-            // txtDescription
+            // btnBack
             // 
-            this.txtDescription.Location = new System.Drawing.Point(17, 52);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(154, 20);
-            this.txtDescription.TabIndex = 1;
+            this.btnBack.Location = new System.Drawing.Point(17, 161);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 4;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // txtSellPrice
             // 
@@ -259,25 +235,73 @@
             this.lblSellPrice.TabIndex = 2;
             this.lblSellPrice.Text = "Sell Price:";
             // 
-            // btnBack
+            // txtDescription
             // 
-            this.btnBack.Location = new System.Drawing.Point(17, 161);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 4;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.txtDescription.Location = new System.Drawing.Point(17, 52);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(154, 20);
+            this.txtDescription.TabIndex = 1;
             // 
-            // btnAddToDB
+            // lblDescription
             // 
-            this.btnAddToDB.Location = new System.Drawing.Point(96, 161);
-            this.btnAddToDB.Name = "btnAddToDB";
-            this.btnAddToDB.Size = new System.Drawing.Size(75, 23);
-            this.btnAddToDB.TabIndex = 5;
-            this.btnAddToDB.Text = "Add";
-            this.btnAddToDB.UseVisualStyleBackColor = true;
-            this.btnAddToDB.Click += new System.EventHandler(this.btnAddToDB_Click);
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(16, 27);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(63, 13);
+            this.lblDescription.TabIndex = 0;
+            this.lblDescription.Text = "Description:";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.hScrollBar);
+            this.panel1.Controls.Add(this.lblDisplay);
+            this.panel1.Controls.Add(this.lblSearch);
+            this.panel1.Controls.Add(this.txtSearch);
+            this.panel1.Controls.Add(this.lblScroll);
+            this.panel1.Location = new System.Drawing.Point(32, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(192, 187);
+            this.panel1.TabIndex = 9;
+            // 
+            // pnlButtons
+            // 
+            this.pnlButtons.Controls.Add(this.btnAddProduct);
+            this.pnlButtons.Controls.Add(this.btnUpdate);
+            this.pnlButtons.Controls.Add(this.btnDelete);
+            this.pnlButtons.Controls.Add(this.btnBuyProduct);
+            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlButtons.Location = new System.Drawing.Point(0, 538);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(250, 200);
+            this.pnlButtons.TabIndex = 0;
+            // 
+            // pnlForm
+            // 
+            this.pnlForm.Controls.Add(this.dataGridView1);
+            this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlForm.Location = new System.Drawing.Point(0, 0);
+            this.pnlForm.Name = "pnlForm";
+            this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlForm.Size = new System.Drawing.Size(308, 738);
+            this.pnlForm.TabIndex = 11;
+            // 
+            // groupBoxSelect
+            // 
+            this.groupBoxSelect.Controls.Add(this.comboBox);
+            this.groupBoxSelect.Location = new System.Drawing.Point(32, 214);
+            this.groupBoxSelect.Name = "groupBoxSelect";
+            this.groupBoxSelect.Size = new System.Drawing.Size(192, 75);
+            this.groupBoxSelect.TabIndex = 11;
+            this.groupBoxSelect.TabStop = false;
+            this.groupBoxSelect.Text = "Select a Product";
+            // 
+            // comboBox
+            // 
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(17, 31);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(154, 21);
+            this.comboBox.TabIndex = 0;
             // 
             // FrmInventory
             // 
@@ -291,12 +315,13 @@
             this.Text = "FrmInventory";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlItems.ResumeLayout(false);
-            this.pnlButtons.ResumeLayout(false);
-            this.pnlForm.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.pnlButtons.ResumeLayout(false);
+            this.pnlForm.ResumeLayout(false);
+            this.groupBoxSelect.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -305,8 +330,8 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnBuyProduct;
-        private System.Windows.Forms.Button btnStockTake;
-        private System.Windows.Forms.Button btnDiscard;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.HScrollBar hScrollBar;
@@ -324,5 +349,7 @@
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBoxSelect;
+        private System.Windows.Forms.ComboBox comboBox;
     }
 }
