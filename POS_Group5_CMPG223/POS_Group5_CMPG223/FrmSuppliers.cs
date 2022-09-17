@@ -40,14 +40,12 @@ namespace POS_Group5_CMPG223
             }
             else
             {
-                //int index = dgvSuppliers.SelectedCells[0].RowIndex;
-                //dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                //int id = Convert.ToInt32(dgvSuppliers.SelectedRows[0].Cells[0].Value);
-                int id = Convert.ToInt32(dgvSuppliers.CurrentRow.Cells[0].Value);
+                int id = (int)dgvSuppliers.CurrentRow.Cells[0].Value;
 
                 FrmSuppliersUpdate frmSuppliersUpdate = new FrmSuppliersUpdate(id);
                 frmSuppliersUpdate.LoadGUI();
                 frmSuppliersUpdate.ShowDialog();
+                DisplayData($"SELECT * from SUPPLIER");
             }
         }
 
@@ -57,34 +55,36 @@ namespace POS_Group5_CMPG223
             {
                 Methods.SQLCon.Open();
 
-                if (dgvSuppliers.SelectedRows.Count < 0)
+                int id = (int)dgvSuppliers.CurrentRow.Cells[0].Value;
+                string name = dgvSuppliers.CurrentRow.Cells[1].Value.ToString();
+
+                string sqlSelect = $"SELECT * from PURCHASE_ORDER where Supplier_ID = '{id}'";
+                SqlCommand command = new SqlCommand(sqlSelect, Methods.SQLCon);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
                 {
-                    MessageBox.Show("Please select a supplier to delete");
-                }
-                else if (dgvSuppliers.SelectedRows.Count > 1)
-                {
-                    MessageBox.Show("Please select only one supplier to delete");
+                    MessageBox.Show("Supplier cannot be deleted as it is referenced in a purchase order");
                 }
                 else
                 {
-                    int id = Convert.ToInt32(dgvSuppliers.CurrentRow.Cells[0].Value);
-                    string name = dgvSuppliers.CurrentRow.Cells[1].Value.ToString();
-
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the record of '" + name + "'?", "Delete Supplier", MessageBoxButtons.YesNo);
 
                     if (dialogResult == DialogResult.Yes)
                     {
-                        string sql = $"DELETE from SUPPLIER where Supplier_ID = {id}";
+                        string sqlDelete = $"DELETE from SUPPLIER where Supplier_ID = {id}";
 
+                        Methods.SQLCon.Close();
+                        Methods.SQLCon.Open();
                         SqlDataAdapter adapter = new SqlDataAdapter();
-                        SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
-                        adapter.DeleteCommand = command;
-                        command.ExecuteNonQuery();
+                        SqlCommand delCommand = new SqlCommand(sqlDelete, Methods.SQLCon);
+                        adapter.DeleteCommand = delCommand;
+                        delCommand.ExecuteNonQuery();
 
                         MessageBox.Show("Supplier successfully deleted");
                     }
                 }
-
+                reader.Close();
                 Methods.SQLCon.Close();
                 DisplayData($"SELECT * from SUPPLIER");
             }
@@ -92,11 +92,18 @@ namespace POS_Group5_CMPG223
             {
                 MessageBox.Show("Error connecting to database");
             }
+            finally
+            {
+                Methods.SQLCon.Close();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //load new form
+            FrmSuppliersAdd frmSuppliersAdd = new FrmSuppliersAdd();
+            frmSuppliersAdd.LoadGUI();
+            frmSuppliersAdd.ShowDialog();
+            DisplayData($"SELECT * from SUPPLIER");
         }
 
         private void FrmSuppliers_Load(object sender, EventArgs e)
@@ -119,28 +126,55 @@ namespace POS_Group5_CMPG223
                 dgvSuppliers.DataSource = ds;
                 dgvSuppliers.DataMember = "SUPPLIER";
 
-                Methods.SQLCon.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Error connecting to database");
             }
+            finally
+            {
+                Methods.SQLCon.Close();
+            }
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
+            if (!txtFilterCell.Focused)
+            {
+                txtFilterCell.Text = "";
+            }
+            if (!txtFilterEmail.Focused)
+            {
+                txtFilterEmail.Text = "";
+            }
             string name = txtFilter.Text;
             DisplayData($"SELECT * from SUPPLIER where Supplier_Name LIKE '%{name}%'");
         }
 
         private void txtFilterEmail_TextChanged(object sender, EventArgs e)
         {
+            if (!txtFilterCell.Focused)
+            {
+                txtFilterCell.Text = "";
+            }
+            if (!txtFilter.Focused)
+            {
+                txtFilter.Text = "";
+            }
             string email = txtFilterEmail.Text;
             DisplayData($"SELECT * from SUPPLIER where Supplier_Email LIKE '%{email}%'");
         }
 
         private void txtFilterCell_TextChanged(object sender, EventArgs e)
         {
+            if (!txtFilter.Focused)
+            {
+                txtFilter.Text = "";
+            }
+            if (!txtFilterEmail.Focused)
+            {
+                txtFilterEmail.Text = "";
+            }
             string cell = txtFilterCell.Text;
             DisplayData($"SELECT * from SUPPLIER where Supplier_Cell LIKE '%{cell}%'");
         }

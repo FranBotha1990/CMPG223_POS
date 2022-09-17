@@ -55,7 +55,7 @@ namespace POS_Group5_CMPG223
                 {
                     string name = txtName.Text;
 
-                    if (txtCell.Text.Length != 10 || !int.TryParse(txtCell.Text, out int age))
+                    if (txtCell.Text.Length != 10 || !int.TryParse(txtCell.Text, out int test))
                     {
                         MessageBox.Show("Please enter a valid supplier cell number");
                     }
@@ -76,24 +76,33 @@ namespace POS_Group5_CMPG223
                             SqlCommand command = new SqlCommand(sqlSelect, Methods.SQLCon);
                             SqlDataReader reader = command.ExecuteReader();
 
-                            if (reader.Read())
-                            {
-                                if (name == reader.GetValue(1).ToString())
-                                {
-                                    MessageBox.Show("Supplier name already exists");
-                                }
-                                else if (cell == reader.GetValue(2).ToString())
-                                {
-                                    MessageBox.Show("Supplier cell number already exists");
-                                }
-                                else if (email == reader.GetValue(3).ToString())
-                                {
-                                    MessageBox.Show("Supplier email already exists");
-                                }
-                            }
-                            else
+                            bool isValid = true;
+
+                            while(reader.Read() && isValid)
                             {
                                 oldName = reader.GetValue(1).ToString();
+
+                                if (id != (int)reader.GetValue(0))
+                                {
+                                    if (name == reader.GetValue(1).ToString())
+                                    {
+                                        isValid = false;
+                                        MessageBox.Show("Supplier name already exists");
+                                    }
+                                    else if (cell == reader.GetValue(2).ToString())
+                                    {
+                                        isValid = false;
+                                        MessageBox.Show("Supplier cell number already exists");
+                                    }
+                                    else if (email == reader.GetValue(3).ToString())
+                                    {
+                                        isValid = false;
+                                        MessageBox.Show("Supplier email already exists");
+                                    }
+                                }
+                            }
+                            if (isValid)
+                            {
                                 string title;
 
                                 if (oldName == name)
@@ -111,12 +120,14 @@ namespace POS_Group5_CMPG223
                                 {
                                     string sqlUpdate = $"UPDATE SUPPLIER " +
                                         $"set Supplier_name = '{name}', Supplier_cell = '{cell}', Supplier_email = '{email}'" +
-                                        $"where Supplier_ID = {id})";
+                                        $"where Supplier_ID = {id}";
 
+                                    Methods.SQLCon.Close();
+                                    Methods.SQLCon.Open();
                                     SqlDataAdapter adapter = new SqlDataAdapter();
-                                    command = new SqlCommand(sqlUpdate, Methods.SQLCon);
-                                    adapter.UpdateCommand = command;
-                                    command.ExecuteNonQuery();
+                                    SqlCommand upCommand = new SqlCommand(sqlUpdate, Methods.SQLCon);
+                                    adapter.UpdateCommand = upCommand;
+                                    upCommand.ExecuteNonQuery();
 
                                     MessageBox.Show("Supplier successfully updated");
                                     this.Close();
@@ -126,12 +137,14 @@ namespace POS_Group5_CMPG223
                         }
                     }
                 }
-
-                Methods.SQLCon.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Database cannot be found");
+            }
+            finally
+            {
+                Methods.SQLCon.Close();
             }
         }
 
@@ -144,8 +157,7 @@ namespace POS_Group5_CMPG223
                 Methods.SQLCon.Open();
                 SqlCommand command = new SqlCommand(sql, Methods.SQLCon);
                 SqlDataReader reader = command.ExecuteReader();
-
-                while(reader.Read())
+                while (reader.Read())
                 {
                     txtName.Text = reader.GetValue(1).ToString();
                     txtCell.Text = reader.GetValue(2).ToString();
@@ -153,12 +165,14 @@ namespace POS_Group5_CMPG223
                     oldName = reader.GetValue(1).ToString();
                 }
                 reader.Close();
-
-                Methods.SQLCon.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Database cannot be found");
+            }
+            finally
+            {
+                Methods.SQLCon.Close();
             }
         }
     }
