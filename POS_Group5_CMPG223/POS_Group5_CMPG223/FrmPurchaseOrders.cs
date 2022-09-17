@@ -163,7 +163,13 @@ namespace POS_Group5_CMPG223
                 }
             }
         }
+
+        private void lbxItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
         #region Remove Items Button
         private void btnRemove_Click(object sender, EventArgs e)
         {
