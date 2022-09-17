@@ -18,6 +18,16 @@ namespace POS_Group5_CMPG223
             InitializeComponent();
         }
 
+        public void LoadGUI()
+        {
+            //Fore Colors
+            btnInsert.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnCancel.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            //Back Colors
+            this.BackColor = Methods.clrForms;
+            //pnlSidebar.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
+        }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
@@ -32,7 +42,7 @@ namespace POS_Group5_CMPG223
                 {
                     string name = txtName.Text;
 
-                    if (txtCell.Text.Length != 10 || !int.TryParse(txtCell.Text, out int age))
+                    if (txtCell.Text.Length != 10 || !int.TryParse(txtCell.Text, out int test))
                     {
                         MessageBox.Show("Please enter a valid supplier cell number");
                     }
@@ -70,36 +80,41 @@ namespace POS_Group5_CMPG223
                             }
                             else
                             {
-                                string title;
-
-                                title = "Are you sure you want to add a record for '" + name + "'?";
+                                reader.Close();
+                                string title = "Are you sure you want to add a record for '" + name + "'?";
 
                                 DialogResult dialogResult = MessageBox.Show(title, "Add Supplier", MessageBoxButtons.YesNo);
 
                                 if (dialogResult == DialogResult.Yes)
                                 {
-                                    string sqlInsert = $"INSERT into SUPPLIERS values ('{name}', '{cell}', '{email}')";
-
+                                    string sqlInsert = $"INSERT into SUPPLIER values ('{name}', '{cell}', '{email}')";
+                                    
                                     SqlDataAdapter adapter = new SqlDataAdapter();
-                                    command = new SqlCommand(sqlInsert, Methods.SQLCon);
-                                    adapter.InsertCommand = command;
-                                    command.ExecuteNonQuery();
+                                    SqlCommand inCommand = new SqlCommand(sqlInsert, Methods.SQLCon);
+                                    adapter.InsertCommand = inCommand;
+                                    inCommand.ExecuteNonQuery();
 
                                     MessageBox.Show("Supplier successfully added");
                                     this.Close();
                                 }
                             }
-                            reader.Close();
                         }
                     }
                 }
-
-                Methods.SQLCon.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Error connecting to database");
             }
+            finally
+            {
+                Methods.SQLCon.Close();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -57,7 +57,7 @@ namespace POS_Group5_CMPG223
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
             this.pnlForm.Size = new System.Drawing.Size(550, 450);
-            this.pnlForm.TabIndex = 5;
+            this.pnlForm.TabIndex = 2;
             // 
             // dgvSuppliers
             // 
@@ -87,20 +87,20 @@ namespace POS_Group5_CMPG223
             this.pnlSidebar.Location = new System.Drawing.Point(550, 0);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(250, 450);
-            this.pnlSidebar.TabIndex = 4;
+            this.pnlSidebar.TabIndex = 0;
             // 
             // txtFilterCell
             // 
             this.txtFilterCell.Location = new System.Drawing.Point(51, 155);
             this.txtFilterCell.Name = "txtFilterCell";
             this.txtFilterCell.Size = new System.Drawing.Size(115, 20);
-            this.txtFilterCell.TabIndex = 6;
+            this.txtFilterCell.TabIndex = 1;
             this.txtFilterCell.TextChanged += new System.EventHandler(this.txtFilterCell_TextChanged);
             // 
             // lblFilterCell
             // 
             this.lblFilterCell.AutoSize = true;
-            this.lblFilterCell.Location = new System.Drawing.Point(48, 124);
+            this.lblFilterCell.Location = new System.Drawing.Point(48, 127);
             this.lblFilterCell.Name = "lblFilterCell";
             this.lblFilterCell.Size = new System.Drawing.Size(107, 13);
             this.lblFilterCell.TabIndex = 5;
@@ -108,16 +108,16 @@ namespace POS_Group5_CMPG223
             // 
             // txtFilterEmail
             // 
-            this.txtFilterEmail.Location = new System.Drawing.Point(48, 232);
+            this.txtFilterEmail.Location = new System.Drawing.Point(51, 230);
             this.txtFilterEmail.Name = "txtFilterEmail";
             this.txtFilterEmail.Size = new System.Drawing.Size(115, 20);
-            this.txtFilterEmail.TabIndex = 4;
+            this.txtFilterEmail.TabIndex = 2;
             this.txtFilterEmail.TextChanged += new System.EventHandler(this.txtFilterEmail_TextChanged);
             // 
             // lblFilterEmail
             // 
             this.lblFilterEmail.AutoSize = true;
-            this.lblFilterEmail.Location = new System.Drawing.Point(45, 201);
+            this.lblFilterEmail.Location = new System.Drawing.Point(48, 202);
             this.lblFilterEmail.Name = "lblFilterEmail";
             this.lblFilterEmail.Size = new System.Drawing.Size(115, 13);
             this.lblFilterEmail.TabIndex = 3;
@@ -125,16 +125,16 @@ namespace POS_Group5_CMPG223
             // 
             // txtFilter
             // 
-            this.txtFilter.Location = new System.Drawing.Point(48, 75);
+            this.txtFilter.Location = new System.Drawing.Point(51, 75);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(115, 20);
-            this.txtFilter.TabIndex = 2;
+            this.txtFilter.TabIndex = 1;
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // lblFilter
             // 
             this.lblFilter.AutoSize = true;
-            this.lblFilter.Location = new System.Drawing.Point(45, 44);
+            this.lblFilter.Location = new System.Drawing.Point(48, 45);
             this.lblFilter.Name = "lblFilter";
             this.lblFilter.Size = new System.Drawing.Size(118, 13);
             this.lblFilter.TabIndex = 1;
@@ -158,7 +158,7 @@ namespace POS_Group5_CMPG223
             this.btnDelete.Location = new System.Drawing.Point(0, 100);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(250, 50);
-            this.btnDelete.TabIndex = 3;
+            this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete Supplier";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -170,7 +170,7 @@ namespace POS_Group5_CMPG223
             this.btnUpdate.Location = new System.Drawing.Point(0, 50);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(250, 50);
-            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update Supplier";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -182,7 +182,7 @@ namespace POS_Group5_CMPG223
             this.btnAdd.Location = new System.Drawing.Point(0, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(250, 50);
-            this.btnAdd.TabIndex = 1;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add Supplier";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);

@@ -43,8 +43,8 @@ namespace POS_Group5_CMPG223
             // 
             this.btnUpdate.Location = new System.Drawing.Point(77, 123);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 0;
+            this.btnUpdate.Size = new System.Drawing.Size(106, 23);
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -63,14 +63,14 @@ namespace POS_Group5_CMPG223
             this.txtName.Location = new System.Drawing.Point(166, 29);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 2;
+            this.txtName.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(77, 152);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Size = new System.Drawing.Size(106, 23);
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -98,14 +98,14 @@ namespace POS_Group5_CMPG223
             this.txtCell.Location = new System.Drawing.Point(166, 60);
             this.txtCell.Name = "txtCell";
             this.txtCell.Size = new System.Drawing.Size(100, 20);
-            this.txtCell.TabIndex = 6;
+            this.txtCell.TabIndex = 1;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(166, 89);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
-            this.txtEmail.TabIndex = 7;
+            this.txtEmail.TabIndex = 2;
             // 
             // FrmSuppliersUpdate
             // 

@@ -44,14 +44,14 @@ namespace POS_Group5_CMPG223
             this.txtEmail.Location = new System.Drawing.Point(149, 89);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(100, 20);
-            this.txtEmail.TabIndex = 15;
+            this.txtEmail.TabIndex = 2;
             // 
             // txtCell
             // 
             this.txtCell.Location = new System.Drawing.Point(149, 60);
             this.txtCell.Name = "txtCell";
             this.txtCell.Size = new System.Drawing.Size(100, 20);
-            this.txtCell.TabIndex = 14;
+            this.txtCell.TabIndex = 1;
             // 
             // label3
             // 
@@ -75,17 +75,18 @@ namespace POS_Group5_CMPG223
             // 
             this.btnCancel.Location = new System.Drawing.Point(60, 152);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Size = new System.Drawing.Size(111, 25);
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(149, 29);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 10;
+            this.txtName.TabIndex = 0;
             // 
             // lblName
             // 
@@ -100,9 +101,9 @@ namespace POS_Group5_CMPG223
             // 
             this.btnInsert.Location = new System.Drawing.Point(60, 123);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(75, 23);
-            this.btnInsert.TabIndex = 8;
-            this.btnInsert.Text = "Insert";
+            this.btnInsert.Size = new System.Drawing.Size(111, 23);
+            this.btnInsert.TabIndex = 3;
+            this.btnInsert.Text = "Add";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
