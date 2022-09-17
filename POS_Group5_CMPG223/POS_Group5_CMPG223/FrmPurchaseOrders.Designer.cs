@@ -33,10 +33,11 @@ namespace POS_Group5_CMPG223
             this.dgvPurchaseOrders = new System.Windows.Forms.DataGridView();
             this.pnlItems = new System.Windows.Forms.Panel();
             this.pnlTotal = new System.Windows.Forms.Panel();
-            this.lblTotalAmnt = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalAmnt = new System.Windows.Forms.Label();
             this.lbxItems = new System.Windows.Forms.ListBox();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.btnReceive = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.pnlForm.SuspendLayout();
@@ -89,25 +90,14 @@ namespace POS_Group5_CMPG223
             // 
             // pnlTotal
             // 
-            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
             this.pnlTotal.Controls.Add(this.lblTotal);
+            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
             this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTotal.Location = new System.Drawing.Point(0, 406);
+            this.pnlTotal.Location = new System.Drawing.Point(0, 325);
             this.pnlTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTotal.Name = "pnlTotal";
-            this.pnlTotal.Size = new System.Drawing.Size(333, 25);
+            this.pnlTotal.Size = new System.Drawing.Size(333, 44);
             this.pnlTotal.TabIndex = 2;
-            // 
-            // lblTotalAmnt
-            // 
-            this.lblTotalAmnt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalAmnt.Location = new System.Drawing.Point(47, 0);
-            this.lblTotalAmnt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalAmnt.Name = "lblTotalAmnt";
-            this.lblTotalAmnt.Size = new System.Drawing.Size(286, 25);
-            this.lblTotalAmnt.TabIndex = 3;
-            this.lblTotalAmnt.Text = "R00.00";
-            this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotal
             // 
@@ -115,10 +105,20 @@ namespace POS_Group5_CMPG223
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(47, 25);
+            this.lblTotal.Size = new System.Drawing.Size(47, 44);
             this.lblTotal.TabIndex = 2;
             this.lblTotal.Text = "Total:";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTotalAmnt
+            // 
+            this.lblTotalAmnt.Location = new System.Drawing.Point(43, 10);
+            this.lblTotalAmnt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalAmnt.Name = "lblTotalAmnt";
+            this.lblTotalAmnt.Size = new System.Drawing.Size(287, 25);
+            this.lblTotalAmnt.TabIndex = 3;
+            this.lblTotalAmnt.Text = "R00.00";
+            this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbxItems
             // 
@@ -128,20 +128,33 @@ namespace POS_Group5_CMPG223
             this.lbxItems.Location = new System.Drawing.Point(0, 0);
             this.lbxItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbxItems.Name = "lbxItems";
-            this.lbxItems.Size = new System.Drawing.Size(333, 431);
+            this.lbxItems.Size = new System.Drawing.Size(333, 369);
             this.lbxItems.TabIndex = 1;
-            this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.lbxItems_SelectedIndexChanged);
             // 
             // pnlButtons
             // 
+            this.pnlButtons.Controls.Add(this.btnReceive);
             this.pnlButtons.Controls.Add(this.btnDelete);
             this.pnlButtons.Controls.Add(this.btnRemove);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 431);
+            this.pnlButtons.Location = new System.Drawing.Point(0, 369);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(333, 123);
+            this.pnlButtons.Size = new System.Drawing.Size(333, 185);
             this.pnlButtons.TabIndex = 0;
+            // 
+            // btnReceive
+            // 
+            this.btnReceive.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnReceive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReceive.Location = new System.Drawing.Point(0, 123);
+            this.btnReceive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReceive.Name = "btnReceive";
+            this.btnReceive.Size = new System.Drawing.Size(333, 62);
+            this.btnReceive.TabIndex = 4;
+            this.btnReceive.Text = "Receive Order";
+            this.btnReceive.UseVisualStyleBackColor = true;
+            this.btnReceive.Click += new System.EventHandler(this.btnReceive_Click);
             // 
             // btnDelete
             // 
@@ -200,5 +213,6 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnReceive;
     }
 }
