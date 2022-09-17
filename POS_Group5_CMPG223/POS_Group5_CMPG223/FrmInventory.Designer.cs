@@ -48,7 +48,7 @@
             this.txtSellPrice = new System.Windows.Forms.TextBox();
             this.lblSellPrice = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnAddToDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlItems.SuspendLayout();
             this.pnlButtons.SuspendLayout();
@@ -84,6 +84,7 @@
             this.btnBuyProduct.TabIndex = 2;
             this.btnBuyProduct.Text = "Buy Product";
             this.btnBuyProduct.UseVisualStyleBackColor = true;
+            this.btnBuyProduct.Click += new System.EventHandler(this.btnBuyProduct_Click);
             // 
             // btnStockTake
             // 
@@ -213,7 +214,7 @@
             // 
             // groupBoxAdd
             // 
-            this.groupBoxAdd.Controls.Add(this.btnAdd);
+            this.groupBoxAdd.Controls.Add(this.btnAddToDB);
             this.groupBoxAdd.Controls.Add(this.btnBack);
             this.groupBoxAdd.Controls.Add(this.txtSellPrice);
             this.groupBoxAdd.Controls.Add(this.lblSellPrice);
@@ -266,15 +267,17 @@
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnAdd
+            // btnAddToDB
             // 
-            this.btnAdd.Location = new System.Drawing.Point(96, 161);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAddToDB.Location = new System.Drawing.Point(96, 161);
+            this.btnAddToDB.Name = "btnAddToDB";
+            this.btnAddToDB.Size = new System.Drawing.Size(75, 23);
+            this.btnAddToDB.TabIndex = 5;
+            this.btnAddToDB.Text = "Add";
+            this.btnAddToDB.UseVisualStyleBackColor = true;
+            this.btnAddToDB.Click += new System.EventHandler(this.btnAddToDB_Click);
             // 
             // FrmInventory
             // 
@@ -314,7 +317,7 @@
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlForm;
         private System.Windows.Forms.GroupBox groupBoxAdd;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnAddToDB;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox txtSellPrice;
         private System.Windows.Forms.Label lblSellPrice;
