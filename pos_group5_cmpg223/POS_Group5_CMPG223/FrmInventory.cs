@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using FontAwesome.Sharp;
 
 namespace POS_Group5_CMPG223
 {
@@ -26,8 +27,8 @@ namespace POS_Group5_CMPG223
             //Fore Colors
             btnBuyProduct.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnAddProduct.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-            btnDiscard.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-            btnStockTake.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnUpdate.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnDelete.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             lblDisplay.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Back Colors
             this.BackColor = Methods.clrForms;
@@ -107,7 +108,26 @@ namespace POS_Group5_CMPG223
                 dataGridView1.DataMember = "PRODUCT";
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch 
+            {
+                MessageBox.Show("SQL Error Occurred.");
+            }
+            
+            //Populate combo box
+            try
+            {
+                Methods.SQLCon.Open();
+                SqlCommand cmd2 = new SqlCommand(@"SELECT DISTINCT Description from PRODUCT", Methods.SQLCon);
+                adapter = new SqlDataAdapter();
+                dataset = new DataSet();
+                adapter.SelectCommand = cmd2;
+                adapter.Fill(dataset, "PRODUCT");
+                comboBox.DisplayMember = "PRODUCT";
+                comboBox.ValueMember = "PRODUCT";
+                comboBox.DataSource = dataset.Tables["PRODUCT"];
+                Methods.SQLCon.Close();
+            }
+            catch
             {
                 MessageBox.Show("SQL Error Occurred.");
             }
@@ -150,6 +170,45 @@ namespace POS_Group5_CMPG223
         private void btnBuyProduct_Click(object sender, EventArgs e)
         {
             //switch view to purchase orders
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int quantity = 0;
+                string sqlUpdate = $"UPDATE PRODUCT SET Quantity_in_stock = "+quantity+" WHERE Description = '{comboBox.Text}'";
+                Methods.SQLCon.Open();
+                SqlCommand cmdDelete = new SqlCommand(sqlUpdate, Methods.SQLCon);
+                adapter = new SqlDataAdapter();
+                adapter.DeleteCommand = cmdDelete;
+                adapter.DeleteCommand.ExecuteNonQuery();
+                Methods.SQLCon.Close();
+                MessageBox.Show(comboBox.Text + ", was updated successfully");
+            }
+            catch (SqlException error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sqlDelete = $"DELETE FROM PRODUCT WHERE Description = '{comboBox.Text}'";
+                Methods.SQLCon.Open();
+                SqlCommand cmdDelete = new SqlCommand(sqlDelete, Methods.SQLCon);
+                adapter = new SqlDataAdapter();
+                adapter.DeleteCommand = cmdDelete;
+                adapter.DeleteCommand.ExecuteNonQuery();
+                Methods.SQLCon.Close();
+                MessageBox.Show(comboBox.Text + ", was deleted successfully");
+            }
+            catch (SqlException error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
     }
 }
