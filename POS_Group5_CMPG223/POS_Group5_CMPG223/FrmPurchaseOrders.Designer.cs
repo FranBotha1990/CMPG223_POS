@@ -39,6 +39,7 @@ namespace POS_Group5_CMPG223
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.btnReceive = new System.Windows.Forms.Button();
             this.pnlForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchaseOrders)).BeginInit();
             this.pnlItems.SuspendLayout();
@@ -86,18 +87,17 @@ namespace POS_Group5_CMPG223
             // 
             // pnlTotal
             // 
-            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
             this.pnlTotal.Controls.Add(this.lblTotal);
+            this.pnlTotal.Controls.Add(this.lblTotalAmnt);
             this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTotal.Location = new System.Drawing.Point(0, 330);
+            this.pnlTotal.Location = new System.Drawing.Point(0, 264);
             this.pnlTotal.Name = "pnlTotal";
-            this.pnlTotal.Size = new System.Drawing.Size(250, 20);
+            this.pnlTotal.Size = new System.Drawing.Size(250, 36);
             this.pnlTotal.TabIndex = 2;
             // 
             // lblTotalAmnt
             // 
-            this.lblTotalAmnt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalAmnt.Location = new System.Drawing.Point(35, 0);
+            this.lblTotalAmnt.Location = new System.Drawing.Point(32, 8);
             this.lblTotalAmnt.Name = "lblTotalAmnt";
             this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
             this.lblTotalAmnt.TabIndex = 3;
@@ -109,7 +109,7 @@ namespace POS_Group5_CMPG223
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(35, 20);
+            this.lblTotal.Size = new System.Drawing.Size(35, 36);
             this.lblTotal.TabIndex = 2;
             this.lblTotal.Text = "Total:";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,17 +120,18 @@ namespace POS_Group5_CMPG223
             this.lbxItems.FormattingEnabled = true;
             this.lbxItems.Location = new System.Drawing.Point(0, 0);
             this.lbxItems.Name = "lbxItems";
-            this.lbxItems.Size = new System.Drawing.Size(250, 350);
+            this.lbxItems.Size = new System.Drawing.Size(250, 300);
             this.lbxItems.TabIndex = 1;
             // 
             // pnlButtons
             // 
+            this.pnlButtons.Controls.Add(this.btnReceive);
             this.pnlButtons.Controls.Add(this.btnDelete);
             this.pnlButtons.Controls.Add(this.btnRemove);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 350);
+            this.pnlButtons.Location = new System.Drawing.Point(0, 300);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(250, 100);
+            this.pnlButtons.Size = new System.Drawing.Size(250, 150);
             this.pnlButtons.TabIndex = 0;
             // 
             // btnDelete
@@ -156,6 +157,17 @@ namespace POS_Group5_CMPG223
             this.btnRemove.Text = "Remove Item";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnReceive
+            // 
+            this.btnReceive.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnReceive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReceive.Location = new System.Drawing.Point(0, 100);
+            this.btnReceive.Name = "btnReceive";
+            this.btnReceive.Size = new System.Drawing.Size(250, 50);
+            this.btnReceive.TabIndex = 4;
+            this.btnReceive.Text = "Receive Order";
+            this.btnReceive.UseVisualStyleBackColor = true;
             // 
             // FrmPurchaseOrders
             // 
@@ -187,5 +199,6 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnReceive;
     }
 }

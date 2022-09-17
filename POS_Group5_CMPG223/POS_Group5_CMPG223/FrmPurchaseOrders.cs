@@ -31,11 +31,16 @@ namespace POS_Group5_CMPG223
             //Fore Colors
             btnDelete.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnRemove.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnReceive.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             lblTotal.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             lblTotalAmnt.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Back Colors
             this.BackColor = Methods.clrForms;
             pnlItems.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
+
+            btnReceive.Enabled = false;
+            btnDelete.Enabled = false;
+            btnRemove.Enabled = false;
 
             //Fill data grid with all PO's
             try
@@ -74,6 +79,37 @@ namespace POS_Group5_CMPG223
             int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
             double total = 0;
 
+            //Enable the receive button
+            try
+            {
+                Methods.SQLCon.Open();
+
+                SqlDataReader dataReader;
+                command = new SqlCommand($"SELECT Purchase_ID, " +
+                                            "Received, " +
+                                            "Receive_date " +
+                                            "FROM PURCHASE_ORDER " +
+                                            $"WHERE Purchase_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
+                dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    if (Convert.ToBoolean(dataReader.GetValue(1)) == false)
+                    {
+                        btnReceive.Enabled = true;
+                    }
+                }
+
+                Methods.SQLCon.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             //Join the POItems and Product tables by Product_ID
             try
             {
@@ -86,7 +122,7 @@ namespace POS_Group5_CMPG223
                                             "POI.Cost_price, " +
                                             "PR.Description " +
                                             "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                            "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                            "INNER JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
                                             $"WHERE POI.Purchase_ID LIKE '{selector}'",
                                             Methods.SQLCon);
                 dataReader = command.ExecuteReader();
@@ -129,7 +165,7 @@ namespace POS_Group5_CMPG223
                     lbxItems.Items.Clear();
                     lblTotalAmnt.Text = " ";
 
-                    //Join the POItems and Product tables by Product_ID
+                    //Adjust the quantity in products
                     try
                     {
                         Methods.SQLCon.Open();
