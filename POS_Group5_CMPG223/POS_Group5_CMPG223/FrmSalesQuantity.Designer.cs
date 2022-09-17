@@ -37,16 +37,19 @@ namespace POS_Group5_CMPG223
             // 
             this.txtQuantity.Location = new System.Drawing.Point(12, 12);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(150, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(226, 20);
             this.txtQuantity.TabIndex = 0;
+            this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(87, 38);
+            this.btnOk.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Location = new System.Drawing.Point(0, 43);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.Size = new System.Drawing.Size(250, 50);
             this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "Ok";
+            this.btnOk.Text = "Okay";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
@@ -54,7 +57,7 @@ namespace POS_Group5_CMPG223
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(174, 66);
+            this.ClientSize = new System.Drawing.Size(250, 93);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtQuantity);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

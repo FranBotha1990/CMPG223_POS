@@ -29,11 +29,13 @@ namespace POS_Group5_CMPG223
             gbxGUISettings.ForeColor = Methods.DetermineFrontColor(gbxGUISettings.BackColor);
             btnSaveSettings.ForeColor = Methods.DetermineFrontColor(btnSaveSettings.BackColor);
             btnClose.ForeColor = Methods.DetermineFrontColor(btnSaveSettings.BackColor);
+            gbxSettings.ForeColor = Methods.DetermineFrontColor(btnSaveSettings.BackColor);
             //Misc
             txtBusinessName.Text = Methods.businessName;
             cbxColorScheme.SelectedIndex = Methods.colorScheme;
         }
         #endregion
+
         #region Buttons
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {

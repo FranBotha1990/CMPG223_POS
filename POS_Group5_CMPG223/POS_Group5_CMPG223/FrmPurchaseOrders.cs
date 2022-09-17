@@ -243,7 +243,7 @@ namespace POS_Group5_CMPG223
             int product, current, quantity;
             bool itsTrue = true;
 
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete Purchase Order number '" + selector + "'?", "Delete Purchase Order", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to receive stock for Purchase Order number '" + selector + "'?", "Receive Purchase Order", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
