@@ -51,9 +51,10 @@ namespace POS_Group5_CMPG223
             this.pnlForm.Controls.Add(this.dgvPurchaseOrders);
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
+            this.pnlForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlForm.Size = new System.Drawing.Size(550, 450);
+            this.pnlForm.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.pnlForm.Size = new System.Drawing.Size(734, 554);
             this.pnlForm.TabIndex = 3;
             // 
             // dgvPurchaseOrders
@@ -63,13 +64,14 @@ namespace POS_Group5_CMPG223
             this.dgvPurchaseOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPurchaseOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPurchaseOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPurchaseOrders.Location = new System.Drawing.Point(10, 10);
+            this.dgvPurchaseOrders.Location = new System.Drawing.Point(13, 12);
+            this.dgvPurchaseOrders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvPurchaseOrders.MultiSelect = false;
             this.dgvPurchaseOrders.Name = "dgvPurchaseOrders";
             this.dgvPurchaseOrders.ReadOnly = true;
             this.dgvPurchaseOrders.RowHeadersWidth = 51;
             this.dgvPurchaseOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPurchaseOrders.Size = new System.Drawing.Size(530, 430);
+            this.dgvPurchaseOrders.Size = new System.Drawing.Size(708, 530);
             this.dgvPurchaseOrders.TabIndex = 0;
             this.dgvPurchaseOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchaseOrders_CellClick);
             // 
@@ -79,9 +81,10 @@ namespace POS_Group5_CMPG223
             this.pnlItems.Controls.Add(this.lbxItems);
             this.pnlItems.Controls.Add(this.pnlButtons);
             this.pnlItems.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlItems.Location = new System.Drawing.Point(550, 0);
+            this.pnlItems.Location = new System.Drawing.Point(734, 0);
+            this.pnlItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlItems.Name = "pnlItems";
-            this.pnlItems.Size = new System.Drawing.Size(250, 450);
+            this.pnlItems.Size = new System.Drawing.Size(333, 554);
             this.pnlItems.TabIndex = 2;
             // 
             // pnlTotal
@@ -89,17 +92,19 @@ namespace POS_Group5_CMPG223
             this.pnlTotal.Controls.Add(this.lblTotalAmnt);
             this.pnlTotal.Controls.Add(this.lblTotal);
             this.pnlTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTotal.Location = new System.Drawing.Point(0, 330);
+            this.pnlTotal.Location = new System.Drawing.Point(0, 406);
+            this.pnlTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTotal.Name = "pnlTotal";
-            this.pnlTotal.Size = new System.Drawing.Size(250, 20);
+            this.pnlTotal.Size = new System.Drawing.Size(333, 25);
             this.pnlTotal.TabIndex = 2;
             // 
             // lblTotalAmnt
             // 
             this.lblTotalAmnt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalAmnt.Location = new System.Drawing.Point(35, 0);
+            this.lblTotalAmnt.Location = new System.Drawing.Point(47, 0);
+            this.lblTotalAmnt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalAmnt.Name = "lblTotalAmnt";
-            this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
+            this.lblTotalAmnt.Size = new System.Drawing.Size(286, 25);
             this.lblTotalAmnt.TabIndex = 3;
             this.lblTotalAmnt.Text = "R00.00";
             this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -108,8 +113,9 @@ namespace POS_Group5_CMPG223
             // 
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(35, 20);
+            this.lblTotal.Size = new System.Drawing.Size(47, 25);
             this.lblTotal.TabIndex = 2;
             this.lblTotal.Text = "Total:";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -118,28 +124,33 @@ namespace POS_Group5_CMPG223
             // 
             this.lbxItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbxItems.FormattingEnabled = true;
+            this.lbxItems.ItemHeight = 16;
             this.lbxItems.Location = new System.Drawing.Point(0, 0);
+            this.lbxItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbxItems.Name = "lbxItems";
-            this.lbxItems.Size = new System.Drawing.Size(250, 350);
+            this.lbxItems.Size = new System.Drawing.Size(333, 431);
             this.lbxItems.TabIndex = 1;
+            this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.lbxItems_SelectedIndexChanged);
             // 
             // pnlButtons
             // 
             this.pnlButtons.Controls.Add(this.btnDelete);
             this.pnlButtons.Controls.Add(this.btnRemove);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 350);
+            this.pnlButtons.Location = new System.Drawing.Point(0, 431);
+            this.pnlButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(250, 100);
+            this.pnlButtons.Size = new System.Drawing.Size(333, 123);
             this.pnlButtons.TabIndex = 0;
             // 
             // btnDelete
             // 
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(0, 50);
+            this.btnDelete.Location = new System.Drawing.Point(0, 62);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(250, 50);
+            this.btnDelete.Size = new System.Drawing.Size(333, 62);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete Order";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -150,8 +161,9 @@ namespace POS_Group5_CMPG223
             this.btnRemove.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Location = new System.Drawing.Point(0, 0);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(250, 50);
+            this.btnRemove.Size = new System.Drawing.Size(333, 62);
             this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Remove Item";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -159,11 +171,12 @@ namespace POS_Group5_CMPG223
             // 
             // FrmPurchaseOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.pnlItems);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmPurchaseOrders";
             this.Text = "FrmPurchaseOrders";
             this.pnlForm.ResumeLayout(false);

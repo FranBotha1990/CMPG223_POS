@@ -18,6 +18,7 @@ namespace POS_Group5_CMPG223
     {
         #region Properties
         public static SqlConnection SQLCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + "POS_Data" + ".mdf;Integrated Security=True;Connect Timeout=30");
+        public static SqlConnection SQLCon2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + "POS_Data" + ".mdf;Integrated Security=True;Connect Timeout=30");
         public static String businessName = "Business Name";
         public static int colorScheme = 0;
         public static Color clrIcons = Color.FromArgb(94, 1, 20);

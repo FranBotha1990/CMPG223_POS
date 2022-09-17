@@ -131,45 +131,72 @@ namespace POS_Group5_CMPG223
             frmSalesQuantity.LoadGUI();
             frmSalesQuantity.ShowDialog();
             int quantity = frmSalesQuantity.quantity;
+            //Check Stock
             if (frmSalesQuantity.bOk)
             {
-                int i;
-                bool bExists = false;
-                for (i = 0; i < buttonsToLoad; i++)
+                bool bEnoughStock = false;
+                Methods.SQLCon.Close();
+                Methods.SQLCon.Open();
+                SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
+                SqlDataReader reader;
+                reader = command.ExecuteReader();
+                reader.Read();
+                int stock = int.Parse(reader.GetValue(3).ToString());
+                if (quantity <= stock)
                 {
-                    if ((sender as Button).Name.Equals(arrBill[i, 0]))
-                    {
-                        bExists = true;
-                        break;
-                    }
+                    bEnoughStock = true;
                 }
-                if (!bExists)
+                Methods.SQLCon.Close();
+                //Button Event
+                if (bEnoughStock)
                 {
-                    try
+                    int i;
+                    bool bExists = false;
+                    for (i = 0; i < buttonsToLoad; i++)
                     {
-                        Methods.SQLCon.Close();
-                        Methods.SQLCon.Open();
-                        SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
-                        SqlDataReader reader;
-                        reader = command.ExecuteReader();
-                        reader.Read();
-                        arrBill[billItemCount, 0] = reader.GetValue(0).ToString();
-                        arrBill[billItemCount, 1] = quantity.ToString();
-                        arrBill[billItemCount, 2] = reader.GetValue(1).ToString();
-                        arrBill[billItemCount, 3] = reader.GetValue(2).ToString();
-                        billItemCount++;
-                        Methods.SQLCon.Close();
+                        if ((sender as Button).Name.Equals(arrBill[i, 0]))
+                        {
+                            bExists = true;
+                            break;
+                        }
                     }
-                    catch (SqlException ex)
+                    if (!bExists)
                     {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        try
+                        {
+                            Methods.SQLCon.Close();
+                            Methods.SQLCon.Open();
+                            SqlCommand command2 = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
+                            SqlDataReader reader2;
+                            reader2 = command2.ExecuteReader();
+                            reader2.Read();
+                            arrBill[billItemCount, 0] = reader2.GetValue(0).ToString();
+                            arrBill[billItemCount, 1] = quantity.ToString();
+                            arrBill[billItemCount, 2] = reader2.GetValue(1).ToString();
+                            arrBill[billItemCount, 3] = reader2.GetValue(2).ToString();
+                            billItemCount++;
+                            Methods.SQLCon.Close();
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
+                    else
+                    {
+                        if (int.Parse(arrBill[i, 1]) + quantity <= stock)
+                        {
+                            arrBill[i, 1] = (int.Parse(arrBill[i, 1]) + quantity).ToString();
+                        }
+                        else
+                        {
+                            bEnoughStock = false;
+                        }
+                    }
+                    LoadBill();
                 }
-                else
-                {
-                    arrBill[i, 1] = (int.Parse(arrBill[i, 1]) + quantity).ToString();
-                }
-                LoadBill();
+                if (!bEnoughStock)
+                    MessageBox.Show("Not enough stock (In Stock: " + stock.ToString() + ")");
             }
         }
         #endregion
@@ -227,6 +254,16 @@ namespace POS_Group5_CMPG223
 
                     adapter.InsertCommand = commandInsert;
                     adapter.InsertCommand.ExecuteNonQuery();
+
+                    //Load Quantity
+                    SqlCommand commandSelect = new SqlCommand($"SELECT Quantity_in_stock FROM PRODUCT WHERE Product_ID = {arrBill[i, 0]}", Methods.SQLCon);
+                    int inStock = (int)commandSelect.ExecuteScalar();
+                    MessageBox.Show(inStock.ToString());
+                    //Update Quantity
+                    SqlCommand commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{(inStock - int.Parse(arrBill[i, 1])).ToString()}' WHERE Product_ID = {arrBill[i, 0]}", Methods.SQLCon);
+                    
+                    adapter.UpdateCommand = commandUpdate;
+                    adapter.UpdateCommand.ExecuteNonQuery();
                 }
 
                 Methods.SQLCon.Close();
@@ -239,8 +276,10 @@ namespace POS_Group5_CMPG223
 
             //Reset billItemCount
             billItemCount = 0;
+            lbxBill.Items.Clear();
+            lblTotalAmnt.Text = "R 0";
 
-        }
+    }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
@@ -261,7 +300,7 @@ namespace POS_Group5_CMPG223
             billTotal = 0;
             for (int y = 0; y < billItemCount; y++)
             {
-                string str = string.Format("{0} {1} {2} {3} {4}", arrBill[y, 1], " * ", arrBill[y, 2], " @ R ", Convert.ToDouble(Convert.ToDouble(arrBill[y, 3]) * int.Parse(arrBill[y, 1])));
+                string str = string.Format("{0} {1} {2} {3} {4}", arrBill[y, 1], " x ", arrBill[y, 2], " @ R ", Convert.ToDouble(arrBill[y, 3]));
                 billTotal += Convert.ToDouble(Convert.ToDouble(arrBill[y, 3]) * int.Parse(arrBill[y, 1]));
                 lbxBill.Items.Add(str);
             }
