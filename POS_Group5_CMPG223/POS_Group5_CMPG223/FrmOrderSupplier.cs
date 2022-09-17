@@ -65,7 +65,7 @@ namespace POS_Group5_CMPG223
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            supplierID = int.Parse(arrSuppliers[cbxSupplier.SelectedIndex, 1]);
+            supplierID = int.Parse(arrSuppliers[cbxSupplier.SelectedIndex, 0]);
             bOk = true;
             this.Close();
         }
