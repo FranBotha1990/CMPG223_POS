@@ -31,16 +31,16 @@
             this.tabPageDataGridView = new System.Windows.Forms.TabPage();
             this.dataGridViewReports = new System.Windows.Forms.DataGridView();
             this.tabPageDataSelection = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonGenerateReport = new System.Windows.Forms.Button();
-            this.comboBoxReports = new System.Windows.Forms.ComboBox();
-            this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
-            this.labelDateRange = new System.Windows.Forms.Label();
-            this.labelStartDate = new System.Windows.Forms.Label();
-            this.labelEndDate = new System.Windows.Forms.Label();
-            this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
-            this.labelListBox = new System.Windows.Forms.Label();
             this.listBoxReports = new System.Windows.Forms.ListBox();
+            this.labelListBox = new System.Windows.Forms.Label();
+            this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
+            this.labelEndDate = new System.Windows.Forms.Label();
+            this.labelStartDate = new System.Windows.Forms.Label();
+            this.labelDateRange = new System.Windows.Forms.Label();
+            this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxReports = new System.Windows.Forms.ComboBox();
+            this.buttonGenerateReport = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControlReporting = new System.Windows.Forms.TabControl();
             this.tabPageDataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReports)).BeginInit();
@@ -91,24 +91,66 @@
             this.tabPageDataSelection.Text = "Data Selection";
             this.tabPageDataSelection.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // listBoxReports
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(227, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Wich report do you want to generate?";
+            this.listBoxReports.FormattingEnabled = true;
+            this.listBoxReports.ItemHeight = 16;
+            this.listBoxReports.Location = new System.Drawing.Point(614, 53);
+            this.listBoxReports.Name = "listBoxReports";
+            this.listBoxReports.Size = new System.Drawing.Size(476, 532);
+            this.listBoxReports.TabIndex = 12;
             // 
-            // buttonGenerateReport
+            // labelListBox
             // 
-            this.buttonGenerateReport.Location = new System.Drawing.Point(22, 212);
-            this.buttonGenerateReport.Name = "buttonGenerateReport";
-            this.buttonGenerateReport.Size = new System.Drawing.Size(224, 33);
-            this.buttonGenerateReport.TabIndex = 1;
-            this.buttonGenerateReport.Text = "Generate Report";
-            this.buttonGenerateReport.UseVisualStyleBackColor = true;
-            this.buttonGenerateReport.Click += new System.EventHandler(this.buttonGenerateReport_Click);
+            this.labelListBox.AutoSize = true;
+            this.labelListBox.Location = new System.Drawing.Point(611, 34);
+            this.labelListBox.Name = "labelListBox";
+            this.labelListBox.Size = new System.Drawing.Size(89, 16);
+            this.labelListBox.TabIndex = 11;
+            this.labelListBox.Text = "Report Totals";
+            this.labelListBox.Click += new System.EventHandler(this.labelListBox_Click);
+            // 
+            // dateTimePickerEndDate
+            // 
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(252, 133);
+            this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
+            this.dateTimePickerEndDate.Size = new System.Drawing.Size(322, 22);
+            this.dateTimePickerEndDate.TabIndex = 10;
+            // 
+            // labelEndDate
+            // 
+            this.labelEndDate.AutoSize = true;
+            this.labelEndDate.Location = new System.Drawing.Point(249, 114);
+            this.labelEndDate.Name = "labelEndDate";
+            this.labelEndDate.Size = new System.Drawing.Size(31, 16);
+            this.labelEndDate.TabIndex = 9;
+            this.labelEndDate.Text = "End";
+            // 
+            // labelStartDate
+            // 
+            this.labelStartDate.AutoSize = true;
+            this.labelStartDate.Location = new System.Drawing.Point(249, 59);
+            this.labelStartDate.Name = "labelStartDate";
+            this.labelStartDate.Size = new System.Drawing.Size(34, 16);
+            this.labelStartDate.TabIndex = 8;
+            this.labelStartDate.Text = "Start";
+            // 
+            // labelDateRange
+            // 
+            this.labelDateRange.AutoSize = true;
+            this.labelDateRange.Location = new System.Drawing.Point(19, 59);
+            this.labelDateRange.Name = "labelDateRange";
+            this.labelDateRange.Size = new System.Drawing.Size(145, 16);
+            this.labelDateRange.TabIndex = 7;
+            this.labelDateRange.Text = "Date Range for Report:";
+            this.labelDateRange.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // dateTimePickerStartDate
+            // 
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(252, 78);
+            this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(322, 22);
+            this.dateTimePickerStartDate.TabIndex = 6;
             // 
             // comboBoxReports
             // 
@@ -127,66 +169,24 @@
             this.comboBoxReports.Size = new System.Drawing.Size(183, 24);
             this.comboBoxReports.TabIndex = 5;
             // 
-            // dateTimePickerStartDate
+            // buttonGenerateReport
             // 
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(252, 78);
-            this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
-            this.dateTimePickerStartDate.Size = new System.Drawing.Size(322, 22);
-            this.dateTimePickerStartDate.TabIndex = 6;
+            this.buttonGenerateReport.Location = new System.Drawing.Point(22, 212);
+            this.buttonGenerateReport.Name = "buttonGenerateReport";
+            this.buttonGenerateReport.Size = new System.Drawing.Size(224, 33);
+            this.buttonGenerateReport.TabIndex = 1;
+            this.buttonGenerateReport.Text = "Generate Report";
+            this.buttonGenerateReport.UseVisualStyleBackColor = true;
+            this.buttonGenerateReport.Click += new System.EventHandler(this.buttonGenerateReport_Click);
             // 
-            // labelDateRange
+            // label1
             // 
-            this.labelDateRange.AutoSize = true;
-            this.labelDateRange.Location = new System.Drawing.Point(19, 59);
-            this.labelDateRange.Name = "labelDateRange";
-            this.labelDateRange.Size = new System.Drawing.Size(145, 16);
-            this.labelDateRange.TabIndex = 7;
-            this.labelDateRange.Text = "Date Range for Report:";
-            this.labelDateRange.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // labelStartDate
-            // 
-            this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(249, 59);
-            this.labelStartDate.Name = "labelStartDate";
-            this.labelStartDate.Size = new System.Drawing.Size(34, 16);
-            this.labelStartDate.TabIndex = 8;
-            this.labelStartDate.Text = "Start";
-            // 
-            // labelEndDate
-            // 
-            this.labelEndDate.AutoSize = true;
-            this.labelEndDate.Location = new System.Drawing.Point(249, 114);
-            this.labelEndDate.Name = "labelEndDate";
-            this.labelEndDate.Size = new System.Drawing.Size(31, 16);
-            this.labelEndDate.TabIndex = 9;
-            this.labelEndDate.Text = "End";
-            // 
-            // dateTimePickerEndDate
-            // 
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(252, 133);
-            this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
-            this.dateTimePickerEndDate.Size = new System.Drawing.Size(322, 22);
-            this.dateTimePickerEndDate.TabIndex = 10;
-            // 
-            // labelListBox
-            // 
-            this.labelListBox.AutoSize = true;
-            this.labelListBox.Location = new System.Drawing.Point(611, 34);
-            this.labelListBox.Name = "labelListBox";
-            this.labelListBox.Size = new System.Drawing.Size(89, 16);
-            this.labelListBox.TabIndex = 11;
-            this.labelListBox.Text = "Report Totals";
-            this.labelListBox.Click += new System.EventHandler(this.labelListBox_Click);
-            // 
-            // listBoxReports
-            // 
-            this.listBoxReports.FormattingEnabled = true;
-            this.listBoxReports.ItemHeight = 16;
-            this.listBoxReports.Location = new System.Drawing.Point(614, 53);
-            this.listBoxReports.Name = "listBoxReports";
-            this.listBoxReports.Size = new System.Drawing.Size(476, 532);
-            this.listBoxReports.TabIndex = 12;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(227, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Wich report do you want to generate?";
             // 
             // tabControlReporting
             // 

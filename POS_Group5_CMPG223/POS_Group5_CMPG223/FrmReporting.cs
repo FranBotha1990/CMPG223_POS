@@ -407,9 +407,26 @@ namespace POS_Group5_CMPG223
 
                         readerReport = commandReport.ExecuteReader();
 
+                        //listBoxReports.MultiColumn = true;
+                        //listBoxReports.ColumnWidth = 60;
+                        /*listBoxReports.Items.AddRange(new object[]
+                        {
+                            "Stock Item, column 1",
+                            "Stock on Hand, column 2",
+                            "Sales Price (R), column 3",
+                            "Cost Price (R), column 4"
+                        });
                         while (readerReport.Read())
                         {
-                            listBoxReports.Items.Add(string.Format("{0,-40}{1,5}{2,30}{3,20}",readerReport["Stock Item"], readerReport["Stock on Hand"], readerReport["Sales Price (R)"], readerReport["Cost Price (R)"]));
+                            listBoxReports.Items.AddRange(new object[]
+                        {
+                            ""+readerReport["Stock Item"]+", column 1",
+                            ""+readerReport["Stock on Hand"]+", column 2",
+                            ""+readerReport["Sales Price (R)"]+", column 3",
+                            ""+readerReport["Cost Price (R)"]+", column 4"
+                        });
+                        */
+                        // listBoxReports.Items.Add(string.Format("{0,-60}{1}{2,30}{3,20}",readerReport["Stock Item"], readerReport["Stock on Hand"], readerReport["Sales Price (R)"], readerReport["Cost Price (R)"]));
                         }
                         readerReport.Close();
                     }
