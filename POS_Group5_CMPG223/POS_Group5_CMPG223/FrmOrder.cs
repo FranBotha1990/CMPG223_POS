@@ -16,7 +16,7 @@ namespace POS_Group5_CMPG223
         #region Variables
         private int buttonsToLoad = 0;
         private int buttonsLoaded = 0;
-        private Button[] posButtons;
+        private Button[] orderButtons;
         private String[,] arrOrder;
         private Boolean bFirstLoad = true;
         private int orderItemCount = 0;
@@ -24,11 +24,13 @@ namespace POS_Group5_CMPG223
         SqlDataAdapter adapter;
         DataSet dataset;
         #endregion
-
+        #region Constructor
         public FrmOrder()
         {
             InitializeComponent();
         }
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Fore Colors
@@ -47,7 +49,7 @@ namespace POS_Group5_CMPG223
                 Methods.SQLCon.Close();
                 Methods.SQLCon.Open();
                 buttonsToLoad = (int)command.ExecuteScalar();
-                posButtons = new Button[buttonsToLoad];
+                orderButtons = new Button[buttonsToLoad];
                 arrOrder = new string[buttonsToLoad, 4];
                 LoadButtons(buttonsToLoad);
                 LocateButtons(buttonsLoaded);
@@ -55,11 +57,22 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
+        #region Panel Size Change
+        private void pnlForm_SizeChanged(object sender, EventArgs e)
+        {
+            if (!bFirstLoad)
+            {
+                LocateButtons(buttonsLoaded);
+            }
+            bFirstLoad = false;
+        }
+        #endregion
 
-        #region POS Buttons
+        #region Order Buttons
         public void LoadButtons(int ButtonAmnt)
         {
             //Load Buttons
@@ -74,21 +87,21 @@ namespace POS_Group5_CMPG223
                 {
                     reader.Read();
                     buttonsLoaded++;
-                    posButtons[buttonsLoaded - 1] = new Button();
-                    posButtons[buttonsLoaded - 1].Height = 100;
-                    posButtons[buttonsLoaded - 1].Width = 150;
-                    posButtons[buttonsLoaded - 1].ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-                    posButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString();
-                    posButtons[buttonsLoaded - 1].Parent = pnlForm;
-                    pnlForm.Controls.Add(posButtons[buttonsLoaded - 1]);
-                    posButtons[buttonsLoaded - 1].Name = reader.GetValue(0).ToString();
-                    posButtons[buttonsLoaded - 1].Click += new EventHandler(OrderButton_Click);
+                    orderButtons[buttonsLoaded - 1] = new Button();
+                    orderButtons[buttonsLoaded - 1].Height = 100;
+                    orderButtons[buttonsLoaded - 1].Width = 150;
+                    orderButtons[buttonsLoaded - 1].ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+                    orderButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString();
+                    orderButtons[buttonsLoaded - 1].Parent = pnlForm;
+                    pnlForm.Controls.Add(orderButtons[buttonsLoaded - 1]);
+                    orderButtons[buttonsLoaded - 1].Name = reader.GetValue(0).ToString();
+                    orderButtons[buttonsLoaded - 1].Click += new EventHandler(OrderButton_Click);
                 }
                 Methods.SQLCon.Close();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -107,7 +120,7 @@ namespace POS_Group5_CMPG223
                     if (buttonsLocated < ButtonAmnt)
                     {
                         buttonsLocated++;
-                        posButtons[buttonsLocated - 1].Location = new Point((((x - 1) * 150) + (x) * 6), (((y - 1) * 100) + (y) * 6));
+                        orderButtons[buttonsLocated - 1].Location = new Point((((x - 1) * 150) + (x) * 6), (((y - 1) * 100) + (y) * 6));
                     }
                     else
                     {
@@ -157,7 +170,7 @@ namespace POS_Group5_CMPG223
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -183,7 +196,7 @@ namespace POS_Group5_CMPG223
             lblTotalAmnt.Text = "R " + orderTotal.ToString();
         }
         #endregion
-
+        #region Delete Item
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
             //Delete Item
@@ -197,21 +210,8 @@ namespace POS_Group5_CMPG223
             orderItemCount--;
             loadOrder();
         }
-
-        private void FrmOrder_SizeChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlForm_SizeChanged(object sender, EventArgs e)
-        {
-            if (!bFirstLoad)
-            {
-                LocateButtons(buttonsLoaded);
-            }
-            bFirstLoad = false;
-        }
-
+        #endregion
+        #region Place Order
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             FrmOrderSupplier frmOrderSupplier = new FrmOrderSupplier();
@@ -238,7 +238,7 @@ namespace POS_Group5_CMPG223
                 catch (SqlException ex)
                 {
                     //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 //Get Sales Order Record ID
@@ -253,7 +253,7 @@ namespace POS_Group5_CMPG223
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 //Create Sales Order Items
@@ -278,7 +278,7 @@ namespace POS_Group5_CMPG223
                 catch (SqlException ex)
                 {
                     //Error message
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 //Reset billItemCount
@@ -287,5 +287,6 @@ namespace POS_Group5_CMPG223
                 lblTotalAmnt.Text = "R 0";
             }
         }
+        #endregion
     }
 }

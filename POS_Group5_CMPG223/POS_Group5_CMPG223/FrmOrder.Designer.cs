@@ -146,7 +146,6 @@
             this.Controls.Add(this.pnlOrder);
             this.Name = "FrmOrder";
             this.Text = "FrmOrder";
-            this.SizeChanged += new System.EventHandler(this.FrmOrder_SizeChanged);
             this.pnlOrder.ResumeLayout(false);
             this.pnlTotal.ResumeLayout(false);
             this.pnlOrderButtons.ResumeLayout(false);

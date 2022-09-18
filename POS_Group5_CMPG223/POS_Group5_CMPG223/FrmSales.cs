@@ -53,7 +53,7 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -96,7 +96,7 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -135,18 +135,26 @@ namespace POS_Group5_CMPG223
             if (frmSalesQuantity.bOk)
             {
                 bool bEnoughStock = false;
-                Methods.SQLCon.Close();
-                Methods.SQLCon.Open();
-                SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
-                SqlDataReader reader;
-                reader = command.ExecuteReader();
-                reader.Read();
-                int stock = int.Parse(reader.GetValue(3).ToString());
-                if (quantity <= stock)
+                int stock = 0;
+                try
                 {
-                    bEnoughStock = true;
+                    Methods.SQLCon.Close();
+                    Methods.SQLCon.Open();
+                    SqlCommand command = new SqlCommand($"SELECT * FROM PRODUCT WHERE Product_ID = {(sender as Button).Name}", Methods.SQLCon);
+                    SqlDataReader reader;
+                    reader = command.ExecuteReader();
+                    reader.Read();
+                    stock = int.Parse(reader.GetValue(3).ToString());
+                    if (quantity <= stock)
+                    {
+                        bEnoughStock = true;
+                    }
+                    Methods.SQLCon.Close();
                 }
-                Methods.SQLCon.Close();
+                catch
+                {
+                    MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 //Button Event
                 if (bEnoughStock)
                 {
@@ -179,7 +187,7 @@ namespace POS_Group5_CMPG223
                         }
                         catch (SqlException ex)
                         {
-                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
@@ -196,7 +204,7 @@ namespace POS_Group5_CMPG223
                     LoadBill();
                 }
                 if (!bEnoughStock)
-                    MessageBox.Show("Not enough stock (In Stock: " + stock.ToString() + ")");
+                    MessageBox.Show("Not enough stock (In Stock: " + stock.ToString() + ")", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         #endregion
@@ -222,7 +230,7 @@ namespace POS_Group5_CMPG223
             catch (SqlException ex)
             {
                 //Error message
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //Get Sales Order Record ID
@@ -258,7 +266,6 @@ namespace POS_Group5_CMPG223
                     //Load Quantity
                     SqlCommand commandSelect = new SqlCommand($"SELECT Quantity_in_stock FROM PRODUCT WHERE Product_ID = {arrBill[i, 0]}", Methods.SQLCon);
                     int inStock = (int)commandSelect.ExecuteScalar();
-                    MessageBox.Show(inStock.ToString());
                     //Update Quantity
                     SqlCommand commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{(inStock - int.Parse(arrBill[i, 1])).ToString()}' WHERE Product_ID = {arrBill[i, 0]}", Methods.SQLCon);
                     
@@ -271,7 +278,7 @@ namespace POS_Group5_CMPG223
             catch (SqlException ex)
             {
                 //Error message
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //Reset billItemCount
