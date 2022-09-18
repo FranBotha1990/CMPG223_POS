@@ -435,6 +435,7 @@ namespace POS_Group5_CMPG223
 
         }
         #endregion
+
         #region Change Labels
         private void changeLabels()
         {
