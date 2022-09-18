@@ -34,17 +34,19 @@ namespace POS_Group5_CMPG223
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblCell = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
             this.txtCell = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(77, 123);
+            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Location = new System.Drawing.Point(0, 112);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(106, 23);
-            this.btnUpdate.TabIndex = 3;
+            this.btnUpdate.Size = new System.Drawing.Size(286, 50);
+            this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -52,25 +54,27 @@ namespace POS_Group5_CMPG223
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(29, 32);
+            this.lblName.Location = new System.Drawing.Point(12, 19);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(107, 13);
-            this.lblName.TabIndex = 1;
+            this.lblName.TabIndex = 0;
             this.lblName.Text = "Enter Supplier Name:";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(166, 29);
+            this.txtName.Location = new System.Drawing.Point(125, 16);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 20);
-            this.txtName.TabIndex = 0;
+            this.txtName.Size = new System.Drawing.Size(149, 20);
+            this.txtName.TabIndex = 1;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(77, 152);
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Location = new System.Drawing.Point(0, 162);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(106, 23);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Size = new System.Drawing.Size(286, 50);
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -78,50 +82,50 @@ namespace POS_Group5_CMPG223
             // lblCell
             // 
             this.lblCell.AutoSize = true;
-            this.lblCell.Location = new System.Drawing.Point(29, 63);
+            this.lblCell.Location = new System.Drawing.Point(12, 50);
             this.lblCell.Name = "lblCell";
             this.lblCell.Size = new System.Drawing.Size(96, 13);
-            this.lblCell.TabIndex = 4;
+            this.lblCell.TabIndex = 2;
             this.lblCell.Text = "Enter Supplier Cell:";
             // 
-            // label3
+            // lblEmail
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 92);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Enter Supplier Email:";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(12, 79);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(104, 13);
+            this.lblEmail.TabIndex = 4;
+            this.lblEmail.Text = "Enter Supplier Email:";
             // 
             // txtCell
             // 
-            this.txtCell.Location = new System.Drawing.Point(166, 60);
+            this.txtCell.Location = new System.Drawing.Point(125, 47);
             this.txtCell.Name = "txtCell";
-            this.txtCell.Size = new System.Drawing.Size(100, 20);
-            this.txtCell.TabIndex = 1;
+            this.txtCell.Size = new System.Drawing.Size(149, 20);
+            this.txtCell.TabIndex = 3;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(166, 89);
+            this.txtEmail.Location = new System.Drawing.Point(125, 76);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 20);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.Size = new System.Drawing.Size(149, 20);
+            this.txtEmail.TabIndex = 5;
             // 
             // FrmSuppliersUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 277);
+            this.ClientSize = new System.Drawing.Size(286, 212);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtCell);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblCell);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnCancel);
             this.Name = "FrmSuppliersUpdate";
-            this.Text = "FrmSuppliersUpdate";
+            this.Text = "Update Supplier";
             this.Load += new System.EventHandler(this.FrmSuppliersUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -135,7 +139,7 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblCell;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtCell;
         private System.Windows.Forms.TextBox txtEmail;
     }

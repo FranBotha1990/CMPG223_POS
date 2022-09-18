@@ -31,6 +31,9 @@ namespace POS_Group5_CMPG223
             //Fore Colors
             btnUpdate.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnCancel.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblCell.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblName.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblEmail.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Back Colors
             this.BackColor = Methods.clrForms;
             //pnlSidebar.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);

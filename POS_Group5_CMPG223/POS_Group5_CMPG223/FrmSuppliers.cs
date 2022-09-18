@@ -13,21 +13,32 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmSuppliers : Form
     {
+        #region Constructor
         public FrmSuppliers()
         {
             InitializeComponent();
         }
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Fore Colors
             btnDelete.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnUpdate.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnAdd.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            gbxFilter.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblFilter.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblFilterCell.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblFilterEmail.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Back Colors
             this.BackColor = Methods.clrForms;
             pnlSidebar.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
-        }
 
+            txtFilter.Focus();
+        }
+        #endregion
+
+        #region Update Supplier
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvSuppliers.SelectedRows.Count < 0)
@@ -48,7 +59,8 @@ namespace POS_Group5_CMPG223
                 DisplayData($"SELECT * from SUPPLIER");
             }
         }
-
+        #endregion
+        #region Delete Supplier
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -90,14 +102,16 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error connecting to database");
+                //Error message
+                MessageBox.Show(ex.Message, "Database Error: Unable to delete supplier.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 Methods.SQLCon.Close();
             }
         }
-
+        #endregion
+        #region Add Supplier
         private void btnAdd_Click(object sender, EventArgs e)
         {
             FrmSuppliersAdd frmSuppliersAdd = new FrmSuppliersAdd();
@@ -105,12 +119,15 @@ namespace POS_Group5_CMPG223
             frmSuppliersAdd.ShowDialog();
             DisplayData($"SELECT * from SUPPLIER");
         }
+        #endregion
 
+        #region Load Suppliers
         private void FrmSuppliers_Load(object sender, EventArgs e)
         {
-            DisplayData($"SELECT * from SUPPLIER");
+            DisplayData($"SELECT Supplier_ID AS 'Supplier ID', Supplier_name AS 'Supplier Name', Supplier_cell AS 'Supplier Cell', Supplier_email AS 'Supplier Email' from SUPPLIER");
         }
-
+        #endregion
+        #region Display Data
         private void DisplayData(string sql)
         {
             try
@@ -129,14 +146,17 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error connecting to database");
+                //Error message
+                MessageBox.Show(ex.Message, "Database Error: Unable to display data.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 Methods.SQLCon.Close();
             }
         }
+        #endregion
 
+        #region Filter Name
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
             if (!txtFilterCell.Focused)
@@ -150,7 +170,8 @@ namespace POS_Group5_CMPG223
             string name = txtFilter.Text;
             DisplayData($"SELECT * from SUPPLIER where Supplier_Name LIKE '%{name}%'");
         }
-
+        #endregion
+        #region Filter Email
         private void txtFilterEmail_TextChanged(object sender, EventArgs e)
         {
             if (!txtFilterCell.Focused)
@@ -164,7 +185,8 @@ namespace POS_Group5_CMPG223
             string email = txtFilterEmail.Text;
             DisplayData($"SELECT * from SUPPLIER where Supplier_Email LIKE '%{email}%'");
         }
-
+        #endregion
+        #region Filter Cell
         private void txtFilterCell_TextChanged(object sender, EventArgs e)
         {
             if (!txtFilter.Focused)
@@ -178,5 +200,6 @@ namespace POS_Group5_CMPG223
             string cell = txtFilterCell.Text;
             DisplayData($"SELECT * from SUPPLIER where Supplier_Cell LIKE '%{cell}%'");
         }
+        #endregion
     }
 }

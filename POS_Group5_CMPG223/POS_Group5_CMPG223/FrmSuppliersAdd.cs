@@ -13,21 +13,28 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmSuppliersAdd : Form
     {
+        #region Constructor
         public FrmSuppliersAdd()
         {
             InitializeComponent();
         }
-
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Fore Colors
             btnInsert.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnCancel.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblCell.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblEmail.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblName.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Back Colors
             this.BackColor = Methods.clrForms;
             //pnlSidebar.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
         }
+        #endregion
 
+        #region Insert Button
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
@@ -104,17 +111,20 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error connecting to database");
+                //Error message
+                MessageBox.Show(ex.Message, "Database Error: unable to add new supplier.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 Methods.SQLCon.Close();
             }
         }
-
+        #endregion
+        #region Cancel Button
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        #endregion
     }
 }
