@@ -227,7 +227,7 @@ namespace POS_Group5_CMPG223
 
         private void btnSalesOrders_MouseHover(object sender, EventArgs e)
         {
-            toolTipSalesOrders.Show("Add, update or delete sales orders", btnSalesOrders, btnSalesOrders.Left + btnSalesOrders.Width, btnSalesOrders.Bottom - btnSalesOrders.Top - btnSalesOrders.Height * 2 / 3);
+            toolTipSalesOrders.Show("Update or delete sales orders", btnSalesOrders, btnSalesOrders.Left + btnSalesOrders.Width, btnSalesOrders.Bottom - btnSalesOrders.Top - btnSalesOrders.Height * 2 / 3);
         }
 
         private void btnSalesOrders_MouseLeave(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace POS_Group5_CMPG223
 
         private void btnPurchaseOrders_MouseHover(object sender, EventArgs e)
         {
-            toolTipPurchaseOrder.Show("Add, update or delete purchase orders", btnPurchaseOrders, btnPurchaseOrders.Left + btnPurchaseOrders.Width, btnPurchaseOrders.Bottom - btnPurchaseOrders.Top - btnPurchaseOrders.Height * 2 / 3);
+            toolTipPurchaseOrder.Show("Recieve, update or delete purchase orders", btnPurchaseOrders, btnPurchaseOrders.Left + btnPurchaseOrders.Width, btnPurchaseOrders.Bottom - btnPurchaseOrders.Top - btnPurchaseOrders.Height * 2 / 3);
         }
 
         private void btnPurchaseOrders_MouseLeave(object sender, EventArgs e)
