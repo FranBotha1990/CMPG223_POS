@@ -91,7 +91,7 @@ namespace POS_Group5_CMPG223
                     orderButtons[buttonsLoaded - 1].Height = 100;
                     orderButtons[buttonsLoaded - 1].Width = 150;
                     orderButtons[buttonsLoaded - 1].ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
-                    orderButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString();
+                    orderButtons[buttonsLoaded - 1].Text = reader.GetValue(1).ToString()+"\nStock: "+reader.GetValue(3).ToString();
                     orderButtons[buttonsLoaded - 1].Parent = pnlForm;
                     pnlForm.Controls.Add(orderButtons[buttonsLoaded - 1]);
                     orderButtons[buttonsLoaded - 1].Name = reader.GetValue(0).ToString();
