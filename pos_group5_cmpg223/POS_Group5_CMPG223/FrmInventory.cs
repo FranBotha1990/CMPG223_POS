@@ -67,7 +67,7 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException error)
             {
-                MessageBox.Show(error.Message);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -106,7 +106,7 @@ namespace POS_Group5_CMPG223
             }
             catch (SqlException error)
             {
-                MessageBox.Show(error.Message);
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -126,7 +126,7 @@ namespace POS_Group5_CMPG223
             }
             catch 
             {
-                MessageBox.Show("SQL Error Occurred.");
+                MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -195,7 +195,7 @@ namespace POS_Group5_CMPG223
                 }
                 catch (SqlException error)
                 {
-                    MessageBox.Show(error.Message);
+                    MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -239,7 +239,7 @@ namespace POS_Group5_CMPG223
                 }
                 catch (SqlException error)
                 {
-                    MessageBox.Show(error.Message);
+                    MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 if (!flag)
                 {
@@ -256,7 +256,7 @@ namespace POS_Group5_CMPG223
                     }
                     catch (SqlException error)
                     {
-                        MessageBox.Show(error.Message);
+                        MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else

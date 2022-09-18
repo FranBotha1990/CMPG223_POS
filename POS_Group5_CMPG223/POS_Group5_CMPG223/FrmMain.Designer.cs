@@ -29,6 +29,7 @@ namespace POS_Group5_CMPG223
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnSettings = new FontAwesome.Sharp.IconButton();
             this.btnReporting = new FontAwesome.Sharp.IconButton();
@@ -47,6 +48,14 @@ namespace POS_Group5_CMPG223
             this.btnClose = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.toolTipSales = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSalesOrders = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipInventory = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipOrder = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipPurchaseOrder = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSupplier = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipReporting = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSettings = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMenu.SuspendLayout();
             this.pnlName.SuspendLayout();
             this.pnlHeader.SuspendLayout();
@@ -91,6 +100,8 @@ namespace POS_Group5_CMPG223
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);
+            this.btnSettings.MouseHover += new System.EventHandler(this.btnSettings_MouseHover);
             // 
             // btnReporting
             // 
@@ -113,6 +124,8 @@ namespace POS_Group5_CMPG223
             this.btnReporting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReporting.UseVisualStyleBackColor = true;
             this.btnReporting.Click += new System.EventHandler(this.btnReporting_Click);
+            this.btnReporting.MouseLeave += new System.EventHandler(this.btnReporting_MouseLeave);
+            this.btnReporting.MouseHover += new System.EventHandler(this.btnReporting_MouseHover);
             // 
             // btnSuppliers
             // 
@@ -135,6 +148,8 @@ namespace POS_Group5_CMPG223
             this.btnSuppliers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSuppliers.UseVisualStyleBackColor = true;
             this.btnSuppliers.Click += new System.EventHandler(this.btnSuppliers_Click);
+            this.btnSuppliers.MouseLeave += new System.EventHandler(this.btnSuppliers_MouseLeave);
+            this.btnSuppliers.MouseHover += new System.EventHandler(this.btnSuppliers_MouseHover);
             // 
             // btnPurchaseOrders
             // 
@@ -157,6 +172,8 @@ namespace POS_Group5_CMPG223
             this.btnPurchaseOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPurchaseOrders.UseVisualStyleBackColor = true;
             this.btnPurchaseOrders.Click += new System.EventHandler(this.btnPurchaseOrders_Click);
+            this.btnPurchaseOrders.MouseLeave += new System.EventHandler(this.btnPurchaseOrders_MouseLeave);
+            this.btnPurchaseOrders.MouseHover += new System.EventHandler(this.btnPurchaseOrders_MouseHover);
             // 
             // btnOrder
             // 
@@ -179,6 +196,8 @@ namespace POS_Group5_CMPG223
             this.btnOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrder.UseVisualStyleBackColor = true;
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            this.btnOrder.MouseLeave += new System.EventHandler(this.btnOrder_MouseLeave);
+            this.btnOrder.MouseHover += new System.EventHandler(this.btnOrder_MouseHover);
             // 
             // btnInventory
             // 
@@ -201,6 +220,8 @@ namespace POS_Group5_CMPG223
             this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInventory.UseVisualStyleBackColor = true;
             this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            this.btnInventory.MouseLeave += new System.EventHandler(this.btnInventory_MouseLeave);
+            this.btnInventory.MouseHover += new System.EventHandler(this.btnInventory_MouseHover);
             // 
             // btnSalesOrders
             // 
@@ -223,6 +244,8 @@ namespace POS_Group5_CMPG223
             this.btnSalesOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalesOrders.UseVisualStyleBackColor = true;
             this.btnSalesOrders.Click += new System.EventHandler(this.btnSalesOrders_Click);
+            this.btnSalesOrders.MouseLeave += new System.EventHandler(this.btnSalesOrders_MouseLeave);
+            this.btnSalesOrders.MouseHover += new System.EventHandler(this.btnSalesOrders_MouseHover);
             // 
             // btnSales
             // 
@@ -245,6 +268,8 @@ namespace POS_Group5_CMPG223
             this.btnSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSales.UseVisualStyleBackColor = true;
             this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            this.btnSales.MouseLeave += new System.EventHandler(this.btnSales_MouseLeave);
+            this.btnSales.MouseHover += new System.EventHandler(this.btnSales_MouseHover);
             // 
             // pnlName
             // 
@@ -393,6 +418,14 @@ namespace POS_Group5_CMPG223
         private FontAwesome.Sharp.IconButton btnReporting;
         private FontAwesome.Sharp.IconButton btnSuppliers;
         public System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.ToolTip toolTipSales;
+        private System.Windows.Forms.ToolTip toolTipSalesOrders;
+        private System.Windows.Forms.ToolTip toolTipInventory;
+        private System.Windows.Forms.ToolTip toolTipOrder;
+        private System.Windows.Forms.ToolTip toolTipPurchaseOrder;
+        private System.Windows.Forms.ToolTip toolTipSupplier;
+        private System.Windows.Forms.ToolTip toolTipReporting;
+        private System.Windows.Forms.ToolTip toolTipSettings;
     }
 }
 
