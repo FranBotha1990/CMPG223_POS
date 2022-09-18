@@ -84,7 +84,8 @@ namespace POS_Group5_CMPG223
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSettings.Size = new System.Drawing.Size(200, 50);
-            this.btnSettings.TabIndex = 13;
+            this.btnSettings.TabIndex = 7;
+            this.btnSettings.TabStop = false;
             this.btnSettings.Text = "Settings";
             this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -105,7 +106,8 @@ namespace POS_Group5_CMPG223
             this.btnReporting.Name = "btnReporting";
             this.btnReporting.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnReporting.Size = new System.Drawing.Size(200, 50);
-            this.btnReporting.TabIndex = 12;
+            this.btnReporting.TabIndex = 6;
+            this.btnReporting.TabStop = false;
             this.btnReporting.Text = "Reporting";
             this.btnReporting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReporting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -126,7 +128,8 @@ namespace POS_Group5_CMPG223
             this.btnSuppliers.Name = "btnSuppliers";
             this.btnSuppliers.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSuppliers.Size = new System.Drawing.Size(200, 50);
-            this.btnSuppliers.TabIndex = 11;
+            this.btnSuppliers.TabIndex = 5;
+            this.btnSuppliers.TabStop = false;
             this.btnSuppliers.Text = "Suppliers";
             this.btnSuppliers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSuppliers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -147,7 +150,8 @@ namespace POS_Group5_CMPG223
             this.btnPurchaseOrders.Name = "btnPurchaseOrders";
             this.btnPurchaseOrders.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnPurchaseOrders.Size = new System.Drawing.Size(200, 50);
-            this.btnPurchaseOrders.TabIndex = 10;
+            this.btnPurchaseOrders.TabIndex = 4;
+            this.btnPurchaseOrders.TabStop = false;
             this.btnPurchaseOrders.Text = "Purchase Orders";
             this.btnPurchaseOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPurchaseOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -168,7 +172,8 @@ namespace POS_Group5_CMPG223
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnOrder.Size = new System.Drawing.Size(200, 50);
-            this.btnOrder.TabIndex = 9;
+            this.btnOrder.TabIndex = 3;
+            this.btnOrder.TabStop = false;
             this.btnOrder.Text = "Order";
             this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -189,7 +194,8 @@ namespace POS_Group5_CMPG223
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnInventory.Size = new System.Drawing.Size(200, 50);
-            this.btnInventory.TabIndex = 8;
+            this.btnInventory.TabIndex = 2;
+            this.btnInventory.TabStop = false;
             this.btnInventory.Text = "Inventory";
             this.btnInventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -210,7 +216,8 @@ namespace POS_Group5_CMPG223
             this.btnSalesOrders.Name = "btnSalesOrders";
             this.btnSalesOrders.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSalesOrders.Size = new System.Drawing.Size(200, 50);
-            this.btnSalesOrders.TabIndex = 7;
+            this.btnSalesOrders.TabIndex = 8;
+            this.btnSalesOrders.TabStop = false;
             this.btnSalesOrders.Text = "Sales Orders";
             this.btnSalesOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalesOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -232,6 +239,7 @@ namespace POS_Group5_CMPG223
             this.btnSales.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnSales.Size = new System.Drawing.Size(200, 50);
             this.btnSales.TabIndex = 1;
+            this.btnSales.TabStop = false;
             this.btnSales.Text = "Sales";
             this.btnSales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -291,6 +299,7 @@ namespace POS_Group5_CMPG223
             this.btnMin.Padding = new System.Windows.Forms.Padding(8, 5, 0, 0);
             this.btnMin.Size = new System.Drawing.Size(45, 32);
             this.btnMin.TabIndex = 3;
+            this.btnMin.TabStop = false;
             this.btnMin.Text = "▔ ";
             this.btnMin.UseVisualStyleBackColor = true;
             this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
@@ -305,6 +314,7 @@ namespace POS_Group5_CMPG223
             this.btnMax.Name = "btnMax";
             this.btnMax.Size = new System.Drawing.Size(45, 32);
             this.btnMax.TabIndex = 2;
+            this.btnMax.TabStop = false;
             this.btnMax.Text = "☐";
             this.btnMax.UseVisualStyleBackColor = true;
             this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
@@ -319,6 +329,7 @@ namespace POS_Group5_CMPG223
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(45, 32);
             this.btnClose.TabIndex = 1;
+            this.btnClose.TabStop = false;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);

@@ -71,12 +71,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmAddProduct.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAddProduct.Designer.cs">
-      <DependentUpon>FrmAddProduct.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmInventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,12 +125,6 @@
     <Compile Include="FrmSalesOrders.Designer.cs">
       <DependentUpon>FrmSalesOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSalesOrdersUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmSalesOrdersUpdate.Designer.cs">
-      <DependentUpon>FrmSalesOrdersUpdate.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSalesQuantity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,9 +158,6 @@
     <Compile Include="Methods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmAddProduct.resx">
-      <DependentUpon>FrmAddProduct.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmInventory.resx">
       <DependentUpon>FrmInventory.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,9 +184,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSalesOrders.resx">
       <DependentUpon>FrmSalesOrders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSalesOrdersUpdate.resx">
-      <DependentUpon>FrmSalesOrdersUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSalesQuantity.resx">
       <DependentUpon>FrmSalesQuantity.cs</DependentUpon>
