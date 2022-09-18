@@ -124,6 +124,34 @@ namespace POS_Group5_CMPG223
             lblHeader.Text = screenName;
         }
         #endregion
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            toolTipSales.Show("Sell products", btnSales, btnSales.Left + btnSales.Width, btnSales.Bottom - btnSales.Top - btnSales.Height * 2 / 3);
+            toolTipOrder.Show("Order products", btnOrder, btnOrder.Left + btnOrder.Width, btnOrder.Bottom - btnOrder.Top - btnOrder.Height * 2 / 3);
+            toolTipInventory.Show("Add, update or delete inventory", btnInventory, btnInventory.Left + btnInventory.Width, btnInventory.Bottom - btnInventory.Top - btnInventory.Height * 2 / 3);
+            toolTipSalesOrders.Show("Add, update or delete sales orders", btnSalesOrders, btnSalesOrders.Left + btnSalesOrders.Width, btnSalesOrders.Bottom - btnSalesOrders.Top - btnSalesOrders.Height * 2 / 3);
+            toolTipPurchaseOrder.Show("Add, update or delete purchase orders", btnPurchaseOrders, btnPurchaseOrders.Left + btnPurchaseOrders.Width, btnPurchaseOrders.Bottom - btnPurchaseOrders.Top - btnPurchaseOrders.Height * 2 / 3);
+            toolTipSupplier.Show("Add, update or delete suppliers", btnSuppliers, btnSuppliers.Left + btnSuppliers.Width, btnSuppliers.Bottom - btnSuppliers.Top - btnSuppliers.Height * 2 / 3);
+            toolTipReporting.Show("Generate reports", btnReporting, btnReporting.Left + btnReporting.Width, btnReporting.Bottom - btnReporting.Top - btnReporting.Height * 2 / 3);
+            toolTipSettings.Show("Manage app preferences", btnSettings, btnSettings.Left + btnSettings.Width, btnSettings.Bottom - btnSettings.Top - btnSettings.Height * 2 / 3);
+            //toolTipHelp.Show("Manage app preferences", btnSettings, btnSettings.Left + btnSettings.Width, btnSettings.Bottom - btnSettings.Top - btnSettings.Height * 2 / 3);
+        }
+
+        private void HideToolTips()
+        {
+            toolTipSales.Hide(this);
+            toolTipOrder.Hide(this);
+            toolTipInventory.Hide(this);
+            toolTipSalesOrders.Hide(this);
+            toolTipPurchaseOrder.Hide(this);
+            toolTipSupplier.Hide(this);
+            toolTipReporting.Hide(this);
+            toolTipSettings.Hide(this);
+            //toolTipHelp.Hide(this);
+        }
+
         #region Open Child Form
         private void OpenChildForm(Form childForm)
         {
@@ -143,6 +171,7 @@ namespace POS_Group5_CMPG223
         #region Menu Buttons
         private void btnSales_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnSales, "Sales");
             FrmSales frmSales;
             OpenChildForm(frmSales = new FrmSales());
@@ -152,6 +181,7 @@ namespace POS_Group5_CMPG223
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnInventory, "Inventory");
             FrmInventory frmInventory;
             OpenChildForm(frmInventory = new FrmInventory());
@@ -161,6 +191,7 @@ namespace POS_Group5_CMPG223
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnOrder, "Order");
             FrmOrder frmOrder;
             OpenChildForm(frmOrder = new FrmOrder());
@@ -170,6 +201,7 @@ namespace POS_Group5_CMPG223
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnSuppliers, "Suppliers");
             FrmSuppliers frmSuppliers;
             OpenChildForm(frmSuppliers = new FrmSuppliers());
@@ -179,6 +211,7 @@ namespace POS_Group5_CMPG223
 
         private void btnReporting_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnReporting, "Reporting");
             FrmReporting frmReporting;
             OpenChildForm(frmReporting = new FrmReporting());
@@ -188,6 +221,7 @@ namespace POS_Group5_CMPG223
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnSettings, "Settings");
             FrmSettings frmSettings;
             OpenChildForm(frmSettings = new FrmSettings());
@@ -197,6 +231,7 @@ namespace POS_Group5_CMPG223
 
         private void btnSalesOrders_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnSalesOrders, "Sales Orders");
             FrmSalesOrders frmSalesOrders;
             OpenChildForm(frmSalesOrders = new FrmSalesOrders());
@@ -206,6 +241,7 @@ namespace POS_Group5_CMPG223
 
         private void btnPurchaseOrders_Click(object sender, EventArgs e)
         {
+            HideToolTips();
             MenuSelect(btnPurchaseOrders, "Purchase Orders");
             FrmPurchaseOrders frmPurchaseOrders;
             OpenChildForm(frmPurchaseOrders = new FrmPurchaseOrders());

@@ -29,6 +29,7 @@ namespace POS_Group5_CMPG223
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnSettings = new FontAwesome.Sharp.IconButton();
             this.btnReporting = new FontAwesome.Sharp.IconButton();
@@ -47,6 +48,14 @@ namespace POS_Group5_CMPG223
             this.btnClose = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.toolTipSales = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSalesOrders = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipInventory = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipOrder = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipPurchaseOrder = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSupplier = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipReporting = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipSettings = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMenu.SuspendLayout();
             this.pnlName.SuspendLayout();
             this.pnlHeader.SuspendLayout();
@@ -393,6 +402,14 @@ namespace POS_Group5_CMPG223
         private FontAwesome.Sharp.IconButton btnReporting;
         private FontAwesome.Sharp.IconButton btnSuppliers;
         public System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.ToolTip toolTipSales;
+        private System.Windows.Forms.ToolTip toolTipSalesOrders;
+        private System.Windows.Forms.ToolTip toolTipInventory;
+        private System.Windows.Forms.ToolTip toolTipOrder;
+        private System.Windows.Forms.ToolTip toolTipPurchaseOrder;
+        private System.Windows.Forms.ToolTip toolTipSupplier;
+        private System.Windows.Forms.ToolTip toolTipReporting;
+        private System.Windows.Forms.ToolTip toolTipSettings;
     }
 }
 
