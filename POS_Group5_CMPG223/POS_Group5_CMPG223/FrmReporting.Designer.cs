@@ -31,6 +31,8 @@
             this.tabPageDataGridView = new System.Windows.Forms.TabPage();
             this.dataGridViewReports = new System.Windows.Forms.DataGridView();
             this.tabPageDataSelection = new System.Windows.Forms.TabPage();
+            this.panelDataGridViewSummarizedReports = new System.Windows.Forms.Panel();
+            this.dataGridViewSummarizedReport = new System.Windows.Forms.DataGridView();
             this.labelListBox = new System.Windows.Forms.Label();
             this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
             this.labelEndDate = new System.Windows.Forms.Label();
@@ -41,14 +43,12 @@
             this.buttonGenerateReport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControlReporting = new System.Windows.Forms.TabControl();
-            this.panelDataGridViewSummarizedReports = new System.Windows.Forms.Panel();
-            this.dataGridViewSummarizedReport = new System.Windows.Forms.DataGridView();
             this.tabPageDataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReports)).BeginInit();
             this.tabPageDataSelection.SuspendLayout();
-            this.tabControlReporting.SuspendLayout();
             this.panelDataGridViewSummarizedReports.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSummarizedReport)).BeginInit();
+            this.tabControlReporting.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPageDataGridView
@@ -93,6 +93,27 @@
             this.tabPageDataSelection.TabIndex = 0;
             this.tabPageDataSelection.Text = "Data Selection";
             this.tabPageDataSelection.UseVisualStyleBackColor = true;
+            // 
+            // panelDataGridViewSummarizedReports
+            // 
+            this.panelDataGridViewSummarizedReports.Controls.Add(this.dataGridViewSummarizedReport);
+            this.panelDataGridViewSummarizedReports.Location = new System.Drawing.Point(616, 62);
+            this.panelDataGridViewSummarizedReports.Name = "panelDataGridViewSummarizedReports";
+            this.panelDataGridViewSummarizedReports.Size = new System.Drawing.Size(455, 605);
+            this.panelDataGridViewSummarizedReports.TabIndex = 12;
+            // 
+            // dataGridViewSummarizedReport
+            // 
+            this.dataGridViewSummarizedReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewSummarizedReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSummarizedReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSummarizedReport.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewSummarizedReport.Name = "dataGridViewSummarizedReport";
+            this.dataGridViewSummarizedReport.ReadOnly = true;
+            this.dataGridViewSummarizedReport.RowHeadersWidth = 51;
+            this.dataGridViewSummarizedReport.RowTemplate.Height = 24;
+            this.dataGridViewSummarizedReport.Size = new System.Drawing.Size(455, 605);
+            this.dataGridViewSummarizedReport.TabIndex = 0;
             // 
             // labelListBox
             // 
@@ -178,9 +199,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(19, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(227, 16);
+            this.label1.Size = new System.Drawing.Size(234, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Wich report do you want to generate?";
+            this.label1.Text = "Which report do you want to generate?";
             // 
             // tabControlReporting
             // 
@@ -192,27 +213,6 @@
             this.tabControlReporting.SelectedIndex = 0;
             this.tabControlReporting.Size = new System.Drawing.Size(1106, 704);
             this.tabControlReporting.TabIndex = 0;
-            // 
-            // panelDataGridViewSummarizedReports
-            // 
-            this.panelDataGridViewSummarizedReports.Controls.Add(this.dataGridViewSummarizedReport);
-            this.panelDataGridViewSummarizedReports.Location = new System.Drawing.Point(616, 62);
-            this.panelDataGridViewSummarizedReports.Name = "panelDataGridViewSummarizedReports";
-            this.panelDataGridViewSummarizedReports.Size = new System.Drawing.Size(455, 605);
-            this.panelDataGridViewSummarizedReports.TabIndex = 12;
-            // 
-            // dataGridViewSummarizedReport
-            // 
-            this.dataGridViewSummarizedReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewSummarizedReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSummarizedReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSummarizedReport.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewSummarizedReport.Name = "dataGridViewSummarizedReport";
-            this.dataGridViewSummarizedReport.ReadOnly = true;
-            this.dataGridViewSummarizedReport.RowHeadersWidth = 51;
-            this.dataGridViewSummarizedReport.RowTemplate.Height = 24;
-            this.dataGridViewSummarizedReport.Size = new System.Drawing.Size(455, 605);
-            this.dataGridViewSummarizedReport.TabIndex = 0;
             // 
             // FrmReporting
             // 
@@ -226,9 +226,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReports)).EndInit();
             this.tabPageDataSelection.ResumeLayout(false);
             this.tabPageDataSelection.PerformLayout();
-            this.tabControlReporting.ResumeLayout(false);
             this.panelDataGridViewSummarizedReports.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSummarizedReport)).EndInit();
+            this.tabControlReporting.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
