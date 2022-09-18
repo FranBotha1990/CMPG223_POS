@@ -33,16 +33,20 @@ namespace POS_Group5_CMPG223
             dateTimePickerEndDate.Value = DateTime.Today;
             //Back Colours
             this.BackColor = Methods.clrForms;
-            //buttonGenerateReport.BackColor = Methods.clrForms;
-            //labelDateRange.BackColor = Methods.clrForms;
-            //labelEndDate.BackColor = Methods.clrForms;
-            //labelStartDate.BackColor = Methods.clrForms;
+            gbxReportOptions.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
+            panelDataGridViewSummarizedReports.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
+            pnlHeader.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
 
             //Fore Colours
-            //buttonGenerateReport.ForeColor = Methods.clrForms;
-            //labelDateRange.ForeColor = Methods.clrForms;
-            //labelEndDate.ForeColor = Methods.clrForms;
-            //labelStartDate.ForeColor = Methods.clrForms;
+            buttonGenerateReport.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            labelDateRange.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            labelEndDate.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            labelStartDate.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblWhichReport.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            gbxReportOptions.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            buttonGenerateReport.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblSummary.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            lblHeader.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
 
             try
             {
@@ -81,7 +85,7 @@ namespace POS_Group5_CMPG223
                     adapterReport.Fill(dataSetReport, "PRODUCT");
                     dataGridViewReports.DataSource = dataSetReport;
                     dataGridViewReports.DataMember = "PRODUCT";
-                    Methods.SQLCon.Close();   
+                    Methods.SQLCon.Close();
                 }
                 catch (Exception ex)
                 {
@@ -126,7 +130,7 @@ namespace POS_Group5_CMPG223
                     adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                     dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                     dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                    
+
                     commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', 
                                            PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
                                            FROM PRODUCT
@@ -139,6 +143,7 @@ namespace POS_Group5_CMPG223
                     adapterReport.Fill(dataSetReport, "PRODUCT");
                     dataGridViewReports.DataSource = dataSetReport;
                     dataGridViewReports.DataMember = "PRODUCT";
+                    changeLabels();
 
                     Methods.SQLCon.Close();
                 }
@@ -173,6 +178,8 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+
+                        changeLabels();
                     }
                     catch(Exception ex)
                     {
@@ -203,6 +210,7 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
+                        changeLabels();
                     }
                     catch (Exception ex)
                     {
@@ -237,6 +245,7 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        changeLabels();
                     }
                     catch (Exception ex)
                     {
@@ -273,6 +282,7 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        changeLabels();
                     }
                     catch (Exception ex)
                     {
@@ -316,6 +326,7 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        changeLabels();
                     }
                     catch (Exception ex)
                     {
@@ -359,6 +370,7 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        changeLabels();
                     }
                     catch (Exception ex)
                     {
@@ -402,6 +414,7 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        changeLabels();
                     }
                     catch (Exception ex)
                     {
@@ -420,6 +433,12 @@ namespace POS_Group5_CMPG223
         private void labelListBox_Click(object sender, EventArgs e)
         {
 
+        }
+        #endregion
+        #region Change Labels
+        private void changeLabels()
+        {
+            lblHeader.Text = "Report: " + comboBoxReports.SelectedItem.ToString();
         }
         #endregion
     }
