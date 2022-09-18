@@ -426,7 +426,7 @@ namespace POS_Group5_CMPG223
                                            SU.Supplier_ID AS 'Supplier ID', 
                                            Supplier_name AS 'Supplier Name', 
                                            Purchase_date AS 'Purchase Date',
-                                           Received AS 'Recieved',
+                                           Received AS 'Recieved'
                                            FROM PURCHASE_ORDER AS PO
                                            LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
                                            Methods.SQLCon);
