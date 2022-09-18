@@ -74,48 +74,6 @@ namespace POS_Group5_CMPG223
                     lbxItems.Items.Clear();
                     lblTotalAmnt.Text = " ";
 
-                    //Adjust the quantity in products
-                    try
-                    {
-                        Methods.SQLCon.Open();
-
-                        SqlDataReader dataReader;
-                        command = new SqlCommand($"SELECT POI.Purchase_ID, " +
-                                                   "POI.Product_ID, " +
-                                                   "POI.Quantity_purchased, " +
-                                                   "POI.Cost_price, " +
-                                                   "PR.Description, " +
-                                                   "PR.Quantity_in_stock " +
-                                                   "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                                   "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                                   $"WHERE POI.Purchase_ID LIKE '{selector}'",
-                                                   Methods.SQLCon);
-                        dataReader = command.ExecuteReader();
-
-                        while (dataReader.Read())
-                        {
-                            product = Convert.ToInt32(dataReader.GetValue(1));
-                            quantity = Convert.ToInt32(dataReader.GetValue(2));
-                            current = Convert.ToInt32(dataReader.GetValue(5));
-
-                            Methods.SQLCon2.Open();
-
-                            commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current - quantity}' " +
-                                                           $"WHERE Product_id LIKE '{product}'", Methods.SQLCon2);
-                            adapter.UpdateCommand = commandUpdate;
-                            adapter.UpdateCommand.ExecuteNonQuery();
-
-                            Methods.SQLCon2.Close();
-                        }
-
-                        Methods.SQLCon.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        //Error message
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
                     //Remove the PO Items
                     try
                     {
@@ -299,24 +257,6 @@ namespace POS_Group5_CMPG223
                                                Methods.SQLCon);
                         adapter.DeleteCommand = commandDelete;
                         adapter.DeleteCommand.ExecuteNonQuery();
-
-                        Methods.SQLCon.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        //Error message
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    //Update the Product with the new quantity
-                    try
-                    {
-                        Methods.SQLCon.Open();
-
-                        commandUpdate = new SqlCommand($"UPDATE PRODUCT SET Quantity_in_stock = '{current - quantity}' " +
-                                                       $"WHERE Product_id LIKE '{product}'", Methods.SQLCon);
-                        adapter.UpdateCommand = commandUpdate;
-                        adapter.UpdateCommand.ExecuteNonQuery();
 
                         Methods.SQLCon.Close();
                     }
