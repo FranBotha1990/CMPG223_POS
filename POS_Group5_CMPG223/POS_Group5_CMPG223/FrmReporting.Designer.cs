@@ -90,9 +90,9 @@
             this.lblHeader.MinimumSize = new System.Drawing.Size(38, 41);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Padding = new System.Windows.Forms.Padding(8);
-            this.lblHeader.Size = new System.Drawing.Size(95, 53);
+            this.lblHeader.Size = new System.Drawing.Size(128, 53);
             this.lblHeader.TabIndex = 0;
-            this.lblHeader.Text = "Test";
+            this.lblHeader.Text = "Report";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelDataGridViewSummarizedReports
@@ -270,7 +270,7 @@
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.panelDataGridViewSummarizedReports);
             this.Controls.Add(this.gbxReportOptions);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmReporting";
             this.Text = "FrmReporting";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReports)).EndInit();
