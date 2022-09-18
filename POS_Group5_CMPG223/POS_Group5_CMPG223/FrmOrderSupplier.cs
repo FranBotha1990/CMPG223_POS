@@ -27,6 +27,8 @@ namespace POS_Group5_CMPG223
         {
             //Back Color
             this.BackColor = Methods.clrForms;
+            //Fore Color
+            btnOk.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             //Count Suppliers
             try
             {
@@ -65,9 +67,18 @@ namespace POS_Group5_CMPG223
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            supplierID = int.Parse(arrSuppliers[cbxSupplier.SelectedIndex, 0]);
-            bOk = true;
-            this.Close();
+            if (cbxSupplier.SelectedIndex != -1)
+            {
+                supplierID = int.Parse(arrSuppliers[cbxSupplier.SelectedIndex, 0]);
+                bOk = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No supplier was selected", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Received
         }
     }
 }

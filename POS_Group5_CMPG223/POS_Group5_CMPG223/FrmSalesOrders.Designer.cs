@@ -74,7 +74,7 @@ namespace POS_Group5_CMPG223
             this.lblTotalAmnt.Name = "lblTotalAmnt";
             this.lblTotalAmnt.Size = new System.Drawing.Size(215, 20);
             this.lblTotalAmnt.TabIndex = 3;
-            this.lblTotalAmnt.Text = "R00.00";
+            this.lblTotalAmnt.Text = "R 0";
             this.lblTotalAmnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotal

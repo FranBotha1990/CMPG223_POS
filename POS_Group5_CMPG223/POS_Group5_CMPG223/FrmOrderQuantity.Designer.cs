@@ -29,28 +29,18 @@ namespace POS_Group5_CMPG223
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnOk = new System.Windows.Forms.Button();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(87, 90);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // txtQuantity
             // 
             this.txtQuantity.Location = new System.Drawing.Point(12, 25);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(150, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(226, 20);
             this.txtQuantity.TabIndex = 2;
             // 
             // lblQuantity
@@ -75,18 +65,30 @@ namespace POS_Group5_CMPG223
             // 
             this.txtPrice.Location = new System.Drawing.Point(12, 64);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(150, 20);
+            this.txtPrice.Size = new System.Drawing.Size(226, 20);
             this.txtPrice.TabIndex = 5;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Location = new System.Drawing.Point(0, 92);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(250, 50);
+            this.btnOk.TabIndex = 7;
+            this.btnOk.Text = "Okay";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // FrmOrderQuantity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(174, 121);
+            this.ClientSize = new System.Drawing.Size(250, 142);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.lblQuantity);
-            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txtQuantity);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmOrderQuantity";
@@ -98,11 +100,10 @@ namespace POS_Group5_CMPG223
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Button btnOk;
     }
 }

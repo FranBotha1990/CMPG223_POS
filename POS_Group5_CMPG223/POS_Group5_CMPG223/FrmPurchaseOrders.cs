@@ -44,88 +44,14 @@ namespace POS_Group5_CMPG223
 
             //Fill data grid with all PO's
             fillDataGrid();
+            OnCellClick();
         }
         #endregion
 
         #region PO Click Action
         private void dgvPurchaseOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            lbxItems.Items.Clear();
-            int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
-            double total = 0;
-
-            //Enable buttons based on receive value true/false
-            try
-            {
-                Methods.SQLCon.Open();
-
-                SqlDataReader dataReader;
-                command = new SqlCommand($"SELECT Purchase_ID, " +
-                                            "Received, " +
-                                            "Receive_date " +
-                                            "FROM PURCHASE_ORDER " +
-                                            $"WHERE Purchase_ID LIKE '{selector}'",
-                                            Methods.SQLCon);
-                dataReader = command.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    if (Convert.ToBoolean(dataReader.GetValue(1)) == false)
-                    {
-                        btnReceive.Enabled = true;
-                        btnDelete.Enabled = true;
-                        btnRemove.Enabled = true;
-                    }
-                    else
-                    {
-                        btnReceive.Enabled = false;
-                        btnDelete.Enabled = false;
-                        btnRemove.Enabled = false;
-                    }
-                }
-
-                Methods.SQLCon.Close();
-
-            }
-            catch (SqlException ex)
-            {
-                //Error message
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            //Join the POItems and Product tables by Product_ID
-            try
-            {
-                Methods.SQLCon.Open();
-
-                SqlDataReader dataReader;
-                command = new SqlCommand($"SELECT POI.Purchase_ID, " +
-                                            "POI.Product_ID, " +
-                                            "POI.Quantity_purchased, " +
-                                            "POI.Cost_price, " +
-                                            "PR.Description " +
-                                            "FROM PURCHASE_ORDER_ITEM AS POI " +
-                                            "INNER JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
-                                            $"WHERE POI.Purchase_ID LIKE '{selector}'",
-                                            Methods.SQLCon);
-                dataReader = command.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    string str = string.Format("{0} {1} {2} {3} {4}", dataReader.GetValue(2), " * ", dataReader.GetValue(4), " @ R", Convert.ToDouble(dataReader.GetValue(3)));
-                    lbxItems.Items.Add(str);
-                    total += (Convert.ToDouble(dataReader.GetValue(3)) * Convert.ToDouble(dataReader.GetValue(2)));
-                }
-
-                lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total)); ;
-
-                Methods.SQLCon.Close();
-            }
-            catch (SqlException ex)
-            {
-                //Error message
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            OnCellClick();
         }
         #endregion
         #region Delete PO Button
@@ -410,6 +336,85 @@ namespace POS_Group5_CMPG223
         #endregion
 
         #region PO Methods
+        private void OnCellClick()
+        {
+            lbxItems.Items.Clear();
+            int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
+            double total = 0;
+
+            //Enable buttons based on receive value true/false
+            try
+            {
+                Methods.SQLCon.Open();
+
+                SqlDataReader dataReader;
+                command = new SqlCommand($"SELECT Purchase_ID, " +
+                                            "Received, " +
+                                            "Receive_date " +
+                                            "FROM PURCHASE_ORDER " +
+                                            $"WHERE Purchase_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
+                dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    if (Convert.ToBoolean(dataReader.GetValue(1)) == false)
+                    {
+                        btnReceive.Enabled = true;
+                        btnDelete.Enabled = true;
+                        btnRemove.Enabled = true;
+                    }
+                    else
+                    {
+                        btnReceive.Enabled = false;
+                        btnDelete.Enabled = false;
+                        btnRemove.Enabled = false;
+                    }
+                }
+
+                Methods.SQLCon.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Join the POItems and Product tables by Product_ID
+            try
+            {
+                Methods.SQLCon.Open();
+
+                SqlDataReader dataReader;
+                command = new SqlCommand($"SELECT POI.Purchase_ID, " +
+                                            "POI.Product_ID, " +
+                                            "POI.Quantity_purchased, " +
+                                            "POI.Cost_price, " +
+                                            "PR.Description " +
+                                            "FROM PURCHASE_ORDER_ITEM AS POI " +
+                                            "INNER JOIN PRODUCT AS PR ON PR.Product_ID = POI.Product_ID " +
+                                            $"WHERE POI.Purchase_ID LIKE '{selector}'",
+                                            Methods.SQLCon);
+                dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    string str = string.Format("{0} {1} {2} {3} {4}", dataReader.GetValue(2), " * ", dataReader.GetValue(4), " @ R", Convert.ToDouble(dataReader.GetValue(3)));
+                    lbxItems.Items.Add(str);
+                    total += (Convert.ToDouble(dataReader.GetValue(3)) * Convert.ToDouble(dataReader.GetValue(2)));
+                }
+
+                lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total)); ;
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void fillDataGrid()
         {
             //Fill data grid with all PO's
@@ -420,7 +425,8 @@ namespace POS_Group5_CMPG223
                 command = new SqlCommand(@"SELECT Purchase_ID AS 'PO Number', 
                                            SU.Supplier_ID AS 'Supplier ID', 
                                            Supplier_name AS 'Supplier Name', 
-                                           Purchase_date AS 'Purchase Date'
+                                           Purchase_date AS 'Purchase Date',
+                                           Received AS 'Recieved',
                                            FROM PURCHASE_ORDER AS PO
                                            LEFT JOIN SUPPLIER AS SU ON SU.Supplier_ID = PO.Supplier_ID",
                                            Methods.SQLCon);

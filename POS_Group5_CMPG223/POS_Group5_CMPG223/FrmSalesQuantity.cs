@@ -26,16 +26,22 @@ namespace POS_Group5_CMPG223
         public void LoadGUI()
         {
             this.BackColor = Methods.clrForms;
-            txtQuantity.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             btnOk.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
         }
         #endregion
         #region Ok Button
         private void btnOk_Click(object sender, EventArgs e)
         {
-            bOk = true;
-            quantity = int.Parse(txtQuantity.Text);
-            this.Close();
+            if (int.TryParse(txtQuantity.Text, out int quant))
+            {
+                bOk = true;
+                quantity = int.Parse(txtQuantity.Text);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Quantity should be an integer", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
     }

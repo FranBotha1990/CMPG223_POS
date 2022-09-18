@@ -58,6 +58,7 @@ namespace POS_Group5_CMPG223
                 //Error message
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            OnCellClick();
 
         }
         #endregion
@@ -152,44 +153,7 @@ namespace POS_Group5_CMPG223
         #region SO Click Action
         private void dgvSalesOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            lbxItems.Items.Clear();
-
-            int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
-            double total = 0;
-
-            //Fill data grid with Sales Orders
-            try
-            {
-                Methods.SQLCon.Open();
-
-                SqlDataReader dataReader;
-                command = new SqlCommand($"SELECT SOI.Sales_ID, " +
-                                           "SOI.Product_ID, " +
-                                           "SOI.Quantity_sold, " +
-                                           "PR.Sell_price, " +
-                                           "PR.Description " +
-                                           "FROM SALES_ORDER_ITEM AS SOI " +
-                                           "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = SOI.Product_ID " +
-                                           $"WHERE SOI.Sales_ID LIKE '{selector}'",
-                                           Methods.SQLCon);
-                dataReader = command.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    string str = string.Format("{0} {1} {2} {3} {4}", dataReader.GetValue(2), " * ", dataReader.GetValue(4), " @ R", Convert.ToDouble(dataReader.GetValue(3)));
-                    lbxItems.Items.Add(str);
-                    total += (Convert.ToDouble(dataReader.GetValue(3)) * Convert.ToDouble(dataReader.GetValue(2)));
-                }
-
-                lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total)); ;
-
-                Methods.SQLCon.Close();
-            }
-            catch (SqlException ex)
-            {
-                //Error message
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            OnCellClick();
         }
         #endregion
         #region Remove Items Button
@@ -329,5 +293,46 @@ namespace POS_Group5_CMPG223
             }
         }
         #endregion
+        private void OnCellClick()
+        {
+            lbxItems.Items.Clear();
+
+            int selector = (int)dgvSalesOrders.CurrentRow.Cells[0].Value;
+            double total = 0;
+
+            //Fill data grid with Sales Orders
+            try
+            {
+                Methods.SQLCon.Open();
+
+                SqlDataReader dataReader;
+                command = new SqlCommand($"SELECT SOI.Sales_ID, " +
+                                           "SOI.Product_ID, " +
+                                           "SOI.Quantity_sold, " +
+                                           "PR.Sell_price, " +
+                                           "PR.Description " +
+                                           "FROM SALES_ORDER_ITEM AS SOI " +
+                                           "LEFT JOIN PRODUCT AS PR ON PR.Product_ID = SOI.Product_ID " +
+                                           $"WHERE SOI.Sales_ID LIKE '{selector}'",
+                                           Methods.SQLCon);
+                dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    string str = string.Format("{0} {1} {2} {3} {4}", dataReader.GetValue(2), " * ", dataReader.GetValue(4), " @ R", Convert.ToDouble(dataReader.GetValue(3)));
+                    lbxItems.Items.Add(str);
+                    total += (Convert.ToDouble(dataReader.GetValue(3)) * Convert.ToDouble(dataReader.GetValue(2)));
+                }
+
+                lblTotalAmnt.Text = string.Format("{0} {1:0.00}", "R", Convert.ToDouble(total)); ;
+
+                Methods.SQLCon.Close();
+            }
+            catch (SqlException ex)
+            {
+                //Error message
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

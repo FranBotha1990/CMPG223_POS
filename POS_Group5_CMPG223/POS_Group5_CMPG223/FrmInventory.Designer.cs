@@ -70,10 +70,9 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(288, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(357, 441);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // btnDelete
             // 
@@ -164,7 +163,7 @@
             this.pnlItems.Controls.Add(this.panel1);
             this.pnlItems.Controls.Add(this.pnlButtons);
             this.pnlItems.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlItems.Location = new System.Drawing.Point(308, 0);
+            this.pnlItems.Location = new System.Drawing.Point(377, 0);
             this.pnlItems.Name = "pnlItems";
             this.pnlItems.Size = new System.Drawing.Size(250, 461);
             this.pnlItems.TabIndex = 10;
@@ -268,14 +267,14 @@
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlForm.Size = new System.Drawing.Size(308, 461);
+            this.pnlForm.Size = new System.Drawing.Size(377, 461);
             this.pnlForm.TabIndex = 11;
             // 
             // FrmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 461);
+            this.ClientSize = new System.Drawing.Size(627, 461);
             this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.pnlItems);
             this.Margin = new System.Windows.Forms.Padding(2);

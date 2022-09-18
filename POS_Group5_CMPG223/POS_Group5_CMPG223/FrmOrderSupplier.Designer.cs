@@ -29,35 +29,37 @@ namespace POS_Group5_CMPG223
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnOk = new System.Windows.Forms.Button();
             this.cbxSupplier = new System.Windows.Forms.ComboBox();
+            this.btnOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(87, 38);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // cbxSupplier
             // 
             this.cbxSupplier.FormattingEnabled = true;
             this.cbxSupplier.Location = new System.Drawing.Point(12, 11);
             this.cbxSupplier.Name = "cbxSupplier";
-            this.cbxSupplier.Size = new System.Drawing.Size(150, 21);
+            this.cbxSupplier.Size = new System.Drawing.Size(226, 21);
             this.cbxSupplier.TabIndex = 4;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Location = new System.Drawing.Point(0, 43);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(250, 50);
+            this.btnOk.TabIndex = 5;
+            this.btnOk.Text = "Okay";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // FrmOrderSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(174, 66);
-            this.Controls.Add(this.cbxSupplier);
+            this.ClientSize = new System.Drawing.Size(250, 93);
             this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.cbxSupplier);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmOrderSupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -67,8 +69,7 @@ namespace POS_Group5_CMPG223
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.ComboBox cbxSupplier;
+        private System.Windows.Forms.Button btnOk;
     }
 }

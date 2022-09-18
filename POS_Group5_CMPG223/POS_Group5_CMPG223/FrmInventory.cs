@@ -171,6 +171,7 @@ namespace POS_Group5_CMPG223
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            selector = (int)dataGridView1.CurrentRow.Cells[0].Value;
             if (selector != -1)
             {
                 try
@@ -205,6 +206,7 @@ namespace POS_Group5_CMPG223
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            selector = (int)dataGridView1.CurrentRow.Cells[0].Value;
             if (selector != -1)
             {
                 bool flag = false;
@@ -259,7 +261,7 @@ namespace POS_Group5_CMPG223
                 }
                 else
                 {
-                    MessageBox.Show("Product could not be deleted", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Product cannot be deleted as it is referenced in an order", "Reference Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 refresh();
             }
@@ -267,11 +269,6 @@ namespace POS_Group5_CMPG223
             {
                 MessageBox.Show("Please select a product", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            selector = (int)dataGridView1.CurrentRow.Cells[0].Value;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace POS_Group5_CMPG223
             //Fore Color
             lblPrice.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
             lblQuantity.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
+            btnOk.ForeColor = Methods.DetermineFrontColor(Methods.clrMenu);
         }
 
         public FrmOrderQuantity(bool bPrior)
@@ -31,24 +32,46 @@ namespace POS_Group5_CMPG223
             InitializeComponent();
             if (bPrior)
             {
+                txtQuantity.Top = 12;
+                txtQuantity.Left = 12;
                 txtPrice.Visible = false;
                 lblPrice.Visible = false;
-                this.Width = 190;
-                this.Height = 116;
+                lblQuantity.Visible = false;
+                this.Width = 266;
+                this.Height = 132;
                 this.Text = "Quantity";
-                btnOk.Left = 87;
-                btnOk.Top = 50;
                 this.bPrior = true;
             }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            quantity = int.Parse(txtQuantity.Text);
-            if (!bPrior)
-                price = double.Parse(txtPrice.Text);
-            bOk = true;
-            this.Close();
+            if (int.TryParse(txtQuantity.Text, out int quant))
+            {
+                quantity = int.Parse(txtQuantity.Text);
+                if (!bPrior)
+                {
+                    if (double.TryParse(txtPrice.Text, out double pri))
+                    {
+                        price = double.Parse(txtPrice.Text);
+                        bOk = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Price is invalid", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    bOk = true;
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Quantity is invalid", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
