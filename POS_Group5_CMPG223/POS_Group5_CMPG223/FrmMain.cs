@@ -214,7 +214,7 @@ namespace POS_Group5_CMPG223
             activeForm = frmPurchaseOrders;
         }
         #endregion
-
+        #region Tooltips
         private void btnSales_MouseHover(object sender, EventArgs e)
         {
             toolTipSales.Show("Sell products", btnSales, btnSales.Left + btnSales.Width, btnSales.Bottom - btnSales.Top - btnSales.Height * 2 / 3);
@@ -294,5 +294,6 @@ namespace POS_Group5_CMPG223
         {
             toolTipSettings.Hide(this);
         }
+        #endregion
     }
 }
