@@ -374,6 +374,7 @@ namespace POS_Group5_CMPG223
             this.MinimumSize = new System.Drawing.Size(772, 646);
             this.Name = "frmMain";
             this.Text = "Main";
+            this.LocationChanged += new System.EventHandler(this.frmMain_LocationChanged);
             this.pnlMenu.ResumeLayout(false);
             this.pnlName.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
