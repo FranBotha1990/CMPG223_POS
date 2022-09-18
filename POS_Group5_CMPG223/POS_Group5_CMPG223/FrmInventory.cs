@@ -132,7 +132,7 @@ namespace POS_Group5_CMPG223
 
         private void btnAddToDB_Click(object sender, EventArgs e)
         {
-            if (double.TryParse(txtSellPrice.Text, out double price))
+            if (double.TryParse(txtSellPrice.Text, out double price) && txtDescription.Text != "")
             {
                 try
                 {
@@ -143,7 +143,7 @@ namespace POS_Group5_CMPG223
                     adapter.InsertCommand = cmd;
                     adapter.InsertCommand.ExecuteNonQuery();
                     Methods.SQLCon.Close();
-                    MessageBox.Show("Entry successfully entered.");
+                    MessageBox.Show("Entry successfully entered", "Product Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     refresh();
                     txtSellPrice.Text = "";
                     txtDescription.Text = "";
@@ -153,6 +153,10 @@ namespace POS_Group5_CMPG223
                 {
                     MessageBox.Show(error.Message);
                 }                   
+            }
+            else
+            {
+                MessageBox.Show("Name or price is invalid", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -185,6 +189,7 @@ namespace POS_Group5_CMPG223
                         adapter.DeleteCommand.ExecuteNonQuery();
                         Methods.SQLCon.Close();
                         refresh();
+                        MessageBox.Show("Entry successfully updated", "Product Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (SqlException error)
@@ -194,7 +199,7 @@ namespace POS_Group5_CMPG223
             }
             else
             {
-                MessageBox.Show("Please select a record", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a product", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -245,6 +250,7 @@ namespace POS_Group5_CMPG223
                         adapter.DeleteCommand = cmdDelete;
                         adapter.DeleteCommand.ExecuteNonQuery();
                         Methods.SQLCon.Close();
+                        MessageBox.Show("Entry successfully deleted", "Record Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (SqlException error)
                     {
@@ -253,13 +259,13 @@ namespace POS_Group5_CMPG223
                 }
                 else
                 {
-                    MessageBox.Show("A sales order already contains this product, therefor it can not be deleted.");
+                    MessageBox.Show("Product could not be deleted", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 refresh();
             }
             else
             {
-                MessageBox.Show("Please select a record", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a product", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
