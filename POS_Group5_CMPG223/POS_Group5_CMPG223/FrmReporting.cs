@@ -154,7 +154,7 @@ namespace POS_Group5_CMPG223
                     while (readerReportTotal.Read())
                     {
                         
-                        if(readerReportTotal.GetValue(0) == null)
+                        if(readerReportTotal.GetValue(0) == DBNull.Value)
                         {
                             listBoxReports.Items.Add("Total Sales Today = R 0.00");
                         }
@@ -255,7 +255,7 @@ namespace POS_Group5_CMPG223
                     readerReportTotal = commandReportTotal.ExecuteReader();
                     while (readerReportTotal.Read())
                     {
-                        if (readerReportTotal.GetValue(0) == null)
+                        if (readerReportTotal.GetValue(0) == DBNull.Value)
                         {
                             listBoxReports.Items.Add("Total Sales Between " + dateTimePickerStartDate.Value.ToString("yyyy/MM/dd") + " and " + dateTimePickerEndDate.Value.ToString("yyyy/MM/dd") + "\n = R0.00");
                         }
@@ -330,7 +330,7 @@ namespace POS_Group5_CMPG223
 
                         while (readerReportTotal.Read())
                         {
-                            if (readerReportTotal.GetValue(0) == null)
+                            if (readerReportTotal.GetValue(0) == DBNull.Value)
                             {
                                 listBoxReports.Items.Add("Total Purchases Between " + dateTimePickerStartDate.Value.ToString("yyyy/MM/dd") + " and " + dateTimePickerEndDate.Value.ToString("yyyy/MM/dd") + "\n = R0.00");
                             }
@@ -440,7 +440,7 @@ namespace POS_Group5_CMPG223
                         readerReportTotal = commandReportTotal.ExecuteReader();
                         while (readerReportTotal.Read())
                         {
-                            if (readerReportTotal.GetValue(0) == null)
+                            if (readerReportTotal.GetValue(0) == DBNull.Value)
                             {
                                 listBoxReports.Items.Add("Total Sales = R0.00");
                             }
@@ -526,7 +526,7 @@ namespace POS_Group5_CMPG223
 
                         while (readerReportTotal.Read())
                         {
-                            if (readerReportTotal.GetValue(0) == null)
+                            if (readerReportTotal.GetValue(0) == DBNull.Value)
                             {
                                 listBoxReports.Items.Add("Total Cost of Purchases = R0.00");
                             }
@@ -614,7 +614,7 @@ namespace POS_Group5_CMPG223
                         while (readerReportTotal.Read())
                         {
 
-                            if (readerReportTotal.GetValue(0) == null)
+                            if (readerReportTotal.GetValue(0) == DBNull.Value)
                             {
                                 listBoxReports.Items.Add("Total Sales Today = R 0.00");
                             }
@@ -683,7 +683,7 @@ namespace POS_Group5_CMPG223
                         while (readerReportTotal.Read())
                         {
 
-                            if (readerReportTotal.GetValue(0) == null)
+                            if (readerReportTotal.GetValue(0) == DBNull.Value)
                             {
                                 listBoxReports.Items.Add("Total Sales The Past Week = R 0.00");
                             }
@@ -751,7 +751,7 @@ namespace POS_Group5_CMPG223
                         while (readerReportTotal.Read())
                         {
 
-                            if (readerReportTotal.GetValue(0) == null)
+                            if (readerReportTotal.GetValue(0) == DBNull.Value)
                             {
                                 listBoxReports.Items.Add("Total Sales The Past Month = R 0.00");
                             }
