@@ -171,7 +171,7 @@ namespace POS_Group5_CMPG223
                     //Set PO to received = true
                     Methods.SQLCon.Open();
 
-                    commandUpdate = new SqlCommand($"UPDATE PURCHASE_ORDER SET Received = '{itsTrue}' " +
+                    commandUpdate = new SqlCommand($"UPDATE PURCHASE_ORDER SET Received = '{itsTrue}', Receive_date = '{DateTime.Now.Date}' " +
                                                    $"WHERE Purchase_ID LIKE '{selector}'", Methods.SQLCon);
                     adapter.UpdateCommand = commandUpdate;
                     adapter.UpdateCommand.ExecuteNonQuery();
