@@ -100,6 +100,8 @@ namespace POS_Group5_CMPG223
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);
+            this.btnSettings.MouseHover += new System.EventHandler(this.btnSettings_MouseHover);
             // 
             // btnReporting
             // 
@@ -122,6 +124,8 @@ namespace POS_Group5_CMPG223
             this.btnReporting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReporting.UseVisualStyleBackColor = true;
             this.btnReporting.Click += new System.EventHandler(this.btnReporting_Click);
+            this.btnReporting.MouseLeave += new System.EventHandler(this.btnReporting_MouseLeave);
+            this.btnReporting.MouseHover += new System.EventHandler(this.btnReporting_MouseHover);
             // 
             // btnSuppliers
             // 
@@ -144,6 +148,8 @@ namespace POS_Group5_CMPG223
             this.btnSuppliers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSuppliers.UseVisualStyleBackColor = true;
             this.btnSuppliers.Click += new System.EventHandler(this.btnSuppliers_Click);
+            this.btnSuppliers.MouseLeave += new System.EventHandler(this.btnSuppliers_MouseLeave);
+            this.btnSuppliers.MouseHover += new System.EventHandler(this.btnSuppliers_MouseHover);
             // 
             // btnPurchaseOrders
             // 
@@ -166,6 +172,8 @@ namespace POS_Group5_CMPG223
             this.btnPurchaseOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPurchaseOrders.UseVisualStyleBackColor = true;
             this.btnPurchaseOrders.Click += new System.EventHandler(this.btnPurchaseOrders_Click);
+            this.btnPurchaseOrders.MouseLeave += new System.EventHandler(this.btnPurchaseOrders_MouseLeave);
+            this.btnPurchaseOrders.MouseHover += new System.EventHandler(this.btnPurchaseOrders_MouseHover);
             // 
             // btnOrder
             // 
@@ -188,6 +196,8 @@ namespace POS_Group5_CMPG223
             this.btnOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrder.UseVisualStyleBackColor = true;
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            this.btnOrder.MouseLeave += new System.EventHandler(this.btnOrder_MouseLeave);
+            this.btnOrder.MouseHover += new System.EventHandler(this.btnOrder_MouseHover);
             // 
             // btnInventory
             // 
@@ -210,6 +220,8 @@ namespace POS_Group5_CMPG223
             this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInventory.UseVisualStyleBackColor = true;
             this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            this.btnInventory.MouseLeave += new System.EventHandler(this.btnInventory_MouseLeave);
+            this.btnInventory.MouseHover += new System.EventHandler(this.btnInventory_MouseHover);
             // 
             // btnSalesOrders
             // 
@@ -232,6 +244,8 @@ namespace POS_Group5_CMPG223
             this.btnSalesOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalesOrders.UseVisualStyleBackColor = true;
             this.btnSalesOrders.Click += new System.EventHandler(this.btnSalesOrders_Click);
+            this.btnSalesOrders.MouseLeave += new System.EventHandler(this.btnSalesOrders_MouseLeave);
+            this.btnSalesOrders.MouseHover += new System.EventHandler(this.btnSalesOrders_MouseHover);
             // 
             // btnSales
             // 
@@ -254,6 +268,8 @@ namespace POS_Group5_CMPG223
             this.btnSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSales.UseVisualStyleBackColor = true;
             this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
+            this.btnSales.MouseLeave += new System.EventHandler(this.btnSales_MouseLeave);
+            this.btnSales.MouseHover += new System.EventHandler(this.btnSales_MouseHover);
             // 
             // pnlName
             // 
@@ -374,7 +390,6 @@ namespace POS_Group5_CMPG223
             this.MinimumSize = new System.Drawing.Size(772, 646);
             this.Name = "frmMain";
             this.Text = "Main";
-            this.LocationChanged += new System.EventHandler(this.frmMain_LocationChanged);
             this.pnlMenu.ResumeLayout(false);
             this.pnlName.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);

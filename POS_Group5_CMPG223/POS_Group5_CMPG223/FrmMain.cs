@@ -125,41 +125,6 @@ namespace POS_Group5_CMPG223
         }
         #endregion
 
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-
-            ShowToolTips();
-        }
-
-        bool isActive = true;
-
-        private void ShowToolTips()
-        {
-            toolTipSales.Show("Sell products", btnSales, btnSales.Left + btnSales.Width, btnSales.Bottom - btnSales.Top - btnSales.Height * 2 / 3);
-            toolTipOrder.Show("Order products", btnOrder, btnOrder.Left + btnOrder.Width, btnOrder.Bottom - btnOrder.Top - btnOrder.Height * 2 / 3);
-            toolTipInventory.Show("Add, update or delete inventory", btnInventory, btnInventory.Left + btnInventory.Width, btnInventory.Bottom - btnInventory.Top - btnInventory.Height * 2 / 3);
-            toolTipSalesOrders.Show("Add, update or delete sales orders", btnSalesOrders, btnSalesOrders.Left + btnSalesOrders.Width, btnSalesOrders.Bottom - btnSalesOrders.Top - btnSalesOrders.Height * 2 / 3);
-            toolTipPurchaseOrder.Show("Add, update or delete purchase orders", btnPurchaseOrders, btnPurchaseOrders.Left + btnPurchaseOrders.Width, btnPurchaseOrders.Bottom - btnPurchaseOrders.Top - btnPurchaseOrders.Height * 2 / 3);
-            toolTipSupplier.Show("Add, update or delete suppliers", btnSuppliers, btnSuppliers.Left + btnSuppliers.Width, btnSuppliers.Bottom - btnSuppliers.Top - btnSuppliers.Height * 2 / 3);
-            toolTipReporting.Show("Generate reports", btnReporting, btnReporting.Left + btnReporting.Width, btnReporting.Bottom - btnReporting.Top - btnReporting.Height * 2 / 3);
-            toolTipSettings.Show("Manage app preferences", btnSettings, btnSettings.Left + btnSettings.Width, btnSettings.Bottom - btnSettings.Top - btnSettings.Height * 2 / 3);
-            //toolTipHelp.Show("Manage app preferences", btnSettings, btnSettings.Left + btnSettings.Width, btnSettings.Bottom - btnSettings.Top - btnSettings.Height * 2 / 3);
-        }
-
-        private void HideToolTips()
-        {
-            toolTipSales.Hide(this);
-            toolTipOrder.Hide(this);
-            toolTipInventory.Hide(this);
-            toolTipSalesOrders.Hide(this);
-            toolTipPurchaseOrder.Hide(this);
-            toolTipSupplier.Hide(this);
-            toolTipReporting.Hide(this);
-            toolTipSettings.Hide(this);
-            //toolTipHelp.Hide(this);
-        }
-
         #region Open Child Form
         private void OpenChildForm(Form childForm)
         {
@@ -179,8 +144,6 @@ namespace POS_Group5_CMPG223
         #region Menu Buttons
         private void btnSales_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnSales, "Sales");
             FrmSales frmSales;
             OpenChildForm(frmSales = new FrmSales());
@@ -190,8 +153,6 @@ namespace POS_Group5_CMPG223
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnInventory, "Inventory");
             FrmInventory frmInventory;
             OpenChildForm(frmInventory = new FrmInventory());
@@ -201,8 +162,6 @@ namespace POS_Group5_CMPG223
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnOrder, "Order");
             FrmOrder frmOrder;
             OpenChildForm(frmOrder = new FrmOrder());
@@ -212,8 +171,6 @@ namespace POS_Group5_CMPG223
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnSuppliers, "Suppliers");
             FrmSuppliers frmSuppliers;
             OpenChildForm(frmSuppliers = new FrmSuppliers());
@@ -223,8 +180,6 @@ namespace POS_Group5_CMPG223
 
         private void btnReporting_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnReporting, "Reporting");
             FrmReporting frmReporting;
             OpenChildForm(frmReporting = new FrmReporting());
@@ -234,8 +189,6 @@ namespace POS_Group5_CMPG223
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnSettings, "Settings");
             FrmSettings frmSettings;
             OpenChildForm(frmSettings = new FrmSettings());
@@ -245,8 +198,6 @@ namespace POS_Group5_CMPG223
 
         private void btnSalesOrders_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnSalesOrders, "Sales Orders");
             FrmSalesOrders frmSalesOrders;
             OpenChildForm(frmSalesOrders = new FrmSalesOrders());
@@ -256,8 +207,6 @@ namespace POS_Group5_CMPG223
 
         private void btnPurchaseOrders_Click(object sender, EventArgs e)
         {
-            HideToolTips();
-            isActive = false;
             MenuSelect(btnPurchaseOrders, "Purchase Orders");
             FrmPurchaseOrders frmPurchaseOrders;
             OpenChildForm(frmPurchaseOrders = new FrmPurchaseOrders());
@@ -266,12 +215,84 @@ namespace POS_Group5_CMPG223
         }
         #endregion
 
-        private void frmMain_LocationChanged(object sender, EventArgs e)
+        private void btnSales_MouseHover(object sender, EventArgs e)
         {
-            if (isActive)
-            {
-                ShowToolTips();
-            }
+            toolTipSales.Show("Sell products", btnSales, btnSales.Left + btnSales.Width, btnSales.Bottom - btnSales.Top - btnSales.Height * 2 / 3);
+        }
+
+        private void btnSales_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipSales.Hide(this);
+        }
+
+        private void btnSalesOrders_MouseHover(object sender, EventArgs e)
+        {
+            toolTipSalesOrders.Show("Add, update or delete sales orders", btnSalesOrders, btnSalesOrders.Left + btnSalesOrders.Width, btnSalesOrders.Bottom - btnSalesOrders.Top - btnSalesOrders.Height * 2 / 3);
+        }
+
+        private void btnSalesOrders_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipSalesOrders.Hide(this);
+        }
+
+        private void btnInventory_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipInventory.Hide(this);
+        }
+
+        private void btnInventory_MouseHover(object sender, EventArgs e)
+        {
+            toolTipInventory.Show("Add, update or delete inventory", btnInventory, btnInventory.Left + btnInventory.Width, btnInventory.Bottom - btnInventory.Top - btnInventory.Height * 2 / 3);
+        }
+
+        private void btnOrder_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipOrder.Hide(this);
+        }
+
+        private void btnOrder_MouseHover(object sender, EventArgs e)
+        {
+            toolTipOrder.Show("Order products", btnOrder, btnOrder.Left + btnOrder.Width, btnOrder.Bottom - btnOrder.Top - btnOrder.Height * 2 / 3);
+        }
+
+        private void btnPurchaseOrders_MouseHover(object sender, EventArgs e)
+        {
+            toolTipPurchaseOrder.Show("Add, update or delete purchase orders", btnPurchaseOrders, btnPurchaseOrders.Left + btnPurchaseOrders.Width, btnPurchaseOrders.Bottom - btnPurchaseOrders.Top - btnPurchaseOrders.Height * 2 / 3);
+        }
+
+        private void btnPurchaseOrders_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipPurchaseOrder.Hide(this);
+        }
+
+        private void btnSuppliers_MouseHover(object sender, EventArgs e)
+        {
+            toolTipSupplier.Show("Add, update or delete suppliers", btnSuppliers, btnSuppliers.Left + btnSuppliers.Width, btnSuppliers.Bottom - btnSuppliers.Top - btnSuppliers.Height * 2 / 3);
+        }
+
+        private void btnSuppliers_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipSupplier.Hide(this);
+        }
+
+        private void btnReporting_MouseHover(object sender, EventArgs e)
+        {
+            toolTipReporting.Show("Generate reports", btnReporting, btnReporting.Left + btnReporting.Width, btnReporting.Bottom - btnReporting.Top - btnReporting.Height * 2 / 3);
+        }
+
+        private void btnReporting_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipReporting.Hide(this);
+        }
+
+        private void btnSettings_MouseHover(object sender, EventArgs e)
+        {
+            toolTipSettings.Show("Manage app preferences", btnSettings, btnSettings.Left + btnSettings.Width, btnSettings.Bottom - btnSettings.Top - btnSettings.Height * 2 / 3);
+        }
+
+        private void btnSettings_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipSettings.Hide(this);
         }
     }
 }
