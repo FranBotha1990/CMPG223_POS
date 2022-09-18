@@ -29,32 +29,94 @@ namespace POS_Group5_CMPG223
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbxGUISettings = new System.Windows.Forms.GroupBox();
-            this.pnlColorScheme = new System.Windows.Forms.Panel();
-            this.cbxColorScheme = new System.Windows.Forms.ComboBox();
-            this.lblColorScheme = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.gbxBusinessSettings = new System.Windows.Forms.GroupBox();
             this.pnlBusinessName = new System.Windows.Forms.Panel();
             this.txtBusinessName = new System.Windows.Forms.TextBox();
             this.lblBusinessName = new System.Windows.Forms.Label();
-            this.btnSaveSettings = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.gbxSettings = new System.Windows.Forms.GroupBox();
-            this.gbxGUISettings.SuspendLayout();
-            this.pnlColorScheme.SuspendLayout();
+            this.gbxGUISettings = new System.Windows.Forms.GroupBox();
+            this.pnlColorScheme = new System.Windows.Forms.Panel();
+            this.cbxColorScheme = new System.Windows.Forms.ComboBox();
+            this.lblColorScheme = new System.Windows.Forms.Label();
             this.gbxBusinessSettings.SuspendLayout();
             this.pnlBusinessName.SuspendLayout();
-            this.gbxSettings.SuspendLayout();
+            this.gbxGUISettings.SuspendLayout();
+            this.pnlColorScheme.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnClose
+            // 
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(0, 150);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(800, 50);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveSettings.Location = new System.Drawing.Point(0, 100);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(800, 50);
+            this.btnSaveSettings.TabIndex = 6;
+            this.btnSaveSettings.Text = "Save";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
+            // gbxBusinessSettings
+            // 
+            this.gbxBusinessSettings.Controls.Add(this.pnlBusinessName);
+            this.gbxBusinessSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbxBusinessSettings.Location = new System.Drawing.Point(0, 50);
+            this.gbxBusinessSettings.Name = "gbxBusinessSettings";
+            this.gbxBusinessSettings.Size = new System.Drawing.Size(800, 50);
+            this.gbxBusinessSettings.TabIndex = 5;
+            this.gbxBusinessSettings.TabStop = false;
+            this.gbxBusinessSettings.Text = "Business Settings";
+            // 
+            // pnlBusinessName
+            // 
+            this.pnlBusinessName.Controls.Add(this.txtBusinessName);
+            this.pnlBusinessName.Controls.Add(this.lblBusinessName);
+            this.pnlBusinessName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBusinessName.Location = new System.Drawing.Point(3, 16);
+            this.pnlBusinessName.Name = "pnlBusinessName";
+            this.pnlBusinessName.Size = new System.Drawing.Size(794, 25);
+            this.pnlBusinessName.TabIndex = 1;
+            // 
+            // txtBusinessName
+            // 
+            this.txtBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtBusinessName.Location = new System.Drawing.Point(250, 0);
+            this.txtBusinessName.Name = "txtBusinessName";
+            this.txtBusinessName.Size = new System.Drawing.Size(142, 20);
+            this.txtBusinessName.TabIndex = 2;
+            // 
+            // lblBusinessName
+            // 
+            this.lblBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblBusinessName.Location = new System.Drawing.Point(0, 0);
+            this.lblBusinessName.Name = "lblBusinessName";
+            this.lblBusinessName.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.lblBusinessName.Size = new System.Drawing.Size(250, 25);
+            this.lblBusinessName.TabIndex = 1;
+            this.lblBusinessName.Text = "Business Name:";
+            this.lblBusinessName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // gbxGUISettings
             // 
             this.gbxGUISettings.Controls.Add(this.pnlColorScheme);
             this.gbxGUISettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbxGUISettings.Location = new System.Drawing.Point(10, 23);
+            this.gbxGUISettings.Location = new System.Drawing.Point(0, 0);
             this.gbxGUISettings.Name = "gbxGUISettings";
-            this.gbxGUISettings.Size = new System.Drawing.Size(780, 50);
-            this.gbxGUISettings.TabIndex = 0;
+            this.gbxGUISettings.Size = new System.Drawing.Size(800, 50);
+            this.gbxGUISettings.TabIndex = 4;
             this.gbxGUISettings.TabStop = false;
             this.gbxGUISettings.Text = "GUI Settings";
             // 
@@ -65,7 +127,7 @@ namespace POS_Group5_CMPG223
             this.pnlColorScheme.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlColorScheme.Location = new System.Drawing.Point(3, 16);
             this.pnlColorScheme.Name = "pnlColorScheme";
-            this.pnlColorScheme.Size = new System.Drawing.Size(774, 25);
+            this.pnlColorScheme.Size = new System.Drawing.Size(794, 25);
             this.pnlColorScheme.TabIndex = 0;
             // 
             // cbxColorScheme
@@ -92,115 +154,37 @@ namespace POS_Group5_CMPG223
             this.lblColorScheme.Text = "Color Scheme:";
             this.lblColorScheme.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // gbxBusinessSettings
-            // 
-            this.gbxBusinessSettings.Controls.Add(this.pnlBusinessName);
-            this.gbxBusinessSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbxBusinessSettings.Location = new System.Drawing.Point(10, 73);
-            this.gbxBusinessSettings.Name = "gbxBusinessSettings";
-            this.gbxBusinessSettings.Size = new System.Drawing.Size(780, 50);
-            this.gbxBusinessSettings.TabIndex = 1;
-            this.gbxBusinessSettings.TabStop = false;
-            this.gbxBusinessSettings.Text = "Business Settings";
-            // 
-            // pnlBusinessName
-            // 
-            this.pnlBusinessName.Controls.Add(this.txtBusinessName);
-            this.pnlBusinessName.Controls.Add(this.lblBusinessName);
-            this.pnlBusinessName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBusinessName.Location = new System.Drawing.Point(3, 16);
-            this.pnlBusinessName.Name = "pnlBusinessName";
-            this.pnlBusinessName.Size = new System.Drawing.Size(774, 25);
-            this.pnlBusinessName.TabIndex = 1;
-            // 
-            // txtBusinessName
-            // 
-            this.txtBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtBusinessName.Location = new System.Drawing.Point(250, 0);
-            this.txtBusinessName.Name = "txtBusinessName";
-            this.txtBusinessName.Size = new System.Drawing.Size(142, 20);
-            this.txtBusinessName.TabIndex = 2;
-            // 
-            // lblBusinessName
-            // 
-            this.lblBusinessName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblBusinessName.Location = new System.Drawing.Point(0, 0);
-            this.lblBusinessName.Name = "lblBusinessName";
-            this.lblBusinessName.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.lblBusinessName.Size = new System.Drawing.Size(250, 25);
-            this.lblBusinessName.TabIndex = 1;
-            this.lblBusinessName.Text = "Business Name:";
-            this.lblBusinessName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnSaveSettings
-            // 
-            this.btnSaveSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveSettings.Location = new System.Drawing.Point(10, 123);
-            this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(780, 50);
-            this.btnSaveSettings.TabIndex = 2;
-            this.btnSaveSettings.Text = "Save";
-            this.btnSaveSettings.UseVisualStyleBackColor = true;
-            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(10, 173);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(780, 50);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // gbxSettings
-            // 
-            this.gbxSettings.Controls.Add(this.btnClose);
-            this.gbxSettings.Controls.Add(this.btnSaveSettings);
-            this.gbxSettings.Controls.Add(this.gbxBusinessSettings);
-            this.gbxSettings.Controls.Add(this.gbxGUISettings);
-            this.gbxSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbxSettings.Location = new System.Drawing.Point(0, 0);
-            this.gbxSettings.Name = "gbxSettings";
-            this.gbxSettings.Padding = new System.Windows.Forms.Padding(10);
-            this.gbxSettings.Size = new System.Drawing.Size(800, 450);
-            this.gbxSettings.TabIndex = 4;
-            this.gbxSettings.TabStop = false;
-            this.gbxSettings.Text = "Application Settings";
-            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.gbxSettings);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSaveSettings);
+            this.Controls.Add(this.gbxBusinessSettings);
+            this.Controls.Add(this.gbxGUISettings);
             this.Name = "FrmSettings";
             this.Text = "FrmSettings";
-            this.gbxGUISettings.ResumeLayout(false);
-            this.pnlColorScheme.ResumeLayout(false);
             this.gbxBusinessSettings.ResumeLayout(false);
             this.pnlBusinessName.ResumeLayout(false);
             this.pnlBusinessName.PerformLayout();
-            this.gbxSettings.ResumeLayout(false);
+            this.gbxGUISettings.ResumeLayout(false);
+            this.pnlColorScheme.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbxGUISettings;
-        private System.Windows.Forms.Panel pnlColorScheme;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.GroupBox gbxBusinessSettings;
         private System.Windows.Forms.Panel pnlBusinessName;
-        private System.Windows.Forms.ComboBox cbxColorScheme;
-        private System.Windows.Forms.Label lblColorScheme;
         private System.Windows.Forms.TextBox txtBusinessName;
         private System.Windows.Forms.Label lblBusinessName;
-        private System.Windows.Forms.Button btnSaveSettings;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.GroupBox gbxSettings;
+        private System.Windows.Forms.GroupBox gbxGUISettings;
+        private System.Windows.Forms.Panel pnlColorScheme;
+        private System.Windows.Forms.ComboBox cbxColorScheme;
+        private System.Windows.Forms.Label lblColorScheme;
     }
 }
