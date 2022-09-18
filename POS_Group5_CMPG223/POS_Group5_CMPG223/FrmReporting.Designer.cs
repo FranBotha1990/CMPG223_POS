@@ -31,7 +31,6 @@
             this.tabPageDataGridView = new System.Windows.Forms.TabPage();
             this.dataGridViewReports = new System.Windows.Forms.DataGridView();
             this.tabPageDataSelection = new System.Windows.Forms.TabPage();
-            this.listBoxReports = new System.Windows.Forms.ListBox();
             this.labelListBox = new System.Windows.Forms.Label();
             this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
             this.labelEndDate = new System.Windows.Forms.Label();
@@ -42,10 +41,14 @@
             this.buttonGenerateReport = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControlReporting = new System.Windows.Forms.TabControl();
+            this.panelDataGridViewSummarizedReports = new System.Windows.Forms.Panel();
+            this.dataGridViewSummarizedReport = new System.Windows.Forms.DataGridView();
             this.tabPageDataGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReports)).BeginInit();
             this.tabPageDataSelection.SuspendLayout();
             this.tabControlReporting.SuspendLayout();
+            this.panelDataGridViewSummarizedReports.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSummarizedReport)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPageDataGridView
@@ -73,7 +76,7 @@
             // 
             // tabPageDataSelection
             // 
-            this.tabPageDataSelection.Controls.Add(this.listBoxReports);
+            this.tabPageDataSelection.Controls.Add(this.panelDataGridViewSummarizedReports);
             this.tabPageDataSelection.Controls.Add(this.labelListBox);
             this.tabPageDataSelection.Controls.Add(this.dateTimePickerEndDate);
             this.tabPageDataSelection.Controls.Add(this.labelEndDate);
@@ -91,23 +94,14 @@
             this.tabPageDataSelection.Text = "Data Selection";
             this.tabPageDataSelection.UseVisualStyleBackColor = true;
             // 
-            // listBoxReports
-            // 
-            this.listBoxReports.FormattingEnabled = true;
-            this.listBoxReports.ItemHeight = 16;
-            this.listBoxReports.Location = new System.Drawing.Point(614, 53);
-            this.listBoxReports.Name = "listBoxReports";
-            this.listBoxReports.Size = new System.Drawing.Size(476, 532);
-            this.listBoxReports.TabIndex = 12;
-            // 
             // labelListBox
             // 
             this.labelListBox.AutoSize = true;
             this.labelListBox.Location = new System.Drawing.Point(611, 34);
             this.labelListBox.Name = "labelListBox";
-            this.labelListBox.Size = new System.Drawing.Size(89, 16);
+            this.labelListBox.Size = new System.Drawing.Size(132, 16);
             this.labelListBox.TabIndex = 11;
-            this.labelListBox.Text = "Report Totals";
+            this.labelListBox.Text = "Report Summarized :";
             this.labelListBox.Click += new System.EventHandler(this.labelListBox_Click);
             // 
             // dateTimePickerEndDate
@@ -199,6 +193,27 @@
             this.tabControlReporting.Size = new System.Drawing.Size(1106, 704);
             this.tabControlReporting.TabIndex = 0;
             // 
+            // panelDataGridViewSummarizedReports
+            // 
+            this.panelDataGridViewSummarizedReports.Controls.Add(this.dataGridViewSummarizedReport);
+            this.panelDataGridViewSummarizedReports.Location = new System.Drawing.Point(616, 62);
+            this.panelDataGridViewSummarizedReports.Name = "panelDataGridViewSummarizedReports";
+            this.panelDataGridViewSummarizedReports.Size = new System.Drawing.Size(455, 605);
+            this.panelDataGridViewSummarizedReports.TabIndex = 12;
+            // 
+            // dataGridViewSummarizedReport
+            // 
+            this.dataGridViewSummarizedReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewSummarizedReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSummarizedReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSummarizedReport.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewSummarizedReport.Name = "dataGridViewSummarizedReport";
+            this.dataGridViewSummarizedReport.ReadOnly = true;
+            this.dataGridViewSummarizedReport.RowHeadersWidth = 51;
+            this.dataGridViewSummarizedReport.RowTemplate.Height = 24;
+            this.dataGridViewSummarizedReport.Size = new System.Drawing.Size(455, 605);
+            this.dataGridViewSummarizedReport.TabIndex = 0;
+            // 
             // FrmReporting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -212,6 +227,8 @@
             this.tabPageDataSelection.ResumeLayout(false);
             this.tabPageDataSelection.PerformLayout();
             this.tabControlReporting.ResumeLayout(false);
+            this.panelDataGridViewSummarizedReports.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSummarizedReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,7 +238,6 @@
         private System.Windows.Forms.TabPage tabPageDataGridView;
         private System.Windows.Forms.DataGridView dataGridViewReports;
         private System.Windows.Forms.TabPage tabPageDataSelection;
-        private System.Windows.Forms.ListBox listBoxReports;
         private System.Windows.Forms.Label labelListBox;
         private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
         private System.Windows.Forms.Label labelEndDate;
@@ -232,5 +248,7 @@
         private System.Windows.Forms.Button buttonGenerateReport;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControlReporting;
+        private System.Windows.Forms.Panel panelDataGridViewSummarizedReports;
+        private System.Windows.Forms.DataGridView dataGridViewSummarizedReport;
     }
 }
