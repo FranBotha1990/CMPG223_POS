@@ -13,14 +13,19 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmReporting : Form
     {
+        #region Variables
         SqlCommand commandReport,commandReportTotal;
         SqlDataAdapter adapterReport = new SqlDataAdapter();
         SqlDataReader readerReport = null;
         SqlDataReader readerReportTotal = null;
+        #endregion
+        #region Constructor
         public FrmReporting()
         {
             InitializeComponent();
         }
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Default Date
@@ -88,6 +93,9 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show(ex.Message);
             }       
         }
+        #endregion
+
+        #region Click
         private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
         {
 
@@ -96,6 +104,8 @@ namespace POS_Group5_CMPG223
         {
 
         }
+        #endregion
+        #region Generate Button
         private void buttonGenerateReport_Click(object sender, EventArgs e)
         {
             try
@@ -109,18 +119,21 @@ namespace POS_Group5_CMPG223
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
-                                           WHERE SALES_ORDER.Sales_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "'" ,Methods.SQLCon);
+                                           WHERE SALES_ORDER.Sales_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + 
+                                           "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "'" ,Methods.SQLCon);
                     DataSet dataSetReportTotal = new DataSet();
                     adapterReport.SelectCommand = commandReportTotal;
                     adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                     dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                     dataGridViewSummarizedReport.DataMember = "PRODUCT";
                     
-                    commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
+                    commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', 
+                                           PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
-                                           WHERE SALES_ORDER.Sales_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "' ORDER BY SALES_ORDER.Sales_Date ASC", Methods.SQLCon);
+                                           WHERE SALES_ORDER.Sales_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + 
+                                           "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "' ORDER BY SALES_ORDER.Sales_Date ASC", Methods.SQLCon);
                     DataSet dataSetReport = new DataSet();
                     adapterReport.SelectCommand = commandReport;
                     adapterReport.Fill(dataSetReport, "PRODUCT");
@@ -139,18 +152,22 @@ namespace POS_Group5_CMPG223
                                            FROM PRODUCT
                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN PURCHASE_ORDER ON PURCHASE_ORDER.Purchase_ID = PURCHASE_ORDER_ITEM.Purchase_ID
-                                           WHERE PURCHASE_ORDER.Purchase_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "'", Methods.SQLCon);
+                                           WHERE PURCHASE_ORDER.Purchase_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + 
+                                           "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "'", Methods.SQLCon);
                         DataSet dataSetReportTotal = new DataSet();
                         adapterReport.SelectCommand = commandReportTotal;
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
                         
-                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', PRODUCT.Description AS 'Item purchased', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)', PURCHASE_ORDER.Purchase_date AS 'Date Purchased', PURCHASE_ORDER.Received AS 'Product Received', PURCHASE_ORDER.Receive_date AS 'Date Received'
+                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', PRODUCT.Description AS 'Item purchased', 
+                                           PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)', PURCHASE_ORDER.Purchase_date AS 'Date Purchased',
+                                           PURCHASE_ORDER.Received AS 'Product Received', PURCHASE_ORDER.Receive_date AS 'Date Received'
                                            FROM PRODUCT
                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN PURCHASE_ORDER ON PURCHASE_ORDER.Purchase_ID = PURCHASE_ORDER_ITEM.Purchase_ID
-                                           WHERE PURCHASE_ORDER.Purchase_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "' ORDER BY PURCHASE_ORDER.Purchase_date ASC", Methods.SQLCon);
+                                           WHERE PURCHASE_ORDER.Purchase_date BETWEEN '" + dateTimePickerStartDate.Value.ToString("yyyyMMdd") + 
+                                           "' AND '" + dateTimePickerEndDate.Value.ToString("yyyyMMdd") + "' ORDER BY PURCHASE_ORDER.Purchase_date ASC", Methods.SQLCon);
                         DataSet dataSetReport = new DataSet();
                         adapterReport.SelectCommand = commandReport;
                         adapterReport.Fill(dataSetReport, "PRODUCT");
@@ -169,7 +186,8 @@ namespace POS_Group5_CMPG223
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReport = new SqlCommand(@"SELECT PRODUCT.Description AS 'Stock Item', PRODUCT.Quantity_in_stock AS 'Stock on Hand', PRODUCT.Sell_price AS 'Sales Price (R)', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)' 
+                        commandReport = new SqlCommand(@"SELECT PRODUCT.Description AS 'Stock Item', PRODUCT.Quantity_in_stock AS 'Stock on Hand', 
+                                            PRODUCT.Sell_price AS 'Sales Price (R)', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)' 
                                             FROM PRODUCT
                                             INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID", Methods.SQLCon);
                         DataSet dataSetReport = new DataSet();
@@ -208,7 +226,8 @@ namespace POS_Group5_CMPG223
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
                         
-                        commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
+                        commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', 
+                                           PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -241,7 +260,10 @@ namespace POS_Group5_CMPG223
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
                         
-                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', PRODUCT.Description AS 'Item Purchased', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)', PURCHASE_ORDER.Purchase_date AS 'Date Purchased', PURCHASE_ORDER.Received AS 'Product Received', PURCHASE_ORDER.Receive_date AS 'Date Received'
+                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', 
+                                           PRODUCT.Description AS 'Item Purchased', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)', 
+                                           PURCHASE_ORDER.Purchase_date AS 'Date Purchased', PURCHASE_ORDER.Received AS 'Product Received', 
+                                           PURCHASE_ORDER.Receive_date AS 'Date Received'
                                            FROM PRODUCT
                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN PURCHASE_ORDER ON PURCHASE_ORDER.Purchase_ID = PURCHASE_ORDER_ITEM.Purchase_ID
@@ -393,9 +415,12 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
+        #region Listbox Click
         private void labelListBox_Click(object sender, EventArgs e)
         {
 
         }
+        #endregion
     }
 }
