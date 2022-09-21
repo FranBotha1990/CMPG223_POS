@@ -56,6 +56,7 @@ namespace POS_Group5_CMPG223
             this.toolTipSupplier = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipReporting = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipSettings = new System.Windows.Forms.ToolTip(this.components);
+            this.btnHelp = new FontAwesome.Sharp.IconButton();
             this.pnlMenu.SuspendLayout();
             this.pnlName.SuspendLayout();
             this.pnlHeader.SuspendLayout();
@@ -64,6 +65,7 @@ namespace POS_Group5_CMPG223
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.btnHelp);
             this.pnlMenu.Controls.Add(this.btnSettings);
             this.pnlMenu.Controls.Add(this.btnReporting);
             this.pnlMenu.Controls.Add(this.btnSuppliers);
@@ -379,6 +381,28 @@ namespace POS_Group5_CMPG223
             this.pnlForm.Size = new System.Drawing.Size(899, 601);
             this.pnlForm.TabIndex = 2;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.IconChar = FontAwesome.Sharp.IconChar.Question;
+            this.btnHelp.IconColor = System.Drawing.Color.Black;
+            this.btnHelp.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHelp.IconSize = 30;
+            this.btnHelp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHelp.Location = new System.Drawing.Point(0, 611);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnHelp.Size = new System.Drawing.Size(200, 50);
+            this.btnHelp.TabIndex = 9;
+            this.btnHelp.TabStop = false;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,6 +450,7 @@ namespace POS_Group5_CMPG223
         private System.Windows.Forms.ToolTip toolTipSupplier;
         private System.Windows.Forms.ToolTip toolTipReporting;
         private System.Windows.Forms.ToolTip toolTipSettings;
+        public FontAwesome.Sharp.IconButton btnHelp;
     }
 }
 

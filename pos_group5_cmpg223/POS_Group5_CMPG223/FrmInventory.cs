@@ -14,15 +14,18 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmInventory : Form
     {
+        #region Variables
         int selector = -1;
         SqlDataAdapter adapter;
         DataSet dataset;
-
+        #endregion
+        #region Constructor
         public FrmInventory()
         {
             InitializeComponent();
         }
-
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Fore Colors
@@ -48,11 +51,17 @@ namespace POS_Group5_CMPG223
             groupBoxAdd.Visible = false;
             refresh();
         }
+        #endregion
 
+        #region Search Box Text Change
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string txt = txtSearch.Text;
-            string sql = $"SELECT * FROM PRODUCT WHERE Description LIKE '%" + txt + "%' ";
+            string sql = $"SELECT Product_ID AS 'Product ID', " +
+                          "Description AS 'Name', " +
+                          "Sell_price AS 'Sell Price', " +
+                          "Quantity_in_stock AS 'Qty.' " +
+                         $"FROM PRODUCT WHERE Description LIKE '%" + txt + "%' ";
             try
             {
                 Methods.SQLCon.Open();
@@ -63,14 +72,16 @@ namespace POS_Group5_CMPG223
 
                 dataGridView1.DataSource = dataset;
                 dataGridView1.DataMember = "PRODUCT";
+                dataGridView1.Columns["Sell Price"].DefaultCellStyle.Format = "c";
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch (SqlException)
             {
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        #endregion
+        #region Add Product
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             if (groupBoxAdd.Visible)
@@ -84,7 +95,8 @@ namespace POS_Group5_CMPG223
                 groupBoxAdd.Visible = true;
             }
         }
-
+        #endregion
+        #region Search Scroll Bar Changed
         private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
             try
@@ -92,7 +104,11 @@ namespace POS_Group5_CMPG223
                 int priceScroll = hScrollBar.Value;
                 lblDisplay.Text = priceScroll.ToString();
                 Methods.SQLCon.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM PRODUCT WHERE Sell_price<=" + priceScroll, Methods.SQLCon);
+                SqlCommand cmd = new SqlCommand($"SELECT Product_ID AS 'Product ID', " +
+                                                 "Description AS 'Name', " +
+                                                 "Sell_price AS 'Sell Price', " +
+                                                 "Quantity_in_stock AS 'Qty.' " +
+                                                $"FROM PRODUCT WHERE Sell_price<=" + priceScroll, Methods.SQLCon);
                 adapter = new SqlDataAdapter();
                 dataset = new DataSet();
 
@@ -101,27 +117,34 @@ namespace POS_Group5_CMPG223
 
                 dataGridView1.DataSource = dataset;
                 dataGridView1.DataMember = "PRODUCT";
+                dataGridView1.Columns["Sell Price"].DefaultCellStyle.Format = "c";
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException error)
+            catch (SqlException)
             {
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        #endregion
+        #region Fill Method
         private void refresh()
         {
             try
             {
                 Methods.SQLCon.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM PRODUCT", Methods.SQLCon);
+                SqlCommand cmd = new SqlCommand($"SELECT Product_ID AS 'Product ID', " +
+                                                 "Description AS 'Name', " +
+                                                 "Sell_price AS 'Sell Price', " +
+                                                 "Quantity_in_stock AS 'Qty.' " +
+                                                $"FROM PRODUCT", Methods.SQLCon);
                 adapter = new SqlDataAdapter();
                 dataset = new DataSet();
                 adapter.SelectCommand = cmd;
                 adapter.Fill(dataset, "PRODUCT");
                 dataGridView1.DataSource = dataset;
                 dataGridView1.DataMember = "PRODUCT";
+                dataGridView1.Columns["Sell Price"].DefaultCellStyle.Format = "c";
                 Methods.SQLCon.Close();
             }
             catch 
@@ -129,7 +152,8 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        #endregion
+        #region Add to Database
         private void btnAddToDB_Click(object sender, EventArgs e)
         {
             if (double.TryParse(txtSellPrice.Text, out double price) && txtDescription.Text != "")
@@ -160,7 +184,8 @@ namespace POS_Group5_CMPG223
             }
             
         }
-
+        #endregion
+        #region Back Button
         private void btnBack_Click(object sender, EventArgs e)
         {
             groupBoxAdd.Visible = false;
@@ -168,7 +193,8 @@ namespace POS_Group5_CMPG223
             txtDescription.Text = "";
             btnAddProduct.Focus();
         }
-
+        #endregion
+        #region Update Button
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             selector = (int)dataGridView1.CurrentRow.Cells[0].Value;
@@ -193,7 +219,7 @@ namespace POS_Group5_CMPG223
                         MessageBox.Show("Entry successfully updated", "Product Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException error)
+                catch (SqlException)
                 {
                     MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -203,7 +229,8 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show("Please select a product", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        #endregion
+        #region Delete Button
         private void btnDelete_Click(object sender, EventArgs e)
         {
             selector = (int)dataGridView1.CurrentRow.Cells[0].Value;
@@ -237,7 +264,7 @@ namespace POS_Group5_CMPG223
                     }
                     Methods.SQLCon.Close();
                 }
-                catch (SqlException error)
+                catch (SqlException)
                 {
                     MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -254,7 +281,7 @@ namespace POS_Group5_CMPG223
                         Methods.SQLCon.Close();
                         MessageBox.Show("Entry successfully deleted", "Record Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    catch (SqlException error)
+                    catch (SqlException)
                     {
                         MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -270,5 +297,6 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show("Please select a product", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
     }
 }

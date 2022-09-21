@@ -62,6 +62,7 @@
             this.dataGridViewReports.Location = new System.Drawing.Point(262, 65);
             this.dataGridViewReports.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewReports.Name = "dataGridViewReports";
+            this.dataGridViewReports.RowHeadersVisible = false;
             this.dataGridViewReports.RowHeadersWidth = 51;
             this.dataGridViewReports.RowTemplate.Height = 24;
             this.dataGridViewReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -129,6 +130,7 @@
             this.dataGridViewSummarizedReport.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewSummarizedReport.Name = "dataGridViewSummarizedReport";
             this.dataGridViewSummarizedReport.ReadOnly = true;
+            this.dataGridViewSummarizedReport.RowHeadersVisible = false;
             this.dataGridViewSummarizedReport.RowHeadersWidth = 51;
             this.dataGridViewSummarizedReport.RowTemplate.Height = 24;
             this.dataGridViewSummarizedReport.Size = new System.Drawing.Size(308, 76);

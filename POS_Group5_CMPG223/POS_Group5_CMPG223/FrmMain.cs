@@ -29,6 +29,9 @@ namespace POS_Group5_CMPG223
             this.Text = String.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
+
+            //Load Sales form as default
+            loadSales();
         }
         #endregion
         #region Load GUI
@@ -54,6 +57,7 @@ namespace POS_Group5_CMPG223
             btnClose.ForeColor = Methods.DetermineFrontColor(btnClose.BackColor);
             btnMax.ForeColor = Methods.DetermineFrontColor(btnMax.BackColor);
             btnMin.ForeColor = Methods.DetermineFrontColor(btnMin.BackColor);
+            btnHelp.ForeColor = Methods.DetermineFrontColor(btnHelp.BackColor);
             //Icon Colors
             btnInventory.IconColor = Methods.DetermineFrontColor(btnInventory.BackColor);
             btnOrder.IconColor = Methods.DetermineFrontColor(btnOrder.BackColor);
@@ -63,6 +67,7 @@ namespace POS_Group5_CMPG223
             btnSuppliers.IconColor = Methods.DetermineFrontColor(btnSuppliers.BackColor);
             btnPurchaseOrders.IconColor = Methods.DetermineFrontColor(btnPurchaseOrders.BackColor);
             btnSalesOrders.IconColor = Methods.DetermineFrontColor(btnSalesOrders.BackColor);
+            btnHelp.IconColor = Methods.DetermineFrontColor(btnHelp.BackColor);
             //Misc
             lblName.Text = Methods.businessName;
         }
@@ -144,11 +149,7 @@ namespace POS_Group5_CMPG223
         #region Menu Buttons
         private void btnSales_Click(object sender, EventArgs e)
         {
-            MenuSelect(btnSales, "Sales");
-            FrmSales frmSales;
-            OpenChildForm(frmSales = new FrmSales());
-            frmSales.LoadGUI();
-            activeForm = frmSales;
+            loadSales();
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
@@ -293,6 +294,25 @@ namespace POS_Group5_CMPG223
         private void btnSettings_MouseLeave(object sender, EventArgs e)
         {
             toolTipSettings.Hide(this);
+        }
+        #endregion
+
+        #region Load Sales Method
+        private void loadSales()
+        {
+            //Load Sales as default page
+            MenuSelect(btnSales, "Sales");
+            FrmSales frmSales;
+            OpenChildForm(frmSales = new FrmSales());
+            frmSales.LoadGUI();
+            activeForm = frmSales;
+        }
+        #endregion
+        #region Help Button
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            FrmHelp frmHelp = new FrmHelp();
+            frmHelp.Show();
         }
         #endregion
     }

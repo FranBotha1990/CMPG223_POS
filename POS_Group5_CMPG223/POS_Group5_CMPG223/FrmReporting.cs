@@ -14,10 +14,8 @@ namespace POS_Group5_CMPG223
     public partial class FrmReporting : Form
     {
         #region Variables
-        SqlCommand commandReport,commandReportTotal;
+        SqlCommand commandReport, commandReportTotal, commandStock;
         SqlDataAdapter adapterReport = new SqlDataAdapter();
-        SqlDataReader readerReport = null;
-        SqlDataReader readerReportTotal = null;
         #endregion
         #region Constructor
         public FrmReporting()
@@ -112,14 +110,18 @@ namespace POS_Group5_CMPG223
         #region Generate Button
         private void buttonGenerateReport_Click(object sender, EventArgs e)
         {
+            dataGridViewSummarizedReport.Visible = false;
+
             try
             {
                 if (comboBoxReports.SelectedIndex == 0)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //Sales Report
                     Methods.SQLCon.Open();
 
-                    commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales (R)'
+                    commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales'
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -130,9 +132,10 @@ namespace POS_Group5_CMPG223
                     adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                     dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                     dataGridViewSummarizedReport.DataMember = "PRODUCT";
+                    dataGridViewSummarizedReport.Columns["Total Sales"].DefaultCellStyle.Format = "c";
 
-                    commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', 
-                                           PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
+                    commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item Sold', 
+                                           PRODUCT.Sell_price AS 'Sales Price', SALES_ORDER.Sales_Date AS 'Date Sold'
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -143,17 +146,20 @@ namespace POS_Group5_CMPG223
                     adapterReport.Fill(dataSetReport, "PRODUCT");
                     dataGridViewReports.DataSource = dataSetReport;
                     dataGridViewReports.DataMember = "PRODUCT";
+                    dataGridViewReports.Columns["Sales Price"].DefaultCellStyle.Format = "c";
                     changeLabels();
 
                     Methods.SQLCon.Close();
                 }
                 else if(comboBoxReports.SelectedIndex == 1)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //Purchases Report
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReportTotal = new SqlCommand(@"SELECT SUM(PURCHASE_ORDER_ITEM.Cost_price) AS 'Total Cost Price (R)'
+                        commandReportTotal = new SqlCommand(@"SELECT SUM(PURCHASE_ORDER_ITEM.Cost_price) AS 'Total Cost Price'
                                            FROM PRODUCT
                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN PURCHASE_ORDER ON PURCHASE_ORDER.Purchase_ID = PURCHASE_ORDER_ITEM.Purchase_ID
@@ -164,9 +170,10 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                        
-                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', PRODUCT.Description AS 'Item purchased', 
-                                           PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)', PURCHASE_ORDER.Purchase_date AS 'Date Purchased',
+                        dataGridViewSummarizedReport.Columns["Total Cost Price"].DefaultCellStyle.Format = "c";
+
+                        commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', PRODUCT.Description AS 'Item Purchased', 
+                                           PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price', PURCHASE_ORDER.Purchase_date AS 'Date Purchased',
                                            PURCHASE_ORDER.Received AS 'Product Received', PURCHASE_ORDER.Receive_date AS 'Date Received'
                                            FROM PRODUCT
                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
@@ -178,12 +185,14 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Cost Price"].DefaultCellStyle.Format = "c";
 
                         changeLabels();
                     }
-                    catch(Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
@@ -193,8 +202,10 @@ namespace POS_Group5_CMPG223
                     Methods.SQLCon.Open();
                     try
                     {
+                        double totalCost = 0, totalSell = 0;
+
                         commandReport = new SqlCommand(@"SELECT PRODUCT.Description AS 'Stock Item', PRODUCT.Quantity_in_stock AS 'Stock on Hand', 
-                                            PRODUCT.Sell_price AS 'Sales Price (R)', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)' 
+                                            PRODUCT.Sell_price AS 'Sales Price', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price' 
                                             FROM PRODUCT
                                             INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID", Methods.SQLCon);
                         DataSet dataSetReport = new DataSet();
@@ -202,29 +213,41 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Sales Price"].DefaultCellStyle.Format = "c";
+                        dataGridViewReports.Columns["Cost Price"].DefaultCellStyle.Format = "c";
 
-                        commandReportTotal = new SqlCommand(@"SELECT PRODUCT.Description AS 'Stock Item', PRODUCT.Quantity_in_stock AS 'Stock on Hand' 
-                                            FROM PRODUCT", Methods.SQLCon);
-                        DataSet dataSetReportTotal = new DataSet();
-                        adapterReport.SelectCommand = commandReportTotal;
-                        adapterReport.Fill(dataSetReportTotal, "PRODUCT");
-                        dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
-                        dataGridViewSummarizedReport.DataMember = "PRODUCT";
+                        SqlDataReader dataReader;
+                        commandStock = new SqlCommand(@"SELECT PRODUCT.Description, PRODUCT.Quantity_in_stock, 
+                                            PRODUCT.Sell_price, PURCHASE_ORDER_ITEM.Cost_price  
+                                            FROM PRODUCT
+                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID", Methods.SQLCon);
+                        dataReader = commandStock.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            totalCost += Convert.ToDouble(dataReader.GetValue(1)) * Convert.ToDouble(dataReader.GetValue(3));
+                            totalSell += Convert.ToDouble(dataReader.GetValue(1)) * Convert.ToDouble(dataReader.GetValue(2));
+                        }
+
+                        lblSummary.Text = "Total Value of Stock:\nCost Price: R " + totalCost.ToString() + "   |   Sell Price: R " + totalSell.ToString();
+
                         changeLabels();
                     }
-                    catch (Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
                 else if(comboBoxReports.SelectedIndex == 3)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //All Sales
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales (R)'
+                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales'
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID", Methods.SQLCon);
@@ -233,9 +256,10 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                        
-                        commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item sold', 
-                                           PRODUCT.Sell_price AS 'Sales Price (R)', SALES_ORDER.Sales_Date AS 'Date Sold'
+                        dataGridViewSummarizedReport.Columns["Total Sales"].DefaultCellStyle.Format = "c";
+
+                        commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity', PRODUCT.Description AS 'Item Sold', 
+                                           PRODUCT.Sell_price AS 'Sales Price', SALES_ORDER.Sales_Date AS 'Date Sold'
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -245,21 +269,25 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Sales Price"].DefaultCellStyle.Format = "c";
                         changeLabels();
                     }
-                    catch (Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
                 else if(comboBoxReports.SelectedIndex == 4)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //All Purchases
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReportTotal = new SqlCommand(@"SELECT SUM(PURCHASE_ORDER_ITEM.Cost_price) AS 'Total Cost Price (R)'
+                        commandReportTotal = new SqlCommand(@"SELECT SUM(PURCHASE_ORDER_ITEM.Cost_price) AS 'Total Cost Price'
                                            FROM PRODUCT
                                            INNER JOIN PURCHASE_ORDER_ITEM ON PURCHASE_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN PURCHASE_ORDER ON PURCHASE_ORDER.Purchase_ID = PURCHASE_ORDER_ITEM.Purchase_ID", Methods.SQLCon);
@@ -268,9 +296,10 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                        
+                        dataGridViewSummarizedReport.Columns["Total Cost Price"].DefaultCellStyle.Format = "c";
+
                         commandReport = new SqlCommand(@"SELECT PURCHASE_ORDER_ITEM.Quantity_purchased AS 'Quantity', 
-                                           PRODUCT.Description AS 'Item Purchased', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price (R)', 
+                                           PRODUCT.Description AS 'Item Purchased', PURCHASE_ORDER_ITEM.Cost_price AS 'Cost Price', 
                                            PURCHASE_ORDER.Purchase_date AS 'Date Purchased', PURCHASE_ORDER.Received AS 'Product Received', 
                                            PURCHASE_ORDER.Receive_date AS 'Date Received'
                                            FROM PRODUCT
@@ -282,23 +311,27 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Cost Price"].DefaultCellStyle.Format = "c";
                         changeLabels();
                     }
-                    catch (Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
                 else if(comboBoxReports.SelectedIndex == 5)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //Day End Report
                     dateTimePickerStartDate.Value = DateTime.Today;
                     dateTimePickerEndDate.Value = DateTime.Today;
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales Today (R)' 
+                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales Today' 
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -311,9 +344,10 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                        
+                        dataGridViewSummarizedReport.Columns["Total Sales Today"].DefaultCellStyle.Format = "c";
+
                         commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity Sold', 
-                                           PRODUCT.Description AS 'Item Sold', PRODUCT.Sell_price AS 'Sales Price (R)' 
+                                           PRODUCT.Description AS 'Item Sold', PRODUCT.Sell_price AS 'Sales Price' 
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -326,23 +360,27 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Sales Price"].DefaultCellStyle.Format = "c";
                         changeLabels();
                     }
-                    catch (Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
                 else if(comboBoxReports.SelectedIndex == 6)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //Week End Report
                     dateTimePickerStartDate.Value = DateTime.Today.AddDays(-7);
                     dateTimePickerEndDate.Value = DateTime.Today;
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales Today (R)' 
+                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales This Week' 
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -355,9 +393,10 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                        
+                        dataGridViewSummarizedReport.Columns["Total Sales This Week"].DefaultCellStyle.Format = "c";
+
                         commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity Sold', 
-                                           PRODUCT.Description AS 'Item Sold', PRODUCT.Sell_price AS 'Sales Price (R)' 
+                                           PRODUCT.Description AS 'Item Sold', PRODUCT.Sell_price AS 'Sales Price' 
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -370,23 +409,27 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Sales Price"].DefaultCellStyle.Format = "c";
                         changeLabels();
                     }
-                    catch (Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
                 else if(comboBoxReports.SelectedIndex == 7)
                 {
+                    dataGridViewSummarizedReport.Visible = true;
+
                     //Month End Report
                     dateTimePickerStartDate.Value = DateTime.Today.AddMonths(-1);
                     dateTimePickerEndDate.Value = DateTime.Today;
                     Methods.SQLCon.Open();
                     try
                     {
-                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales Today (R)' 
+                        commandReportTotal = new SqlCommand(@"SELECT SUM(PRODUCT.Sell_price) AS 'Total Sales This Month' 
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -399,9 +442,10 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReportTotal, "PRODUCT");
                         dataGridViewSummarizedReport.DataSource = dataSetReportTotal;
                         dataGridViewSummarizedReport.DataMember = "PRODUCT";
-                        
+                        dataGridViewSummarizedReport.Columns["Total Sales This Month"].DefaultCellStyle.Format = "c";
+
                         commandReport = new SqlCommand(@"SELECT SALES_ORDER_ITEM.Quantity_sold AS 'Quantity Sold', 
-                                           PRODUCT.Description AS 'Item Sold', PRODUCT.Sell_price AS 'Sales Price (R)' 
+                                           PRODUCT.Description AS 'Item Sold', PRODUCT.Sell_price AS 'Sales Price' 
                                            FROM PRODUCT
                                            INNER JOIN SALES_ORDER_ITEM ON SALES_ORDER_ITEM.Product_ID = PRODUCT.Product_ID
                                            INNER JOIN SALES_ORDER ON SALES_ORDER.Sales_ID = SALES_ORDER_ITEM.Sales_ID
@@ -414,18 +458,21 @@ namespace POS_Group5_CMPG223
                         adapterReport.Fill(dataSetReport, "PRODUCT");
                         dataGridViewReports.DataSource = dataSetReport;
                         dataGridViewReports.DataMember = "PRODUCT";
+                        dataGridViewReports.Columns["Sales Price"].DefaultCellStyle.Format = "c";
                         changeLabels();
                     }
-                    catch (Exception ex)
+                    catch (SqlException)
                     {
-                        MessageBox.Show(ex.Message);
+                        //Error message
+                        MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Methods.SQLCon.Close();
                 }
             }
-            catch(Exception ex)
+            catch (SqlException)
             {
-                MessageBox.Show(ex.Message);
+                //Error message
+                MessageBox.Show("Could not generate report!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

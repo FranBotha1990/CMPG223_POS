@@ -55,7 +55,7 @@ namespace POS_Group5_CMPG223
                 LocateButtons(buttonsLoaded);
                 Methods.SQLCon.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -99,7 +99,7 @@ namespace POS_Group5_CMPG223
                 }
                 Methods.SQLCon.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -168,7 +168,7 @@ namespace POS_Group5_CMPG223
                         orderItemCount++;
                         Methods.SQLCon.Close();
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -199,16 +199,24 @@ namespace POS_Group5_CMPG223
         #region Delete Item
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-            //Delete Item
-            for (int i = lbxOrder.SelectedIndex; i < orderItemCount; i++)
+            //Verify selection
+            if (lbxOrder.SelectedItem == null)
             {
-                arrOrder[i, 0] = arrOrder[i + 1, 0];
-                arrOrder[i, 1] = arrOrder[i + 1, 1];
-                arrOrder[i, 2] = arrOrder[i + 1, 2];
-                arrOrder[i, 3] = arrOrder[i + 1, 3];
+                MessageBox.Show("Please select an item from the items list.");
             }
-            orderItemCount--;
-            loadOrder();
+            else
+            {
+                //Delete Item from list
+                for (int i = lbxOrder.SelectedIndex; i < orderItemCount; i++)
+                {
+                    arrOrder[i, 0] = arrOrder[i + 1, 0];
+                    arrOrder[i, 1] = arrOrder[i + 1, 1];
+                    arrOrder[i, 2] = arrOrder[i + 1, 2];
+                    arrOrder[i, 3] = arrOrder[i + 1, 3];
+                }
+                orderItemCount--;
+                loadOrder();
+            }
         }
         #endregion
         #region Place Order
@@ -235,7 +243,7 @@ namespace POS_Group5_CMPG223
 
                     Methods.SQLCon.Close();
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     //Error message
                     MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -251,7 +259,7 @@ namespace POS_Group5_CMPG223
                     orderID = (int)command.ExecuteScalar();
                     Methods.SQLCon.Close();
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -275,7 +283,7 @@ namespace POS_Group5_CMPG223
 
                     Methods.SQLCon.Close();
                 }
-                catch (SqlException ex)
+                catch (SqlException)
                 {
                     //Error message
                     MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

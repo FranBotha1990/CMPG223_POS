@@ -151,6 +151,7 @@ namespace POS_Group5_CMPG223
             this.dgvSalesOrders.MultiSelect = false;
             this.dgvSalesOrders.Name = "dgvSalesOrders";
             this.dgvSalesOrders.ReadOnly = true;
+            this.dgvSalesOrders.RowHeadersVisible = false;
             this.dgvSalesOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalesOrders.Size = new System.Drawing.Size(530, 430);
             this.dgvSalesOrders.TabIndex = 0;

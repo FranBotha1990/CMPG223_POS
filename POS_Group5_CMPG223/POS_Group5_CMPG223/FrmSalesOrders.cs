@@ -293,6 +293,7 @@ namespace POS_Group5_CMPG223
             }
         }
         #endregion
+        #region Cell Click Action
         private void OnCellClick()
         {
             lbxItems.Items.Clear();
@@ -334,5 +335,6 @@ namespace POS_Group5_CMPG223
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
     }
 }

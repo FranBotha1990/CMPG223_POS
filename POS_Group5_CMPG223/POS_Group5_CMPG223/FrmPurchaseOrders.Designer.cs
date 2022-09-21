@@ -53,7 +53,7 @@ namespace POS_Group5_CMPG223
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 0);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pnlForm.Padding = new System.Windows.Forms.Padding(10);
             this.pnlForm.Size = new System.Drawing.Size(550, 450);
             this.pnlForm.TabIndex = 3;
             // 
@@ -68,6 +68,7 @@ namespace POS_Group5_CMPG223
             this.dgvPurchaseOrders.MultiSelect = false;
             this.dgvPurchaseOrders.Name = "dgvPurchaseOrders";
             this.dgvPurchaseOrders.ReadOnly = true;
+            this.dgvPurchaseOrders.RowHeadersVisible = false;
             this.dgvPurchaseOrders.RowHeadersWidth = 51;
             this.dgvPurchaseOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPurchaseOrders.Size = new System.Drawing.Size(530, 430);

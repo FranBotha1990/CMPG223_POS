@@ -13,19 +13,24 @@ namespace POS_Group5_CMPG223
 {
     public partial class FrmSuppliersUpdate : Form
     {
+        #region Variables
         private int id;
         private string oldName;
+        #endregion
+        #region Constructor
         public FrmSuppliersUpdate()
         {
             InitializeComponent();
         }
-
+        #endregion
+        #region Update View
         public FrmSuppliersUpdate(int oldID)
         {
             InitializeComponent();
             id = oldID;
         }
-
+        #endregion
+        #region LoadGUI
         public void LoadGUI()
         {
             //Fore Colors
@@ -38,12 +43,15 @@ namespace POS_Group5_CMPG223
             this.BackColor = Methods.clrForms;
             //pnlSidebar.BackColor = Methods.ChangeColorBrightness(Methods.clrMenu, 0.05);
         }
+        #endregion
 
+        #region Cancel Button
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        #endregion
+        #region Update Button
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -141,7 +149,7 @@ namespace POS_Group5_CMPG223
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Database cannot be found");
             }
@@ -150,7 +158,8 @@ namespace POS_Group5_CMPG223
                 Methods.SQLCon.Close();
             }
         }
-
+        #endregion
+        #region Update Load
         private void FrmSuppliersUpdate_Load(object sender, EventArgs e)
         {
             try
@@ -169,7 +178,7 @@ namespace POS_Group5_CMPG223
                 }
                 reader.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Database cannot be found");
             }
@@ -178,5 +187,6 @@ namespace POS_Group5_CMPG223
                 Methods.SQLCon.Close();
             }
         }
+        #endregion
     }
 }

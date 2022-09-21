@@ -51,7 +51,7 @@ namespace POS_Group5_CMPG223
                 LocateButtons(buttonsLoaded);
                 Methods.SQLCon.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -94,7 +94,7 @@ namespace POS_Group5_CMPG223
                 }
                 Methods.SQLCon.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -185,7 +185,7 @@ namespace POS_Group5_CMPG223
                             billItemCount++;
                             Methods.SQLCon.Close();
                         }
-                        catch (SqlException ex)
+                        catch (SqlException)
                         {
                             MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -227,7 +227,7 @@ namespace POS_Group5_CMPG223
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //Error message
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -275,7 +275,7 @@ namespace POS_Group5_CMPG223
 
                 Methods.SQLCon.Close();
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //Error message
                 MessageBox.Show("Could not load the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -290,15 +290,24 @@ namespace POS_Group5_CMPG223
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-            for (int i = lbxBill.SelectedIndex; i < billItemCount; i++)
+            //Verify selection
+            if (lbxBill.SelectedItem == null)
             {
-                arrBill[i, 0] = arrBill[i + 1, 0];
-                arrBill[i, 1] = arrBill[i + 1, 1];
-                arrBill[i, 2] = arrBill[i + 1, 2];
-                arrBill[i, 3] = arrBill[i + 1, 3];
+                MessageBox.Show("Please select an item from the items list.");
             }
-            billItemCount--;
-            LoadBill();
+            else
+            {
+                //Delete tiem from list
+                for (int i = lbxBill.SelectedIndex; i < billItemCount; i++)
+                {
+                    arrBill[i, 0] = arrBill[i + 1, 0];
+                    arrBill[i, 1] = arrBill[i + 1, 1];
+                    arrBill[i, 2] = arrBill[i + 1, 2];
+                    arrBill[i, 3] = arrBill[i + 1, 3];
+                }
+                billItemCount--;
+                LoadBill();
+            }
         }
 
         private void LoadBill()

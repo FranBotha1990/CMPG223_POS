@@ -58,7 +58,6 @@ namespace POS_Group5_CMPG223
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int selector = (int)dgvPurchaseOrders.CurrentRow.Cells[0].Value;
-            int product, current, quantity;
 
             if (dgvPurchaseOrders.SelectedRows == null)
             {
@@ -196,7 +195,6 @@ namespace POS_Group5_CMPG223
             int product = 0;
             int current = 0;
             int quantity = 0;
-            double total = 0;
 
             if (lbxItems.SelectedItem == null)
             {

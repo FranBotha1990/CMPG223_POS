@@ -32,22 +32,22 @@ namespace POS_Group5_CMPG223
             this.pnlForm = new System.Windows.Forms.Panel();
             this.dgvSuppliers = new System.Windows.Forms.DataGridView();
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.txtFilterCell = new System.Windows.Forms.TextBox();
-            this.lblFilterCell = new System.Windows.Forms.Label();
+            this.gbxFilter = new System.Windows.Forms.GroupBox();
+            this.lblFilter = new System.Windows.Forms.Label();
             this.txtFilterEmail = new System.Windows.Forms.TextBox();
+            this.txtFilterCell = new System.Windows.Forms.TextBox();
             this.lblFilterEmail = new System.Windows.Forms.Label();
             this.txtFilter = new System.Windows.Forms.TextBox();
-            this.lblFilter = new System.Windows.Forms.Label();
+            this.lblFilterCell = new System.Windows.Forms.Label();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.gbxFilter = new System.Windows.Forms.GroupBox();
             this.pnlForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).BeginInit();
             this.pnlSidebar.SuspendLayout();
-            this.pnlButtons.SuspendLayout();
             this.gbxFilter.SuspendLayout();
+            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlForm
@@ -72,6 +72,7 @@ namespace POS_Group5_CMPG223
             this.dgvSuppliers.MultiSelect = false;
             this.dgvSuppliers.Name = "dgvSuppliers";
             this.dgvSuppliers.ReadOnly = true;
+            this.dgvSuppliers.RowHeadersVisible = false;
             this.dgvSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSuppliers.Size = new System.Drawing.Size(530, 430);
             this.dgvSuppliers.TabIndex = 0;
@@ -86,22 +87,30 @@ namespace POS_Group5_CMPG223
             this.pnlSidebar.Size = new System.Drawing.Size(250, 450);
             this.pnlSidebar.TabIndex = 0;
             // 
-            // txtFilterCell
+            // gbxFilter
             // 
-            this.txtFilterCell.Location = new System.Drawing.Point(127, 51);
-            this.txtFilterCell.Name = "txtFilterCell";
-            this.txtFilterCell.Size = new System.Drawing.Size(97, 20);
-            this.txtFilterCell.TabIndex = 4;
-            this.txtFilterCell.TextChanged += new System.EventHandler(this.txtFilterCell_TextChanged);
+            this.gbxFilter.Controls.Add(this.lblFilter);
+            this.gbxFilter.Controls.Add(this.txtFilterEmail);
+            this.gbxFilter.Controls.Add(this.txtFilterCell);
+            this.gbxFilter.Controls.Add(this.lblFilterEmail);
+            this.gbxFilter.Controls.Add(this.txtFilter);
+            this.gbxFilter.Controls.Add(this.lblFilterCell);
+            this.gbxFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbxFilter.Location = new System.Drawing.Point(0, 0);
+            this.gbxFilter.Name = "gbxFilter";
+            this.gbxFilter.Size = new System.Drawing.Size(250, 118);
+            this.gbxFilter.TabIndex = 0;
+            this.gbxFilter.TabStop = false;
+            this.gbxFilter.Text = "Filter by:";
             // 
-            // lblFilterCell
+            // lblFilter
             // 
-            this.lblFilterCell.AutoSize = true;
-            this.lblFilterCell.Location = new System.Drawing.Point(6, 54);
-            this.lblFilterCell.Name = "lblFilterCell";
-            this.lblFilterCell.Size = new System.Drawing.Size(68, 13);
-            this.lblFilterCell.TabIndex = 3;
-            this.lblFilterCell.Text = "Supplier Cell:";
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(6, 26);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(79, 13);
+            this.lblFilter.TabIndex = 1;
+            this.lblFilter.Text = "Supplier Name:";
             // 
             // txtFilterEmail
             // 
@@ -110,6 +119,14 @@ namespace POS_Group5_CMPG223
             this.txtFilterEmail.Size = new System.Drawing.Size(97, 20);
             this.txtFilterEmail.TabIndex = 6;
             this.txtFilterEmail.TextChanged += new System.EventHandler(this.txtFilterEmail_TextChanged);
+            // 
+            // txtFilterCell
+            // 
+            this.txtFilterCell.Location = new System.Drawing.Point(127, 51);
+            this.txtFilterCell.Name = "txtFilterCell";
+            this.txtFilterCell.Size = new System.Drawing.Size(97, 20);
+            this.txtFilterCell.TabIndex = 4;
+            this.txtFilterCell.TextChanged += new System.EventHandler(this.txtFilterCell_TextChanged);
             // 
             // lblFilterEmail
             // 
@@ -128,14 +145,14 @@ namespace POS_Group5_CMPG223
             this.txtFilter.TabIndex = 2;
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
-            // lblFilter
+            // lblFilterCell
             // 
-            this.lblFilter.AutoSize = true;
-            this.lblFilter.Location = new System.Drawing.Point(6, 26);
-            this.lblFilter.Name = "lblFilter";
-            this.lblFilter.Size = new System.Drawing.Size(79, 13);
-            this.lblFilter.TabIndex = 1;
-            this.lblFilter.Text = "Supplier Name:";
+            this.lblFilterCell.AutoSize = true;
+            this.lblFilterCell.Location = new System.Drawing.Point(6, 54);
+            this.lblFilterCell.Name = "lblFilterCell";
+            this.lblFilterCell.Size = new System.Drawing.Size(68, 13);
+            this.lblFilterCell.TabIndex = 3;
+            this.lblFilterCell.Text = "Supplier Cell:";
             // 
             // pnlButtons
             // 
@@ -184,22 +201,6 @@ namespace POS_Group5_CMPG223
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // gbxFilter
-            // 
-            this.gbxFilter.Controls.Add(this.lblFilter);
-            this.gbxFilter.Controls.Add(this.txtFilterEmail);
-            this.gbxFilter.Controls.Add(this.txtFilterCell);
-            this.gbxFilter.Controls.Add(this.lblFilterEmail);
-            this.gbxFilter.Controls.Add(this.txtFilter);
-            this.gbxFilter.Controls.Add(this.lblFilterCell);
-            this.gbxFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbxFilter.Location = new System.Drawing.Point(0, 0);
-            this.gbxFilter.Name = "gbxFilter";
-            this.gbxFilter.Size = new System.Drawing.Size(250, 118);
-            this.gbxFilter.TabIndex = 0;
-            this.gbxFilter.TabStop = false;
-            this.gbxFilter.Text = "Filter by:";
-            // 
             // FrmSuppliers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,9 +214,9 @@ namespace POS_Group5_CMPG223
             this.pnlForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
             this.pnlSidebar.ResumeLayout(false);
-            this.pnlButtons.ResumeLayout(false);
             this.gbxFilter.ResumeLayout(false);
             this.gbxFilter.PerformLayout();
+            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
