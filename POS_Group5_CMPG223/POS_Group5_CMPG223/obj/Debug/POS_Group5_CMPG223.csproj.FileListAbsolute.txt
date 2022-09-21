@@ -22,7 +22,6 @@ C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG22
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.csproj.CopyComplete
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.exe
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.pdb
-C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.csproj.AssemblyReference.cache
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.frmMain.resources
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSettings.resources
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.Properties.Resources.resources
@@ -83,8 +82,6 @@ C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG22
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSales.resources
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSalesOrders.resources
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliers.resources
-C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data.mdf
-C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data_log.ldf
 C:\Users\FrancoisBotha\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data.mdf
 C:\Users\FrancoisBotha\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data_log.ldf
 C:\Users\FrancoisBotha\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Group5_CMPG223.exe.config
@@ -168,3 +165,5 @@ C:\Users\FrancoisBotha\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group
 C:\Users\FrancoisBotha\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmSuppliersAdd.resources
 C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmHelp.resources
 C:\Users\armin\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\obj\Debug\POS_Group5_CMPG223.FrmHelp.resources
+C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data.mdf
+C:\Users\fboth\Documents\GitHub\CMPG223_POS\POS_Group5_CMPG223\POS_Group5_CMPG223\bin\Debug\POS_Data_log.ldf
